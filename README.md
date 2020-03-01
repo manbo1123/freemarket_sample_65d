@@ -37,6 +37,7 @@ Things you may want to cover:
 
 # users table
 |Column|Type|Options|
+|------|----|-------|
 |nickname|string|null:false|
 |password|string|null:false|
 |email|string|null:false, unique: true, index:true|
@@ -57,6 +58,7 @@ Things you may want to cover:
 
 # profiles table
 |Column|Type|Options|
+|------|----|-------|
 |first_name|string|null:false|
 |family_name|string|null:false|
 |first_name_kana|string|null:false|
@@ -74,6 +76,7 @@ Things you may want to cover:
 
 # snsAuthentications table
 |Column|Type|Options|
+|------|----|-------|
 |provider|string|null: false|
 |uid|string|null: false, unique: true|
 |token|text||
@@ -85,6 +88,7 @@ Things you may want to cover:
 
 # sending_destinations table
 |Column|Type|Options|
+|------|----|-------|
 |destination_first_name|string|null: false|
 |destination_family_name|string|null: false|
 |destination_first_name_kana|string|null: false|
@@ -103,6 +107,7 @@ Things you may want to cover:
 
 # CreditCards table
 |Column|Type|Options|
+|------|----|-------|
 |cardNunber|integer|null:false, unique: true|
 |expirationYear|integer|null:false|
 |expirationMonth|integer|null:false|
@@ -115,6 +120,7 @@ Things you may want to cover:
 
 # toDoLists table
 |Column|Type|Options|
+|------|----|-------|
 |list|text|null:false|
 |user_id|references|null: false, foreign_key: true|
 
@@ -124,6 +130,7 @@ Things you may want to cover:
 
 # points table
 |Column|Type|Options|
+|------|----|-------|
 |point|integer||
 |user_id|references|null: false, foreign_key: true|
 
@@ -132,6 +139,7 @@ Things you may want to cover:
 
 # userEvaluations table
 |Column|Type|Options|
+|------|----|-------|
 |review|text|null: false|
 |user_id|references|null: false, foreign_key: true|
 |item_id|references|null: false, foreign_key: true|
@@ -145,6 +153,7 @@ Things you may want to cover:
 
 # items table
 |Column|Type|Options|
+|------|----|-------|
 |name|string|null: false|
 |introduction|text|null: false|
 |price|integer|null: false|
@@ -179,6 +188,7 @@ Things you may want to cover:
 
 # brands table
 |Column|Type|Options|
+|------|----|-------|
 |name|string||
 
 ## Association
@@ -187,6 +197,7 @@ Things you may want to cover:
 
 # itemImgs table
 |Column|Type|Options|
+|------|----|-------|
 |url|string|null:false|
 |item_id|references|null: false, foreign_key: true|
 
@@ -196,6 +207,7 @@ Things you may want to cover:
 
 # favorites table
 |Column|Type|Options|
+|------|----|-------|
 |user_id|references|null: false, foreign_key: true|
 |item_id|references|null: false, foreign_key: true|
 
@@ -205,6 +217,7 @@ Things you may want to cover:
 
 # comments table
 |Column|Type|Options|
+|------|----|-------|
 |comment|text|null: false|
 |user_id|references|null: false, foreign_key: true|
 |item_id|references|null: false, foreign_key: true|

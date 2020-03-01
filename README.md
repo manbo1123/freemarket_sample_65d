@@ -233,7 +233,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null:false|
-|ancestry|integer |null:false|
+|ancestry|string||
 
 ## Association
 - has_many :items

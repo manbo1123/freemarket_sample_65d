@@ -52,7 +52,7 @@ Things you may want to cover:
 - has_one :point
 - has_one :profile, dependent: :destroy
 - has_one :snsAuthentication, dependent: :destroy
-- has_one :identification, dependent: :destroy
+- has_one :sending_destination, dependent: :destroy
 - has_one :creditCard, dependent: :destroy
 
 

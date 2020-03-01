@@ -46,15 +46,15 @@ Things you may want to cover:
 ## Association
 - has_many :comments, dependent: :destroy
 - has_many :favorites, dependent: :destroy
-- has_many :toDoLists
-- has_many :userEvaluations
+- has_many :todo_lists
+- has_many :user_evaluations
 - has_many :seller_items, foreign_key: "seller_id", class_name: "items"
 - has_many :buyer_items, foreign_key: "buyer_id", class_name: "items"
 - has_one :point
 - has_one :profile, dependent: :destroy
-- has_one :snsAuthentication, dependent: :destroy
+- has_one :sns_authentication, dependent: :destroy
 - has_one :sending_destination, dependent: :destroy
-- has_one :creditCard, dependent: :destroy
+- has_one :credit_card, dependent: :destroy
 
 
 # profiles table
@@ -64,9 +64,9 @@ Things you may want to cover:
 |family_name|string|null:false|
 |first_name_kana|string|null:false|
 |family_name_kana|string|null:false|
-|birthYear|date|null:false|
-|birthMonth|date|null:false|
-|birthDay|date|null:false|
+|birth_year|date|null:false|
+|birth_month|date|null:false|
+|birth_day|date|null:false|
 |introduction|text||
 |avatar|string||
 |user|references|null: false, foreign_key: true|
@@ -75,7 +75,7 @@ Things you may want to cover:
 - belongs_to :user
 
 
-# snsAuthentications table
+# sns_authentications table
 |Column|Type|Options|
 |------|----|-------|
 |provider|string|null: false|
@@ -94,32 +94,32 @@ Things you may want to cover:
 |destination_family_name|string|null: false|
 |destination_first_name_kana|string|null: false|
 |destination_family_name_kana|string|null: false|
-|postCode|integer(7)|null:false|
+|post_code|integer(7)|null:false|
 |prefecture_code|integer|null:false|
 |city|string|null:false|
-|houseNumber|string|null:false|
-|buildingName|string||
-|phoneNumber|integer| unique: true|
+|house_number|string|null:false|
+|building_name|string||
+|phone_number|integer| unique: true|
 |user|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :user
 - Gem：jp_prefectureを使用して都道府県コードを取得
 
-# CreditCards table
+# credit_cards table
 |Column|Type|Options|
 |------|----|-------|
-|cardNunber|integer|null:false, unique: true|
-|expirationYear|integer|null:false|
-|expirationMonth|integer|null:false|
-|securityCode|integer|null:false|
+|card_number|integer|null:false, unique: true|
+|expiration_year|integer|null:false|
+|expiration_month|integer|null:false|
+|security_code|integer|null:false|
 |user|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to:user
 
 
-# toDoLists table
+# todo_lists table
 |Column|Type|Options|
 |------|----|-------|
 |list|text|null:false|
@@ -138,7 +138,7 @@ Things you may want to cover:
 ## Association
 - belongs_to:user
 
-# userEvaluations table
+# user_evaluations table
 |Column|Type|Options|
 |------|----|-------|
 |review|text|null: false|
@@ -159,29 +159,30 @@ Things you may want to cover:
 |introduction|text|null: false|
 |price|integer|null: false|
 |brand|references|foreign_key: true|
-|itemCondition|references|null: false,foreign_key: true|
-|postagePayer|references|null: false,foreign_key: true|
+|item_condition|references|null: false,foreign_key: true|
+|postage_payer|references|null: false,foreign_key: true|
 |prefecture_code|integer|null: false|
 |size|references|null: false, foreign_key: true|
-|preparationDay|references|null: false, foreign_key: true|
-|itemImg|references|null: false, foreign_key: true|
+|preparation_day|references|null: false, foreign_key: true|
+|postage_type|references|null: false, foreign_key: true|
+|item_img|references|null: false, foreign_key: true|
 |category|references|null: false, foreign_key: true|
-|tradingStatus|enum|null: false|
-|selIer|references|null: false, foreign_key: true|
+|trading_status|enum|null: false|
+|seller|references|null: false, foreign_key: true|
 |buyer|references|foreign_key: true|
-|dealClosedDate|timestamp||
+|deal_closed_date|timestamp||
 
 ## Association
 - has_many :comments, dependent: :destroy
 - has_many :favorites
-- has_many :itemImgs, dependent: :destroy
-- has_one :userEvaluation
+- has_many :item_imgs, dependent: :destroy
+- has_one :user_evaluation
 - belongs_to :category
 - belongs_to_active_hash :size
-- belongs_to_active_hash :itemCondition
-- belongs_to_active_hash :postagePayer
-- belongs_to_active_hash :preparationDay
-- belongs_to_active_hash :postageType
+- belongs_to_active_hash :item_condition
+- belongs_to_active_hash :postage_payer
+- belongs_to_active_hash :preparation_day
+- belongs_to_active_hash :postage_type
 - belongs_to :brand
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: "User"
@@ -197,7 +198,7 @@ Things you may want to cover:
 - has_many :items
 
 
-# itemImgs table
+# item_imgs table
 |Column|Type|Options|
 |------|----|-------|
 |url|string|null:false|

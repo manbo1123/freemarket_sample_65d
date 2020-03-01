@@ -1,6 +1,5 @@
 <%# 画像の投稿 %>
 <%= form_for(@test) do |f| %>
-   <%= f.label :image %>
    <%= f.file_field :image %>
    <p><%= f.submit "投稿する" %></p>
 <% end %>
@@ -8,7 +7,7 @@
 <%# 画像の表示 %>
 <% @tests.each do |test| %>
    <% if test.image? %>
-      <%= image_tag @test.image.url %>
+      <%= image_tag test.image.url %>
    <% end %>
 <% end %>
 

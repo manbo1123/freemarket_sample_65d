@@ -68,8 +68,8 @@ Things you may want to cover:
 |birthMonth|date|null:false|
 |birthDay|date|null:false|
 |introduction|text||
-|userImageUrl|string||
-|user_id|references|null: false, foreign_key: true|
+|avatar|string||
+|user|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :user
@@ -81,7 +81,7 @@ Things you may want to cover:
 |provider|string|null: false|
 |uid|string|null: false, unique: true|
 |token|text||
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :user
@@ -100,7 +100,7 @@ Things you may want to cover:
 |houseNumber|string|null:false|
 |buildingName|string||
 |phoneNumber|integer| unique: true|
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :user
@@ -113,7 +113,7 @@ Things you may want to cover:
 |expirationYear|integer|null:false|
 |expirationMonth|integer|null:false|
 |securityCode|integer|null:false|
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to:user
@@ -123,7 +123,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |list|text|null:false|
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to:user
@@ -133,7 +133,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |point|integer||
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to:user
@@ -142,9 +142,9 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |review|text|null: false|
-|user_id|references|null: false, foreign_key: true|
-|item_id|references|null: false, foreign_key: true|
-|evaluation_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
+|evaluation|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to_active_hash :evaluation
@@ -158,17 +158,17 @@ Things you may want to cover:
 |name|string|null: false|
 |introduction|text|null: false|
 |price|integer|null: false|
-|brand_id|references|foreign_key: true|
-|itemCondition_id|references|null: false,foreign_key: true|
-|postagePayer_id|references|null: false,foreign_key: true|
+|brand|references|foreign_key: true|
+|itemCondition|references|null: false,foreign_key: true|
+|postagePayer|references|null: false,foreign_key: true|
 |prefecture_code|integer|null: false|
-|size_id|references|null: false, foreign_key: true|
-|preparationDay_id|references|null: false, foreign_key: true|
-|itemImg_id|references|null: false, foreign_key: true|
-|category_id|references|null: false, foreign_key: true|
+|size|references|null: false, foreign_key: true|
+|preparationDay|references|null: false, foreign_key: true|
+|itemImg|references|null: false, foreign_key: true|
+|category|references|null: false, foreign_key: true|
 |tradingStatus|enum|null: false|
-|selIer_id|references|null: false, foreign_key: true|
-|buyer_id|references|foreign_key: true|
+|selIer|references|null: false, foreign_key: true|
+|buyer|references|foreign_key: true|
 |dealClosedDate|timestamp||
 
 ## Association
@@ -201,7 +201,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |url|string|null:false|
-|item_id|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :item
@@ -210,8 +210,8 @@ Things you may want to cover:
 # favorites table
 |Column|Type|Options|
 |------|----|-------|
-|user_id|references|null: false, foreign_key: true|
-|item_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :user
@@ -221,8 +221,8 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |comment|text|null: false|
-|user_id|references|null: false, foreign_key: true|
-|item_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
 |created_at|timestamp|null: false|
 
 ## Association

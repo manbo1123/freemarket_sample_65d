@@ -229,3 +229,11 @@ Things you may want to cover:
 - belongs_to :item
 
 
+# categories table
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null:false|
+|ancestry|integer |null:false|
+
+## Association
+- has_many :items

@@ -181,6 +181,7 @@ Things you may want to cover:
 - belongs_to_active_hash :itemCondition
 - belongs_to_active_hash :postagePayer
 - belongs_to_active_hash :preparationDay
+- belongs_to_active_hash :postageType
 - belongs_to :brand
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: "User"

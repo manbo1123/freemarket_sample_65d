@@ -46,7 +46,7 @@
         カテゴリー
         %span.required 必須
       .pulldown
-        = f.select :category, @category_parent_array, {}, class: "parent_category_box", name: 'item[category_ids][]'
+        = f.select :category, @category_parent_array, prompt: "選択してください", class: "parent_category_box", name: 'item[category_ids][]'
         = icon('fa', 'chevron-down')
       %p.error_message.category_top_error_message
         選択してください

@@ -1,0 +1,22 @@
+%body
+  %header
+  %main
+    .main-form
+      %h2.main-form__title 新規会員登録
+      .main-form__wrapper
+        .main-contents
+          .contents-field--first
+            .default-btn.default-btn--mail
+              = link_to "メールアドレスで登録する", new_user_registration_path
+              = icon('far', 'envelope', class: 'icon-mail')
+          .contents-field
+            .default-btn.default-btn--facebook
+              = link_to "Facebookで登録する", (href='')
+              = icon('fab', 'facebook-square', class: 'icon-facebook')
+            
+          .contents-field
+            .default-btn.default-btn--google
+              = link_to "Googleで登録する", (href='')
+              = icon('fab', 'google', class: 'icon-google')
+
+  %footer

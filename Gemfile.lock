@@ -310,6 +310,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   fog-aws
+
   font-awesome-sass
   haml-rails
   jbuilder (~> 2.5)

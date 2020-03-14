@@ -1,18 +1,18 @@
-.header
-.purchase-main
-  %h1.purchase-main__purchase-head
-    購入内容の確認
-  .purchase-main__purchase-info
-.purchase-contents
-  %ul.purchase-contents__payment-price
-    %li.purchase-contents__payment-price--text 支払い金額
-    %li.purchase-contents__payment-price--price ¥7,999
-  .purchase-contents__payment-method
-    支払い方法
-    %p.purchase-contents__payment-method--payment-button
-      = link_to "登録してください", "#"
-  .purchase-contents__delivery-address
-    配送先
-    %p.purchase-contents__delivery-address--address-button
-      = link_to "登録してください", "#"
-.footer
+.item_purchases_page
+
+  .purchase-main
+    %h1.purchase-main__purchase-head
+      購入内容の確認
+    .purchase-main__purchase-info
+  .purchase-contents
+    %ul.purchase-contents__payment-price
+      %li.purchase-contents__payment-price--text 支払い金額
+      %li.purchase-contents__payment-price--price ¥7,999
+    .purchase-contents__payment-method
+      支払い方法
+      %p.purchase-contents__payment-method--payment-button
+        = link_to "登録してください", "#"
+    .purchase-contents__delivery-address
+      配送先
+      %p.purchase-contents__delivery-address--address-button
+        = link_to "登録してください", "#"

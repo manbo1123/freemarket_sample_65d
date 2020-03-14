@@ -1,17 +1,8 @@
-.wrapper
-  -#簡素な方のヘッダー(仮置き)
-  .header
-    .header__logo
-      =image_tag "logo/logo.png"
 
-  = render partial: 'form'
+-#簡素な方のヘッダーに変更(仮置き)
+= render partial: "layouts/header"
 
-  -#簡素な方のフッター（仮置き）
-  .footer
-    .footer__link
-      =link_to "プライバシーポリシー", "#"
-      =link_to "メルカリ利用規約", "#"
-      =link_to "特定商取引に関する表記", "#"
-    .footer__logo
-      =image_tag "logo/logo-white.png"
-      %p "©️FURIMA, Lnc."
+= render partial: 'form'
+
+-#簡素な方のフッターに変更（仮置き）
+= render partial: "layouts/footer"

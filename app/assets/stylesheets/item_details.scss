@@ -1,221 +1,223 @@
-* {
-  background-color: #f5f5f5;
-  box-sizing: inherit;
-}
-.header{
-  padding: 0 60px;
-}
+.item_detail_page {
+    * {
+    background-color: #f5f5f5;
+    box-sizing: inherit;
+  }
+//  .header{
+//    padding: 0 60px;
+//  }
 
-h2 {
-  background-color: white;
-  color: #3CCACE;
-}
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-//商品の名前
-.main-topic {
-  padding: 24px 40px 40px;
-  margin: 0 auto;
-  width: 700px;
-  background-color: #fff;
-  &__item-name {
-    font-weight: bold;
-    font-size: larger;
-    height: 30px;
-    text-align: center;
-    line-height: 1.4;
-    word-wrap: break-word;
-    background-color: #fff;
-  }
-}
-.item-info {
-  width: 700px;
-  height: 420px;
-  margin: 0 auto;
-  background-color: #fff;
-  &__item-image {
-    width: 300px;
-    margin-left: 30px; 
-    float: left;
-    border: 1px solid #f5f5f5;
-    text-align: center;
-    background-color: #fff;
-  }
-  &__item-details {
-    margin-right: 30px; 
-    height: 400px;
-    width: 320px;
-    float: right;
-    border: 1px solid #f5f5f5;
-    border-collapse: collapse;
-  
-    tr {
-      width: 100%;
-      border: 1px solid #f5f5f5;
-    }
-  
-    th {
-      width: 35%;
-      text-align: left;
-      font-weight: 400;
-      background: #fafafa;
-    }
-  
-    td {
-      text-align: left;
-      background: white;
-    }
-  }
-}
-.item-price {
-  width: 700px;
-  margin: 0 auto;
-  background-color: #fff;
-  text-align: center;
-  &__price-details{
-    background-color: #fff;
-    &--price{
-      font-size: 2.8em;
-      font-weight: bold;
-      background-color: #fff;
-    }
-    &--tax{
-      font-size: 0.1em;
-      background-color: #fff;
-    }
-    &--fee{
-      font-size: 1.0em;
-      background-color: #fff;
-    }
-  }
-  &__purchase-button {
-    background-color: #3CCACE;
-    text-align: center;
-    line-height: 60px;
-    margin: 10px 30px 0;
-    font-weight: bold;
-    font-size: 1.5em;
-    color: white;
-    cursor: pointer;
-  }
-}
-.item-description {
-  width: 700px;
-  margin: 0 auto;
-  background-color: #fff;
-  height: 1000px;
-  &__introduction{
-    background-color: #fff;
-    margin: 0 auto;
-    width: 600px;
-    height: 900px;
-  }
-  &__button-container {
-    background-color: #fff;
-    margin: 10px 0 0;
-    display: flex;
-    &--favorite-button{
-      padding: 10px;
-      margin-left: 20px;
-      background-color: #f5f5f5;
-      border-radius: 40px;
-      float: left;
-      height: 30px;
-      line-height: 10px;
-    }
-    &--note-text{
-      padding: 10px;
-      margin-left: 20px;
-      background-color: #f5f5f5;
-      border-radius: 40px;
-      float: left;
-      height: 20px;
-      height: 30px;
-      line-height: 10px;
-    }
-  }
-}
-.message {
-  background-color: white;
-  padding: 24px 40px 40px;
-  margin: 40px auto 0;
-  width: 700px;
-  &__notes {
-    background-color: #E0F8F7;
-    color: black;
-    font-size: 0.8em;
-  }
-  &__comment {
+  h2 {
     background-color: white;
-    margin: 10px 0 0;
-    height: 100px;
-    border: 1px solid;
-    border-color: gray;
+    color: #3CCACE;
   }
-  &__comment-button {
-    background-color: #C0C0C0;
-    margin: 10px auto;
-    width: 100%;
-    height: 50px;
-    font-size: small;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
+  .clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
   }
-}
-.nav-content{
-  &__nav-items {
-    margin: 10px auto 0;
-    height: 30px;
-    font-size: small;
-    font-weight: bold;
+
+  //商品の名前
+  .main-topic {
+    padding: 24px 40px 40px;
+    margin: 0 auto;
     width: 700px;
-    list-style-type: none;
-    padding: 0;
+    background-color: #fff;
+    &__item-name {
+      font-weight: bold;
+      font-size: larger;
+      height: 30px;
+      text-align: center;
+      line-height: 1.4;
+      word-wrap: break-word;
+      background-color: #fff;
+    }
+  }
+  .item-info {
+    width: 700px;
+    height: 420px;
+    margin: 0 auto;
+    background-color: #fff;
+    &__item-image {
+      width: 300px;
+      margin-left: 30px; 
+      float: left;
+      border: 1px solid #f5f5f5;
+      text-align: center;
+      background-color: #fff;
+    }
+    &__item-details {
+      margin-right: 30px; 
+      height: 400px;
+      width: 320px;
+      float: right;
+      border: 1px solid #f5f5f5;
+      border-collapse: collapse;
+    
+      tr {
+        width: 100%;
+        border: 1px solid #f5f5f5;
+      }
+    
+      th {
+        width: 35%;
+        text-align: left;
+        font-weight: 400;
+        background: #fafafa;
+      }
+    
+      td {
+        text-align: left;
+        background: white;
+      }
+    }
+  }
+  .item-price {
+    width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    text-align: center;
+    &__price-details{
+      background-color: #fff;
+      &--price{
+        font-size: 2.8em;
+        font-weight: bold;
+        background-color: #fff;
+      }
+      &--tax{
+        font-size: 0.1em;
+        background-color: #fff;
+      }
+      &--fee{
+        font-size: 1.0em;
+        background-color: #fff;
+      }
+    }
+    &__purchase-button {
+      background-color: #3CCACE;
+      text-align: center;
+      line-height: 60px;
+      margin: 10px 30px 0;
+      font-weight: bold;
+      font-size: 1.5em;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  .item-description {
+    width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    height: 1000px;
+    &__introduction{
+      background-color: #fff;
+      margin: 0 auto;
+      width: 600px;
+      height: 900px;
+    }
+    &__button-container {
+      background-color: #fff;
+      margin: 10px 0 0;
+      display: flex;
+      &--favorite-button{
+        padding: 10px;
+        margin-left: 20px;
+        background-color: #f5f5f5;
+        border-radius: 40px;
+        float: left;
+        height: 30px;
+        line-height: 10px;
+      }
+      &--note-text{
+        padding: 10px;
+        margin-left: 20px;
+        background-color: #f5f5f5;
+        border-radius: 40px;
+        float: left;
+        height: 20px;
+        height: 30px;
+        line-height: 10px;
+      }
+    }
+  }
+  .message {
+    background-color: white;
+    padding: 24px 40px 40px;
+    margin: 40px auto 0;
+    width: 700px;
+    &__notes {
+      background-color: #E0F8F7;
+      color: black;
+      font-size: 0.8em;
+    }
+    &__comment {
+      background-color: white;
+      margin: 10px 0 0;
+      height: 100px;
+      border: 1px solid;
+      border-color: gray;
+    }
+    &__comment-button {
+      background-color: #C0C0C0;
+      margin: 10px auto;
+      width: 100%;
+      height: 50px;
+      font-size: small;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  .nav-content{
+    &__nav-items {
+      margin: 10px auto 0;
+      height: 30px;
+      font-size: small;
+      font-weight: bold;
+      width: 700px;
+      list-style-type: none;
+      padding: 0;
+      a{
+        text-decoration: none;
+        color: #3CCACE;
+      }
+      &--nav-item-before {
+        float: left;
+      }
+      &--nav-item-after {
+        float: right;
+      }
+    }
+  }
+  .other-items {
+    margin: 0 auto;
+    width: 700px;
+    padding: 24px 40px 40px;
+    height: 1000px;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #fff;
     a{
       text-decoration: none;
       color: #3CCACE;
+      background-color: #fff;
     }
-    &--nav-item-before {
-      float: left;
+    &__seller-items {
+      width: 0 auto;
+      height: 500px;
+      background-color: #fff;
     }
-    &--nav-item-after {
-      float: right;
-    }
+    &__relation-items {
+      width: 0 auto;
+      height:  500px;
+      background-color: #fff;
+    } 
   }
-}
-.other-items {
-  margin: 0 auto;
-  width: 700px;
-  padding: 24px 40px 40px;
-  height: 1000px;
-  font-size: 1em;
-  font-weight: bold;
-  background-color: #fff;
-  a{
-    text-decoration: none;
-    color: #3CCACE;
-    background-color: #fff;
-  }
-  &__seller-items {
-    width: 0 auto;
-    height: 500px;
-    background-color: #fff;
-  }
-  &__relation-items {
-    width: 0 auto;
-    height:  500px;
-    background-color: #fff;
-  } 
-}
-//バナーとフッター
-.banner{
-  padding: 100px 40px;
-}
-.footer{
-  padding: 60px 0;
+  //バナーとフッター
+  //.banner{
+  //  padding: 100px 40px;
+  // }
+  //.footer{
+  //  padding: 60px 0;
+  // }
 }

@@ -1,8 +1,5 @@
-//全体に関するインポート
 @import "reset";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "mixin/mixin";
-
-//各ビューごとのインポート
-@import "modules/items";
+@import "modules/*";

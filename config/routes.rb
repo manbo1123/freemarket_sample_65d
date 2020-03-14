@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :tests
   resources :purchases
 
-  root "items#index"
+  root "mypage#index"
   resources :mypage
   
   resources :items, expect: :show

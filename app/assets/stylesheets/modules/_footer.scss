@@ -1,0 +1,118 @@
+.appad{
+  height: 350px;
+  width:100%;
+  background-image: url("pict/bg-appBanner-pict.jpg");
+  background-size: cover;
+  background-position:center center ;
+  text-align: center;
+  color: white;
+  bottom: 0;
+  &__text1{
+    padding-top: 100px;
+    font-size: x-large;
+    text-shadow:0 0 5px gray;
+    font-weight: bold;
+  }
+  &__text2{
+    font-size: xx-large;
+    text-shadow:0 0 5px gray;
+    font-weight: bold;
+  }
+  .icons{
+    display: block;
+    height:150px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    &__apple{
+      height: 54px;
+      padding-top: 13px;
+      &:hover{
+        opacity: 0.5 ;
+      }
+    }
+    &__google{
+      height: 80px;
+      &:hover{
+        opacity: 0.5 ;
+      }
+    }
+  }
+}
+
+.banner{
+  height: 350px;
+  width:100%;
+  background-color: black;
+  &__middle{
+    height: 250px;
+    width: 100%;
+    .lists{
+      height: 150px;
+      width: 70%;
+      padding-top: 50px;
+      margin:0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      color:white;
+      text-align: center;
+      &__about{
+        color:white;
+        h2{
+          font-weight: bold;
+          padding-bottom: 20px;
+        }
+        li{
+          height:30px;
+          a{
+            font-size: 13px;
+            color:white;
+            text-decoration: none;
+          }
+        }
+      }
+      &__index{
+        color:white;
+        h2{
+          font-weight: bold;
+          padding-bottom: 20px;
+        }
+        li{
+          height:30px;
+          a{
+            font-size: 13px;
+            color:white;
+            text-decoration: none;
+          }
+        }
+      }
+      &__help{
+        color:white;
+        h2{
+          font-weight: bold;
+          padding-bottom: 20px;
+        }
+        li{
+          height:30px;
+          a{
+            font-size: 13px;
+            color:white;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    .logos{
+      padding-bottom: 50px;
+      text-align: center;
+      &__furima{
+        height: 40px;
+      }
+      &__copy{
+        color: white;
+        font-size: 15px;
+      }
+    }
+  }
+}

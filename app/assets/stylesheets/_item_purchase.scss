@@ -1,0 +1,87 @@
+.item_purchases_page {
+    * {
+    box-sizing: border-box;
+  }
+
+  .header{
+    height: 128px;
+    width: 100%;
+    background-color: #f5f5f5;
+  }
+  //商品情報の表示
+  .purchase-main{
+    width: 700px;
+    margin: 0 auto;
+    &__purchase-head{
+      font-size: 22px;
+      padding: 32px;
+      text-align: center;
+      color: black;
+      background-color: #fff;
+      font-weight: bold;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    &__purchase-info{
+      height: 150px;
+      background-color: #fff;
+      margin: 0 auto;
+      border-bottom: 1px solid #f5f5f5;
+    }
+  }
+  //支払いに関する表示
+  .purchase-contents{
+    width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    &__payment-price{
+      background-color: #fff;
+      width: 300px;
+      height: 100px;
+      display: flex;
+      font-weight: bold;
+      margin: 0 auto;
+      border-bottom: 1px solid #f5f5f5;
+      &--text{
+        margin: 10px 0 0;
+        font-size: 18px;
+        background-color: #fff;
+      }
+      &--price{
+        margin: 10px 0 0;
+        font-size: 20px;
+        margin-left: auto;
+        background-color: #fff;
+      }
+    }
+    &__payment-method{
+      background-color: #fff;
+      width: 300px;
+      height: 100px;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 1px solid #f5f5f5;
+      margin: 10px auto;
+      &--payment-button{
+        margin: 10px 10px 0;
+        background-color: #fff;
+        font-weight: lighter;
+      }
+    }
+    &__delivery-address{
+      background-color: #fff;
+      width: 300px;
+      margin: 10px auto;
+      height: 100px;
+      font-size: 15px;
+      font-weight: bold;
+      &--address-button{
+      margin: 10px 10px 0;
+      background-color: #fff;
+      font-weight: lighter;
+      }
+    }
+  }
+  .footer{
+    padding: 0 0 220px;
+  }
+}

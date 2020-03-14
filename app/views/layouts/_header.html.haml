@@ -1,0 +1,31 @@
+.header
+  .header__upper
+    .headlogo
+      = link_to root_path do
+        = image_tag "logo/logo.png", class: "headlogo__img"
+    .index
+      = form_tag('#',method: 'get') do
+        = text_field_tag :search, '', placeholder: "キーワードから探す", class: "index__form"
+        = button_tag type: 'submit', class: "index__btn" do
+          = icon('fa', 'search fa-2x')
+  .header__bottom
+    .leftmenu
+      .categorylist
+        = icon('fa', 'bars')
+        カテゴリーから探す
+      .brandlist
+        = icon('fa', 'tags')
+        ブランドから探す
+    .rightmenu
+      .favo
+        = icon('far', 'heart')
+        いいね！一覧
+      .notice
+        = icon('fas', 'check')
+        お知らせ
+      .todo
+        = icon('far', 'bell')
+        やることリスト
+      .mypage
+        = icon('far', 'smile-wink')
+        マイページ

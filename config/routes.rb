@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     get 'sending_destinations', to: 'users/registrations#new_sending_destination'
     post 'sending_destinations', to: 'users/registrations#create_sending_destination'
   end
+  resources :tests
+
+  root 'mypage#index'
+  resources :items
+  resources :purchases
+
 end
 
   

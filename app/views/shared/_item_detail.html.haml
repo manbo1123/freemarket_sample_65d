@@ -1,0 +1,80 @@
+.header
+%section.main-topic
+  %h1.main-topic__item-name
+    商品の名前
+.item-info.clearfix
+  .item-info__item-image
+    商品画像
+  //商品詳細のテーブル
+  %table.item-info__item-details
+    %tbody
+      %tr
+        %th 出品者
+        %td
+          %a{:herf => "#"}
+      %tr
+        %th カテゴリー
+        %td
+          %a{:herf => "#"}
+      %tr
+        %th 出品のサイズ
+        %td
+          free
+      %tr
+        %th 商品の状態
+        %td
+          目立った傷汚れなし
+      %tr
+        %th 配送料の負担
+        %td
+          送料込み（出品者負担）
+      %tr
+        %th 配送の方法
+        %td
+          ゆうゆうメール
+      %tr
+        %th 配送元地域
+        %td
+          東京都
+      %tr
+        %th 配送日の目安
+        %td
+          １〜２日で発送
+.item-price
+  .item-price__price-details
+    %span.item-price__price-details--price
+      ¥999
+    %span.item-price__price-details--tax
+      （税込み）
+    %span.item-price__price-details--fee
+      送料込み
+  .item-price__purchase-button
+    購入画面に進む
+.item-description
+  .item-description__introduction
+  .item-description__button-container
+    .item-description__button-container--favorite-button
+      ♡　いいね！
+    .item-description__button-container--note-text
+      不適切な商品の報告
+.message
+  %p.message__notes
+    相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+  .message__comment
+    良い商品
+  %button.message__comment-button{:type => "submit"}
+    コメントする
+.nav-content
+  %ul.nav-content__nav-items.clearfix
+    %li.nav-content__nav-items--nav-item-before
+      = link_to "<  前の商品", "#"
+    %li.nav-content__nav-items--nav-item-after
+      = link_to "次の商品  >", "#"
+.other-items
+  %section.other-items__seller-items
+    = link_to "出品者のその他の商品", "#"
+  %section.other-items__relation-items
+    = link_to "関連商品", "#"
+.footer
+//仮のボタン
+= render partial: 'shared/exhibition'

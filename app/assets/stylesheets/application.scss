@@ -1,7 +1,8 @@
 @import "reset";
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "mixin/mixin";
+@import "modules/*";
 @import "item_details";
 @import "item_purchase";
 @import "exhibition";
-

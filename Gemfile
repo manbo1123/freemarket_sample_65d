@@ -71,4 +71,7 @@ gem 'active_hash'
 gem 'payjp'
 gem 'kaminari'
 gem 'pry-rails'
-gem 'font-awesome-sass', '~> 5.4.1'
+
+gem 'ancestry'
+gem 'font-awesome-sass'
+gem 'jp_prefecture'

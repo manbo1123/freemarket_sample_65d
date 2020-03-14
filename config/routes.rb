@@ -3,4 +3,9 @@ Rails.application.routes.draw do
   resources :items
   resources :tests
   resources :purchases
+
+  root "items#index"
+  resources :mypage
+  
+  resources :items, expect: :show
 end

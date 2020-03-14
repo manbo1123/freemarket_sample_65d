@@ -31,6 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if @user.save
       sign_in(:user, @user)
+      redirect_to controller: '/mypage', action: 'index'
     else
       render :new_sending_destination
     end

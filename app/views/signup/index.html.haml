@@ -6,16 +6,17 @@
       .main-form__wrapper
         .main-contents
           .contents-field--first
-            %a.default-btn.default-btn--mail(href='http://localhost:3000/users/sign_up')
+            .default-btn.default-btn--mail
+              = link_to "メールアドレスで登録する", new_user_registration_path
               = icon('far', 'envelope', class: 'icon-mail')
-              メールアドレスで登録する
           .contents-field
-            %a.default-btn.default-btn--facebook(href='')
+            .default-btn.default-btn--facebook
+              = link_to "Facebookで登録する", (href='')
               = icon('fab', 'facebook-square', class: 'icon-facebook')
-              Facebookで登録する
+            
           .contents-field
-            %a.default-btn.default-btn--google(href='')
+            .default-btn.default-btn--google
+              = link_to "Googleで登録する", (href='')
               = icon('fab', 'google', class: 'icon-google')
-              Googleで登録する
 
   %footer

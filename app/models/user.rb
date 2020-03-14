@@ -7,12 +7,11 @@ class User < ApplicationRecord
          kanji = /\A[一-龥ぁ-ん]/
          kana = /\A([ァ-ン]|ー)+\z/
          
-  validates :nickname, presence: true
-  validates :family_name, presence: true, format: { with: kanji }
-  validates :first_name, presence: true, format: { with: kanji }
-  validates :family_name_kana, presence: true, format: { with: kana }
-  validates :first_name_kana, presence: true, format: { with: kana }
-  validates :birthday, presence: true
+  validates :nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :birthday, presence: true
+  validates :family_name, format: { with: kanji }
+  validates :first_name, format: { with: kanji }
+  validates :family_name_kana, format: { with: kana }
+  validates :first_name_kana, format: { with: kana }
 
   has_one :sending_destination
   # has_one :credit_card

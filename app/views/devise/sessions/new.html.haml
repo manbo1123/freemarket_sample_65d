@@ -4,17 +4,17 @@
     .signin-form
       .signin-form__no-account
         %p.no-account-text アカウントをお持ちでない方はこちら
-        %a.default-btn.default-btn--no-account(href='http://localhost:3000/users/sign_up')
-          新規会員登録
+        .default-btn.default-btn--no-account
+          = link_to "新規会員登録", new_user_registration_path
       .main-form__login-form
         .contents-field
-          %a.default-btn.default-btn--facebook(href='')
+          .default-btn.default-btn--facebook(href='')
+            = link_to "Facebookで登録する", (href='')
             = icon('fab', 'facebook-square', class: 'icon-facebook')
-            Facebookで登録する
         .contents-field
-          %a.default-btn.default-btn--google(href='')
+          .default-btn.default-btn--google(href='')
+            = link_to "Googleで登録する", (href='')
             = icon('fab', 'google', class: 'icon-google')
-            Googleで登録する
 
       .main-contents
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

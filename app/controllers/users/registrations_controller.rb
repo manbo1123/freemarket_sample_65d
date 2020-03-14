@@ -28,8 +28,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :new_sending_destination and return
     end
     @user.build_sending_destination(@sending_destination.attributes)
-    @user.save
-    sign_in(:user, @user)
+
+    if @user.save
+      sign_in(:user, @user)
+    else
+      render :new_sending_destination
+    end
   end
 
 

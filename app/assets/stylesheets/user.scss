@@ -1,9 +1,7 @@
 body {
   background-color: rgb(245, 245, 245);
 }
-a {
-  text-decoration: none;
-}
+
 .main-form {
   margin: 0 auto;
   width: 700px;
@@ -108,6 +106,7 @@ select {
 .default-btn {
   border: 1px solid transparent;
   background-color: #ea352d;
+  text-decoration: none;
   color: #fff;
   line-height: 48px;
   width: 100%;
@@ -119,6 +118,11 @@ select {
   &--mail {
     margin-top: 0;
     position: relative;
+    color: #fff;
+    a {
+      text-decoration: none;
+      color: white;
+    }
   .icon-mail {
     position: absolute;
     top: 15px;
@@ -131,6 +135,10 @@ select {
     background-color: #385185;
     margin-top: 16px;
     position: relative;
+    a {
+      text-decoration: none;
+      color: white;
+    }
     .icon-facebook {
       position: absolute;
       top: 12px;
@@ -141,10 +149,14 @@ select {
   }
   &--google {
     background-color: #fff;
-    color: #333;
     border: #979797 solid 1px;
     margin-top: 16px;
     position: relative;
+    color: #333;
+    a {
+      text-decoration: none;
+      color: #333;
+    }
     .icon-google {
       position: absolute;
       top: 12px;
@@ -177,8 +189,11 @@ footer {
     margin: 8px 0 0 ;
     background-color: #0099e8;
     border: #0099e8 solid 1px;
-    color: #fff;
     line-height: 40px;
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
   }
 
 }

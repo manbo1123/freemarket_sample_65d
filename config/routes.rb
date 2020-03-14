@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   end
   resources :tests
 
+  resources :toppage, only: :index
+ 
   root 'mypage#index'
   resources :items
   resources :purchases

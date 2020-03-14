@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
-  root to: "home#index" #ログイン機能確認用（仮）
 
   resources :signup do
     collection do
@@ -20,7 +19,6 @@ Rails.application.routes.draw do
   root 'mypage#index'
   resources :items
   resources :purchases
-
 end
 
   

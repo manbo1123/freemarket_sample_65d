@@ -1,0 +1,6 @@
+= form_for(@test) do |f|
+  = f.file_field :image
+  %p= f.submit "投稿する"
+- @tests.each do |test|
+  - if test.image?
+    = image_tag test.image.url

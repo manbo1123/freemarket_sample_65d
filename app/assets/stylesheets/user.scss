@@ -1,0 +1,199 @@
+body {
+  background-color: rgb(245, 245, 245);
+}
+
+.main-form {
+  margin: 0 auto;
+  width: 700px;
+  background: white;
+  &--signin {
+    width: 456px;
+  }
+  &__title {
+    font-size: 22px;
+    padding: 33px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid rgb(245, 245, 245) ;
+    &--text {
+      font-size: 14px;
+    }
+  }
+  &__wrapper {
+    padding: 40px 40px 64px;
+  }
+  &__login-account {
+    padding: 40px 64px;
+  }
+  &__login-form {
+    padding: 40px 64px;
+  }
+}
+.main-contents {
+  max-width: 343px;
+  margin: 0 auto;
+}
+.contents-field {
+  margin-top: 32px;
+  &--first {
+    margin-top: 0;
+  }
+  &__title {
+    display: inline-block;
+  }
+  &__text {
+    color: #888;
+    margin: 8px 0 0;
+    font-size: 14px;
+  }
+  &__require {
+    background-color: #ea352d;
+    margin: 0 0 0 20px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+  }
+  &__any {
+    background-color: #ccc;
+    margin: 0 0 0 20px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+  }
+  
+  &__input {
+    margin: 8px 0 0 ;
+    border: 1px solid #ccc;
+    width: 315px;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 30px;
+    padding: 10px 16px 8px;
+    line-height: 1.5;
+    background: #fff;
+  }
+  &__input.half:first-of-type {
+    margin-right: 8px;
+  }
+  &__input.half {
+    width: 120px;
+  }
+}
+.birthday-wrapper {
+  display: inline-block;
+}
+select {
+  display: inline-block;
+  height: 48px;
+  padding: 0 10px;
+  width: 76px;
+}
+ 
+.registration-text {
+  color: #888;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.verification-wrapper {
+  margin-top: 30px;
+  &__text {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}
+.default-btn {
+  border: 1px solid transparent;
+  background-color: #ea352d;
+  text-decoration: none;
+  color: #fff;
+  line-height: 48px;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 32px;
+  display: block;
+  text-align: center;
+  border-radius: 4px;
+  &--mail {
+    margin-top: 0;
+    position: relative;
+    color: #fff;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  .icon-mail {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    color: #fff;
+    font-size: 20px;
+  }
+  }
+  &--facebook {
+    background-color: #385185;
+    margin-top: 16px;
+    position: relative;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    .icon-facebook {
+      position: absolute;
+      top: 12px;
+      left: 30px;
+      color: #fff;
+      font-size: 25px;
+    }
+  }
+  &--google {
+    background-color: #fff;
+    border: #979797 solid 1px;
+    margin-top: 16px;
+    position: relative;
+    color: #333;
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    .icon-google {
+      position: absolute;
+      top: 12px;
+      left: 30px;
+      font-size: 25px;
+    }
+  }
+}
+header {
+  height: 128px;
+}
+footer {
+  height: 220px;
+}
+.signin-form {
+  width: 456px;
+  height: 700px;
+  background-color: #fff;
+  margin: 0 auto;
+  &__no-account {
+    padding: 40px 64px;
+    text-align: center;
+    border:rgb(245, 245, 245) solid 1px;
+  }
+  .no-account-text {
+    font-size: 14px;
+    color: #333;
+  }
+  .default-btn--no-account {
+    margin: 8px 0 0 ;
+    background-color: #0099e8;
+    border: #0099e8 solid 1px;
+    line-height: 40px;
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+
+}

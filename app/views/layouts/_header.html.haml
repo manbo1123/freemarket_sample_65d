@@ -17,15 +17,20 @@
         = icon('fa', 'tags')
         ブランドから探す
     .rightmenu
-      .favo
-        = icon('far', 'heart')
-        いいね！一覧
-      .notice
-        = icon('fas', 'check')
-        お知らせ
-      .todo
-        = icon('far', 'bell')
-        やることリスト
-      .mypage
-        = icon('far', 'smile-wink')
-        マイページ
+      -if user_signed_in?
+        .favo
+          = icon('far', 'heart')
+          いいね！一覧
+        .notice
+          = icon('fas', 'check')
+          お知らせ
+        .todo
+          = icon('far', 'bell')
+          やることリスト
+        .mypage
+          = icon('far', 'smile-wink')
+          マイページ
+        = link_to "ログアウト", destroy_user_session_path, method: :delete #マイページ完成後移動
+      -else
+        = link_to "新規登録", signup_index_path
+        = link_to "ログイン", new_user_session_path

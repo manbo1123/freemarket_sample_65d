@@ -86,8 +86,7 @@
       .item_input__body
         %p.item_input__body__title
           配送について
-          %a.delivery_navigation
-            = icon('far','question-circle')
+          =link_to icon('far','question-circle'), root_path, class: "delivery_navigation"
 
         %label.item_input__body__label
           配送料の負担
@@ -130,8 +129,7 @@
       .item_input__body
         %p.item_input__body__title
           価格（¥300〜9,999,999）
-          %a.pricing_navigation
-            =icon('far','question-circle')
+          =link_to icon('far','question-circle'), root_path, class: "pricing_navigation"
         .price_box
           %label.item_input__body__label
             販売価格
@@ -153,18 +151,18 @@
           %p ー
         .item_input__body__btn
           =f.submit "出品する", class:"item_input__body__btn__exhibition_btn"
-          =f.submit "もどる", class:"item_input__body__btn__return_btn"
+          =link_to "もどる", root_path, class:"item_input__body__btn__return_btn"
         -# 確認事項
         .item_input__body__nav
           %p<
             = "禁止されている"
-            =link_to "行為", "#"
+            =link_to "行為", root_path
             = "および"
-            =link_to "出品物", "#"
+            =link_to "出品物",  root_path
             = "を必ずご確認ください。"
-            =link_to "偽ブランド品", "#"
+            =link_to "偽ブランド品",  root_path
             = "や"
-            =link_to "盗品物", "#"
+            =link_to "盗品物",  root_path
             = "などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして"
-            =link_to "加盟店規約", "#"
+            =link_to "加盟店規約",  root_path
             = "に同意したことになります。"

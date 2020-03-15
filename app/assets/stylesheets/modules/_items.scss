@@ -20,21 +20,21 @@
 //  background-color: rgb(245, 245, 245);
 //}
 
-//.header{
-//  height: 128px;
-//  width: 100%;
-//  background-color: #fff;
-//  &__logo{
-//    height: 49px;
-//    width: 185px;
-//    margin: 0 auto;
-//    padding-top: 48px;
-//    img{
-//      height: 49px;
-//      width: 185px;
-//    }
-//  }
-//}
+.header_simple_version{
+  height: 128px;
+  width: 100%;
+  background-color: #fff;
+  &__logo{
+    height: 49px;
+    width: 185px;
+    margin: 0 auto;
+    padding-top: 48px;
+    img{
+      height: 49px;
+      width: 185px;
+    }
+  }
+}
 
 
 //--------------------商品出品登録ページ--------------------//
@@ -258,6 +258,9 @@
           border-color: transparent;
         }
         &__return_btn{
+          display: block;
+          text-align:center;
+          line-height: 48px;
           @include item_input__body__btn__exhibition_btn (#222, #ccc);
         }
       }
@@ -287,31 +290,31 @@
 }
 
 //----仮置き（簡易バージョンのフッター）---//
-//.footer{
-//  width: 100%;
-//  padding: 40px 0px 41px;
-//  margin: 0 auto;
-//  background-color: #272727;
-//  color: #fff;
-//  font-size: 12px;
-//  text-align: center;
-//  &__link{
-//    width: 100%;
-//    text-align:center;
-//    margin: 0 auto;
-//    margin-bottom: 30px;
-//    a{
-//      color: inherit;
-//      text-decoration: none;
-//      margin-right: 15px;
-//    }
-//  }
-//  &__logo{
-//    margin-bottom: 8px;
-//    margin: 0 auto;
-//    img{
-//      width: 160px;
-//      height: 47px;
-//    }
-//  }
-//}
+.footer_simple_version{
+  width: 100%;
+  padding: 40px 0px 41px;
+  margin: 0 auto;
+  background-color: #272727;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  &__link{
+    width: 100%;
+    text-align:center;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    a{
+      color: inherit;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+  }
+  &__logo{
+    margin-bottom: 8px;
+    margin: 0 auto;
+    img{
+      width: 160px;
+      height: 47px;
+    }
+  }
+}

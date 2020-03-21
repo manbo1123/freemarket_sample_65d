@@ -1,8 +1,19 @@
+.card-logo {
+  display: flex;
+  margin-top: 10px;
+  .card-icon {
+    height: 30px;
+    padding-left: 5px;
+  }
+}
+
 .cards-expire__wrap {
   display: inline-block;
-  width: 45%;
   .input-expire {
     width: 80%;
     background-color: white;
+    .exp_mpnth {
+      width: 40%;
+    }
   }
 }

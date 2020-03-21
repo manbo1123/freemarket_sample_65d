@@ -44,5 +44,5 @@
             .contents-field
               = f.label :電話番号
               %span.contents-field__any 任意
-              = f.number_field :phone_number, class:"contents-field__input", placeholder:"例）22233334444"
+              = f.text_field :phone_number, class:"contents-field__input", placeholder:"例）22233334444"
               =f.submit "次へ進む", class:'default-btn'

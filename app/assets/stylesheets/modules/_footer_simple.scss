@@ -1,0 +1,29 @@
+.fsimple{
+  .lists{
+    height: 80px;
+    width: 70%;
+    padding-top: 50px;
+    margin:0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    p{
+      padding: 0 10px;
+      a{
+        text-decoration: none;
+        color:black;
+      }
+    }
+  }
+  .logos{
+    padding-bottom: 50px;
+    text-align: center;
+    &__furima{
+      height: 40px;
+    }
+    &__copy{
+      font-size: 15px;
+    }
+  }
+}

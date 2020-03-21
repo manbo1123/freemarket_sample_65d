@@ -1,0 +1,10 @@
+.hsimple{
+  height: 130px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__img{
+    height: 80px;
+  }
+}

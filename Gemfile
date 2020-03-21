@@ -76,3 +76,4 @@ gem 'pry-rails'
 gem 'ancestry'
 gem 'font-awesome-sass'
 gem 'jp_prefecture'
+gem 'dotenv-rails' #環境変数を設定するため

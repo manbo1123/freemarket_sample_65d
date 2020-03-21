@@ -14,6 +14,6 @@ class User < ApplicationRecord
   validates :first_name_kana, format: { with: kana }
 
   has_one :sending_destination
-  has_one :credit_card
+  has_many :cards
 
 end

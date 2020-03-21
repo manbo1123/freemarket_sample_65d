@@ -1,0 +1,18 @@
+.content__title
+  お支払方法
+  %br
+  クレジットカード一覧
+  %br
+  = "**** **** **** " + @card_information.last4
+  %br
+  - exp_month = @card_information.exp_month.to_s
+  - exp_year = @card_information.exp_year.to_s.slice(2,3)
+  = exp_month + " / " + exp_year
+  = form_tag(delete_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
+    %input{ type: "hidden", name: "card_id", value: "" }
+    %button.delete__button 削除する
+  %br
+  支払い方法について
+  %br
+  %br
+    = link_to "トップページへ戻る", root_path

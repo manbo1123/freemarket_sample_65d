@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   root 'toppage#index'
   resources :toppage, only: [:index, :show]
+  resources :mypage, only: [:index]
 
   
   resources :items

@@ -1,9 +1,10 @@
-.index_page
-  .wrapper
-    = render 'layouts/header'
+.wrapper
+  = render 'layouts/header'
+  .side_menu
     = render 'side_menu'
+  .main_menu
     = render 'mypage_home'
-    = render 'layouts/footer'
-    //仮のボタン
-    = render partial: 'shared/exhibition'
+  = render 'layouts/footer'
+  //仮のボタン
+  = render partial: 'shared/exhibition'
     

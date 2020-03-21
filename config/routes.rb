@@ -8,15 +8,13 @@ Rails.application.routes.draw do
       get 'done' 
     end
   end
-
   devise_scope :user do
     get 'sending_destinations', to: 'users/registrations#new_sending_destination'
     post 'sending_destinations', to: 'users/registrations#create_sending_destination'
   end
 
-  resources :toppage, only: :index
   root 'toppage#index'
- 
+  
   resources :items
   resources :purchases
 

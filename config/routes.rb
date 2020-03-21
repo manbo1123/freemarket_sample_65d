@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   root 'mypage#index'
   resources :items
   resources :purchases
-end
 
-  
+  resources :cards, only: [:index, :new, :show] do
+    collection do
+      post 'show', to: 'cards#show'
+      post 'pay', to: 'cards#pay'
+      post 'delete', to: 'cards#delete'
+    end
+  end
+end

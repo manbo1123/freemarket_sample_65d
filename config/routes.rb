@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     post 'sending_destinations', to: 'users/registrations#create_sending_destination'
   end
 
-  resources :toppage, only: :index
+  resources :toppage, only: [:index, :show]
   root 'toppage#index'
  
   resources :items

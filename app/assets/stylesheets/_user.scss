@@ -165,15 +165,9 @@ select {
     }
   }
 }
-header {
-  height: 128px;
-}
-footer {
-  height: 220px;
-}
 .signin-form {
   width: 456px;
-  height: 700px;
+  height: 750px;
   background-color: #fff;
   margin: 0 auto;
   &__no-account {

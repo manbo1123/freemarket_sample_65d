@@ -14,8 +14,8 @@ class CardsController < ApplicationController
 
   #payjpとCardのデータベース作成
   def pay
-
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp.api_key = 'sk_test_fec9fa1c578abfe4162abfad'
+    # Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
@@ -35,7 +35,8 @@ class CardsController < ApplicationController
   def show
     card = Card.where(user_id: current_user.id).first
     if card.present?
-      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      Payjp.api_key = 'sk_test_fec9fa1c578abfe4162abfad'
+      # Payjp.api_key = ENV['PAYJP_SECRET_KEY']
       customer = Payjp::Customer.retrieve(card.customer_id)
       @card_information = customer.cards.retrieve(card.card_id)
     else
@@ -47,7 +48,8 @@ class CardsController < ApplicationController
   def delete
     card = Card.where(user_id: current_user.id).first
     if card.present?
-      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      Payjp.api_key = 'sk_test_fec9fa1c578abfe4162abfad'
+      # Payjp.api_key = ENV['PAYJP_SECRET_KEY']
       customer = Payjp::Customer.retrieve(card.customer_id)
       customer.delete
       card.delete

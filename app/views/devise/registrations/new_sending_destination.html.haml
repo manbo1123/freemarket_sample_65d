@@ -1,5 +1,5 @@
 %body
-  %header
+  = render 'layouts/header_simple'
   %main
     .main-form
       = form_for @sending_destination do |f|
@@ -46,3 +46,4 @@
               %span.contents-field__any 任意
               = f.text_field :phone_number, class:"contents-field__input", placeholder:"例）22233334444"
               =f.submit "次へ進む", class:'default-btn'
+  = render 'layouts/footer_simple'

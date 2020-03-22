@@ -29,8 +29,7 @@
           やることリスト
         .mypage
           = icon('far', 'smile-wink')
-          マイページ
-        = link_to "ログアウト", destroy_user_session_path, method: :delete #マイページ完成後移動
+          = link_to "マイページ", mypage_index_path
       -else
         = link_to "新規登録", signup_index_path
         = link_to "ログイン", new_user_session_path

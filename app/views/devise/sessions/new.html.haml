@@ -1,27 +1,29 @@
 %body
-  %header
-  %main
-    .signin-form
-      .signin-form__no-account
-        %p.no-account-text アカウントをお持ちでない方はこちら
-        .default-btn.default-btn--no-account
-          = link_to "新規会員登録", new_user_registration_path
-      .main-form__login-form
-        .contents-field
-          .default-btn.default-btn--facebook(href='')
-            = link_to "Facebookで登録する", (href='')
-            = icon('fab', 'facebook-square', class: 'icon-facebook')
-        .contents-field
-          .default-btn.default-btn--google(href='')
-            = link_to "Googleで登録する", (href='')
-            = icon('fab', 'google', class: 'icon-google')
+  = render 'layouts/header_simple'
 
-      .main-contents
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          .contents-field
-            = f.email_field :email, class:"contents-field__input",autofocus: true, autocomplete: "email"
-          .contents-field
-            = f.password_field :password, class:"contents-field__input",autocomplete: "current-password"
+  .signin-form
+    .signin-form__no-account
+      %p.no-account-text アカウントをお持ちでない方はこちら
+      .default-btn.default-btn--no-account
+        = link_to "新規会員登録", new_user_registration_path
+    .main-form__login-form
+      .contents-field
+        .default-btn.default-btn--facebook(href='')
+          = link_to "Facebookで登録する", (href='')
+          = icon('fab', 'facebook-square', class: 'icon-facebook')
+      .contents-field
+        .default-btn.default-btn--google(href='')
+          = link_to "Googleで登録する", (href='')
+          = icon('fab', 'google', class: 'icon-google')
 
-            = f.submit "ログイン", class: 'default-btn'
-  %footer
+    .main-contents
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .contents-field
+          = f.label :メールアドレス
+          = f.email_field :email, class:"contents-field__input",autofocus: true, autocomplete: "email"
+        .contents-field
+          = f.label :パスワード
+          = f.password_field :password, class:"contents-field__input",autocomplete: "current-password"
+
+          = f.submit "ログイン", class: 'default-btn'
+  = render 'layouts/footer_simple'

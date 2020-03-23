@@ -1,14 +1,14 @@
 class CardsController < ApplicationController
   require "payjp"
   
-  def index
-    card = Card.where(user_id: current_user.id).first
-    redirect_to action: "show" if card.present?
-  end
+  # def index
+  #   card = Card.where(user_id: current_user.id).first
+  #   redirect_to action: "show" if card.present?
+  # end
   
   #Cardの新規作成
   def new
-    card = Card.where(user_id: current_user.id).first
+    card = Card.where(user_id: current_user.id)
     redirect_to action: "show" if card.present?
   end
 
@@ -18,14 +18,12 @@ class CardsController < ApplicationController
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
-      customer = Payjp::Customer.create(
-      card: params['payjp-token']
-      )
+      customer = Payjp::Customer.create(card: params['payjp-token'])
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         redirect_to action: "show"
       else
-        redirect_to action: "create"
+        redirect_to action: "pay"
       end
     end
   end

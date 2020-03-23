@@ -1,11 +1,6 @@
 class CardsController < ApplicationController
   require "payjp"
   
-  # def index
-  #   card = Card.where(user_id: current_user.id).first
-  #   redirect_to action: "show" if card.present?
-  # end
-  
   #Cardの新規作成
   def new
     card = Card.where(user_id: current_user.id)

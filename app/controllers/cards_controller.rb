@@ -54,4 +54,26 @@ class CardsController < ApplicationController
       redirect_to action: "new"
   end
 
+  #item購入
+  # def buy
+  #   card = Card.where(user_id: current_user.id).first
+  #     if card.present?
+  #       @item = Item.find(params[:product_id])
+  #       card = current_user.credit_card
+  #       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+  #       Payjp::Charge.create(
+  #       amount: 500,  #@item.price
+  #       customer: card.customer_id,
+  #       currency: 'jpy',
+  #       )
+  #       if @item.update(status: 1, buyer_id: current_user.id)
+  #         redirect_to item_path
+  #       else
+  #         redirect_to item_path
+  #       end
+  #     else
+  #       redirect_to action: "new"
+  #     end
+  # end
+
 end

@@ -3,7 +3,7 @@
   %main
     .main-form
       = form_for @sending_destination do |f|
-        = render "devise/shared/error_messages", resource: @sending_destination
+        = render 'layouts/error_messages', model: f.object
         %h2.main-form__title お届け先住所入力
         .main-form__wrapper
           .main-contents

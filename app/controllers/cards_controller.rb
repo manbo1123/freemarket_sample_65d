@@ -1,14 +1,9 @@
 class CardsController < ApplicationController
   require "payjp"
   
-  def index
-    card = Card.where(user_id: current_user.id).first
-    redirect_to action: "show" if card.present?
-  end
-  
   #Cardの新規作成
   def new
-    card = Card.where(user_id: current_user.id).first
+    card = Card.where(user_id: current_user.id)
     redirect_to action: "show" if card.present?
   end
 
@@ -19,14 +14,12 @@ class CardsController < ApplicationController
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
-      customer = Payjp::Customer.create(
-      card: params['payjp-token']
-      )
+      customer = Payjp::Customer.create(card: params['payjp-token'])
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         redirect_to action: "show"
       else
-        redirect_to action: "create"
+        redirect_to action: "pay"
       end
     end
   end
@@ -56,5 +49,27 @@ class CardsController < ApplicationController
     end
       redirect_to action: "new"
   end
+
+  #item購入
+  # def buy
+  #   card = Card.where(user_id: current_user.id).first
+  #     if card.present?
+  #       @item = Item.find(params[:product_id])
+  #       card = current_user.credit_card
+  #       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+  #       Payjp::Charge.create(
+  #       amount: 500,  #@item.price
+  #       customer: card.customer_id,
+  #       currency: 'jpy',
+  #       )
+  #       if @item.update(status: 1, buyer_id: current_user.id)
+  #         redirect_to item_path
+  #       else
+  #         redirect_to item_path
+  #       end
+  #     else
+  #       redirect_to action: "new"
+  #     end
+  # end
 
 end

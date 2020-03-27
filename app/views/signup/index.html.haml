@@ -1,5 +1,5 @@
 %body
-  %header
+  = render 'layouts/header_simple'
   %main
     .main-form
       %h2.main-form__title 新規会員登録
@@ -19,4 +19,4 @@
               = link_to "Googleで登録する", (href='')
               = icon('fab', 'google', class: 'icon-google')
 
-  %footer
+  = render 'layouts/footer_simple'

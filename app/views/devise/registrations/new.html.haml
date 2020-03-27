@@ -1,9 +1,9 @@
 %body
-  %header
+  = render 'layouts/header_simple'
   %main
     .main-form
       = form_for @user, url: user_registration_path do |f|
-        = render "devise/shared/error_messages", resource: @user
+        = render 'layouts/error_messages', model: f.object
         %h2.main-form__title 会員情報
         .main-form__wrapper
           .main-contents
@@ -49,4 +49,4 @@
             .verification-wrapper
               %p.verification-wrapper__text「次へ進む」のボタンを押すことにより、利用規約に同意したものとみなします。
               =f.submit "次へ進む", class:'default-btn'
-  %footer
+  = render 'layouts/footer_simple'

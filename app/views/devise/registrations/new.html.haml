@@ -3,7 +3,7 @@
   %main
     .main-form
       = form_for @user, url: user_registration_path do |f|
-        = render "devise/shared/error_messages", resource: @user
+        = render 'layouts/error_messages', model: f.object
         %h2.main-form__title 会員情報
         .main-form__wrapper
           .main-contents

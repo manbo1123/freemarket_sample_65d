@@ -20,6 +20,3 @@
 public/uploads/*
 
 config/secrets.yml
-
-/.env.development
-/.env.production

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :signup do
     collection do
       get 'index'
-      get 'done' 
     end
   end
   devise_scope :user do
@@ -18,7 +17,12 @@ Rails.application.routes.draw do
   namespace :api do
     resources :toppage, only: :index, defaults: { format: 'json' }
   end
-  resources :mypage, only: [:index]
+
+  resources :mypage, only: [:index] do
+    collection do
+      get 'logout' 
+    end
+  end
 
   
   resources :items
@@ -29,6 +33,7 @@ Rails.application.routes.draw do
       post 'show', to: 'cards#show'
       post 'pay', to: 'cards#pay'
       post 'delete', to: 'cards#delete'
+      post 'buy', to: 'cards#buy'
     end
   end
 end

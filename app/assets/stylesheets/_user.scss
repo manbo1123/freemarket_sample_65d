@@ -89,6 +89,7 @@ select {
   height: 48px;
   padding: 0 10px;
   width: 76px;
+  background-color: white
 }
  
 .registration-text {
@@ -162,6 +163,13 @@ select {
       top: 12px;
       left: 30px;
       font-size: 25px;
+    }
+  }
+
+  &--logout {
+    a {
+      text-decoration: none;
+      color: white;
     }
   }
 }

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   root 'toppage#index'
   resources :toppage, only: [:index, :show]
+  namespace :api do
+    resources :toppage, only: :index, defaults: { format: 'json' }
+  end
+
   resources :mypage, only: [:index] do
     collection do
       get 'logout' 

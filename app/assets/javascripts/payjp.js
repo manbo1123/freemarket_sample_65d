@@ -4,7 +4,6 @@ document.addEventListener(
     var btn = document.getElementById('token_submit'); //IDがtoken_submitの場合に取得
     btn.addEventListener("click", (e) => {  //ボタンが押されたときに作動
       e.preventDefault();  //ボタンを一旦無効化
-
       //カード情報生成
       var card = {
         number: $("#number").val(),
@@ -12,7 +11,6 @@ document.addEventListener(
         exp_month: $("#exp_month").val(),
         exp_year: $("#exp_year").val()
       }; //入力されたデータを取得
-
       //トークン生成
       Payjp.createToken(card, (status, response) => {
         if (status === 200) { //リクエストが成功した場合

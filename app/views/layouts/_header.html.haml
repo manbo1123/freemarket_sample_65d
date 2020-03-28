@@ -44,8 +44,6 @@
             = link_to mypage_index_path do
               = icon('far', 'smile-wink')
               マイページ
-          %li
-            = link_to "ログアウト", destroy_user_session_path, method: :delete #マイページ完成後移動
         -else
           %li
             = link_to "新規登録", signup_index_path

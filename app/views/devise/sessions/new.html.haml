@@ -5,15 +5,15 @@
     .signin-form__no-account
       %p.no-account-text アカウントをお持ちでない方はこちら
       .default-btn.default-btn--no-account
-        = link_to "新規会員登録", new_user_registration_path
+        = link_to "新規会員登録", signup_index_path
     .main-form__login-form
       .contents-field
-        .default-btn.default-btn--facebook(href='')
-          = link_to "Facebookで登録する", (href='')
+        .default-btn.default-btn--facebook
+          = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post
           = icon('fab', 'facebook-square', class: 'icon-facebook')
       .contents-field
-        .default-btn.default-btn--google(href='')
-          = link_to "Googleで登録する", (href='')
+        .default-btn.default-btn--google
+          = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post
           = icon('fab', 'google', class: 'icon-google')
 
     .main-contents

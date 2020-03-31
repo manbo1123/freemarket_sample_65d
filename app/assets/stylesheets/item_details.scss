@@ -1,7 +1,4 @@
 .item_detail_page {
-    * {
-    background-color: #f5f5f5;
-  }
 //  .header{
 //    padding: 0 60px;
 //  }
@@ -17,7 +14,7 @@
   //商品の名前
   .main-topic {
     padding: 24px 40px 40px;
-    margin: 0 auto;
+    margin: 40px auto 0;
     width: 700px;
     background-color: #fff;
     &__item-name {
@@ -37,13 +34,24 @@
     margin: 0 auto;
     background-color: #fff;
     &__item-image {
-      min-width: 300px;
       max-width: 300px;
+      min-width: 300px;
       margin-left: 30px; 
       float: left;
       border: 1px solid #f5f5f5;
-      text-align: center;
       background-color: #fff;
+      &--items{
+        padding: 0;
+        width: 60px;
+        height: 60px;
+        position: static;
+        .pic{
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 60px;
+        }
+      }
     }
     &__item-details {
       margin-right: 30px; 
@@ -127,6 +135,10 @@
       background-color: #fff;
       margin: 10px 0 0;
       display: flex;
+      a{
+        text-decoration: none;
+        color: black;
+      }
       &--favorite-button{
         padding: 10px;
         margin-left: 20px;
@@ -176,12 +188,12 @@
     }
   }
   .nav-content{
+    width: 780px;
+    margin: 10px auto 0;
     &__nav-items {
-      margin: 10px auto 0;
       height: 30px;
       font-size: small;
       font-weight: bold;
-      width: 700px;
       list-style-type: none;
       padding: 0;
       a{
@@ -197,28 +209,19 @@
     }
   }
   .other-items {
-    margin: 0 auto;
-    width: 700px;
-    padding: 24px 40px 40px;
-    height: 1000px;
-    font-size: 1em;
+    h2{
+      background-color: #f5f5f5;
+    }
+    margin: 0 auto 40px;
+    width: auto;
+    padding: 0 90px;
     font-weight: bold;
-    background-color: #fff;
     a{
       text-decoration: none;
       color: #3CCACE;
-      background-color: #fff;
+      font-weight: bold;
+      font-size: x-large;
     }
-    &__seller-items {
-      width: 0 auto;
-      height: 500px;
-      background-color: #fff;
-    }
-    &__relation-items {
-      width: 0 auto;
-      height:  500px;
-      background-color: #fff;
-    } 
   }
   //バナーとフッター
   //.banner{

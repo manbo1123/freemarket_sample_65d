@@ -2,10 +2,16 @@
 
   %section.main-topic
     %h1.main-topic__item-name
-      商品の名前
+      user.item
   .item-info.clearfix
     .item-info__item-image
-      商品画像
+      = image_tag "pict/test_pict.png"
+      .item-info__item-image--items
+        = image_tag "pict/test_pict.png", class: "pic"
+      .item-info__item-image--items
+        = image_tag "pict/test_pict.png", class: "pic"
+      .item-info__item-image--items
+        = image_tag "pict/test_pict.png", class: "pic"
     //商品詳細のテーブル
     %table.item-info__item-details
       %tbody
@@ -50,14 +56,14 @@
       %span.item-price__price-details--fee
         送料込み
     .item-price__purchase-button
-      購入画面に進む
+      = link_to "購入画面に進む", "/purchases"
   .item-description
     .item-description__introduction
     .item-description__button-container
       .item-description__button-container--favorite-button
-        ♡　いいね！
+        = link_to "♡　いいね！"
       .item-description__button-container--note-text
-        不適切な商品の報告
+        = link_to "不適切な商品の報告"
   .message
     %p.message__notes
       相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
@@ -73,9 +79,15 @@
         = link_to "次の商品  >", "#"
   .other-items
     %section.other-items__seller-items
-      = link_to "出品者のその他の商品", "#"
+      %h2.other-items__seller-items--title
+        = link_to "出品者のその他の商品", "#"
+      .other-items_seller-items--images
+        = render "toppage/productlists"
     %section.other-items__relation-items
-      = link_to "関連商品", "#"
+      %h2.other-items__relation-items--title
+        = link_to "関連商品", "#"
+      .other-items_relation-items--images
+        = render "toppage/productlists"
 
   //仮のボタン
   = render partial: 'shared/exhibition'

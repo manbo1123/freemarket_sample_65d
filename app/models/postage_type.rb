@@ -1,4 +1,4 @@
-class Postage_type < ActiveHash::Base
+class PostageType < ActiveHash::Base
   self.data = [
     {id: 1, name: '未定'}, 
     {id: 2, name: 'らくらくメルカリ便'}, 

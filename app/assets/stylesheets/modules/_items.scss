@@ -101,13 +101,13 @@
       .option{
         @include required(#bfbfbf);
       }
-      label {
+      label:not(.item_imgs_2nd_row){
         display: block;
         margin-top: 40px;
         width: 100%;
       }
 
-      //出品画像
+      //-----------------------出品画像-----------------------//
       .up-image {
         height: 100%;
         width: 100%;
@@ -115,29 +115,102 @@
         &__group {
           height: 100%;
           width: 100%;
-          &__dropbox {
+          display: flex;
+          .item_imgs {
             height: 150px;
             width: 100%;
             background-color: rgb(245, 245, 245);
             border: dashed 1px rgb(204, 204, 204);
             cursor: pointer;
-            padding-top: 40px;
+            input[type='file'] {
+              display: none;
+            }
+          }
+          .fa-camera {
+            font-size: 20px;
+            margin-bottom: 8px;
+            width: 100%;
+            text-align:center;
+            padding-top: 70px;
+          }
+          p {
+            text-align:center;
+            font-size: 12px;
+            line-height: 1.4em;
+          }
+        }
+        &__group_2nd_row {
+          width: 100%;
+          height: 100%;
+          background-color: palegreen;
+          display: flex;
+          .previews_2nd_row{
+            display: flex;
+            height: 100%;
+          }
+          .item_imgs_2nd_row {
+            width: 100%;
+            height: 150px;
+            background-color: blanchedalmond;
+            background-color: rgb(245, 245, 245);
+            border: dashed 1px rgb(204, 204, 204);
+            cursor: pointer;
             .fa-camera {
               font-size: 20px;
               margin-bottom: 8px;
               width: 100%;
               text-align:center;
+              padding-top: 70px;
             }
             input[type='file'] {
               display: none;
             }
-            p {
-              text-align:center;
-              font-size: 12px;
-              line-height: 1.4em;
-            }
           }
         }
+        .under_group{
+          display: none;
+
+        }
+        .previews {
+          display: flex;
+          height: 190px;
+          padding-top: 40px;
+        }
+        .preview{
+          height: 150px;
+          width: 120px;
+          margin-right: 5px;
+          background-color: rgb(245, 245, 245);
+          .img_box{
+            height: 118px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            .preview_image{
+              max-width: 120px;
+              max-height: 118px;
+              margin: 0 auto;
+            }
+          }
+          .preview_btn{
+            text-align: center;
+            line-height: 32px;
+            color: rgb(0, 149, 238);
+            cursor: pointer;
+            height: 32px;
+            width: 100%;
+            //margin-top: 25px;
+            border-top: 1px solid rgb(204, 204, 204);;
+          }
+        }
+      }
+
+      #postage_type_box{
+        display: none;
+      }
+
+      #size_box{
+        display: none;
       }
 
       &__text {
@@ -277,6 +350,7 @@
 
       //エラーメッセージ
       .error_message{
+        display: none;
         margin-top: 16px;
         color: #ff0211;
         font-size: 14px;

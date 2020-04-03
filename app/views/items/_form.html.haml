@@ -1,32 +1,40 @@
 .item_input_page
   -# 商品出品登録
   .item_input
-    = form_for '' do |f|
+    = form_for @item, local: true do |f|
       .item_input__body
         %label.item_input__body__label
           出品画像
           %span.required 必須
         %p.item_input__body__text 最大10枚までアップロードできます
         .up-image
-          -# アップロード画像一覧を表示
-          .up-image__group
-            %label.item_imgs
-              .up-image__group__dropbox
-                = f.file_field :item_imgs, class: "item_iimgs__default"
+          = f.fields_for :item_imgs do |image| 
+            .up-image__group
+              .previews
+              %label.item_imgs
                 = icon('fas', 'camera')
-                %p.item_input__body__image_text
-                  ドラッグ アンド ドロップ
-                  %br
-                  またはクリックしてファイルをアップロード
-            %p.error_message.img_error_message
-              画像がありません
+                .image_text_message
+                  %p.item_input__body__image_text
+                    ドラッグ アンド ドロップ
+                    %br
+                    またはクリックしてファイルをアップロード
+                .up-image__group__dropbox{data: {index: 1}}
+                  = image.file_field :src, class: "item_imgs__default", id: "up_img_last", type: 'file', multiple: true, accept: "image/*"
+            .under_group
+              .up-image__group_2nd_row
+                .previews_2nd_row
+                %label.item_imgs_2nd_row
+                  = icon('fas', 'camera')
+            
+          %p.error_message.img_error_message
+            画像がありません
 
       -# 商品名、商品の説明
       .item_input__body
         %label.item_input__body__label
           商品名
           %span.required 必須
-        = f.text_field :name, class: "item_input__body__text_form", placeholder: "40文字まで", value:""
+        = f.text_field :name, class: "item_input__body__text_form", id: "item_name", placeholder: "40文字まで"
         %p.error_message.item-name_error_message
           入力してください
 
@@ -35,7 +43,8 @@
           %span.required 必須
         = f.text_area :introduction, placeholder: "商品の説明（必須 1,000文字以内）\r\n（色、素材、重さ、定価、注意点など）\r\n\r\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "7", class: "item_input__body__text_area"
         .item_input__body__words_count
-          0/1000
+          %span.countup 0 
+          %span /1000
         %p.error_message.item_introduction_error_message
           入力してください
 
@@ -46,38 +55,42 @@
         %label.item_input__body__label
           カテゴリー
           %span.required 必須
-        .pulldown
-          = f.select :category, @category_parent_array, prompt: "選択してください", class: "parent_category_box", name: 'item[category_ids][]'
-          = icon('fa', 'chevron-down')
-        %p.error_message.category_top_error_message
-          選択してください
+        .item_input__body__category#category_box
+          .pulldown#partent_box
+            = f.select :category_id, @category_parent_array, {prompt: "選択してください"}, { class: "parent_category_box", id: "parent_category"}
+            = icon('fa', 'chevron-down')
 
-        .item_input__body__category_children
-          -#親カテゴリー選択によって子カテゴリー表示（JSで実装予定）
-        .item_input__body__category_grandchildren
-          -#子カテゴリー選択によって孫カテゴリー表示（JSで実装予定）
-        
-        -# カテゴリーidにより、出現させるかどうか条件分岐させる（JSで実装予定）
-        .item_input__body__size
-          -#%label.item_input__body__label
-            サイズ
-            -#%span.required 必須
-          -#=f.collection_select :size_id, Size.all, :id, :name, prompt: "選択してください", class: "size_box"
-        -#%p.error_message.category_size_error_message
-          選択してください
+          .pulldown.item_input__body__category__children#children_box
+            -#親カテゴリー選択によって子カテゴリー表示
+          .pulldown.item_input__body__category__grandchildren#grandchildren_box
+            -#子カテゴリー選択によって孫カテゴリー表示
+
+          %p.error_message.category_top_error_message
+            選択してください
+          
+          #size_box  
+            %label.item_input__body__label
+              サイズ
+              %span.required 必須    
+            .pulldown#size_selectbox
+              =f.collection_select :size_id, Size.all, :id, :name, {prompt: "選択してください"}, {class: "size_box"}
+              = icon('fa', 'chevron-down')
+            %p.error_message.category_size_error_message
+              選択してください
 
         .item_input__body__brand
-          %label.item_input__body__label
-            ブランド
-            %span.option 任意
-          =f.text_field :brand, class: "item_input__body__text_form", placeholder: "例）シャネル", value:""
+          = f.fields_for :brand do |b|
+            %label.item_input__body__label
+              ブランド
+              %span.option 任意
+            =b.text_field :name, class: "item_input__body__text_form", placeholder: "例）シャネル"
 
         .item_input__body__item_condition
           %label.item_input__body__label
             商品の状態
             %span.required 必須
           .pulldown
-            =f.collection_select :item_condition_id, Item_condition.all, :id, :name, prompt: "選択してください", class: "item_condition_box"
+            =f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt: "選択してください"}, {class: "item_condition_box"}
             = icon('fa', 'chevron-down')
           %p.error_message.item_condition_error_message
             選択してください
@@ -92,26 +105,26 @@
           配送料の負担
           %span.required 必須
         .pulldown
-          =f.collection_select :postage_payer_id, Postage_payer.all, :id, :name, prompt: "選択してください", class: "postage_payer_box"
+          =f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, {prompt: "選択してください"}, {class: "postage_payer_box"}
           = icon('fa', 'chevron-down')
         %p.error_message.postage_payer_error_message
           選択してください
 
-        -#配送料の負担者を選択したら、表示される（JSで実装予定）
-        %label.item_input__body__label
-          配送の方法
-          %span.required 必須
-        .pulldown
-          =f.collection_select :postage_type_id, Postage_type.all, :id, :name, prompt: "選択してください", class: "postage_payer_box"
-          = icon('fa', 'chevron-down')
-        %p.error_message.postage_payer_error_message
-          選択してください
+        #postage_type_box
+          %label.item_input__body__label
+            配送の方法
+            %span.required 必須
+          .pulldown
+            =f.collection_select :postage_type_id, PostageType.all, :id, :name, {prompt: "選択してください"}, {class: "postage_type_box"}
+            = icon('fa', 'chevron-down')
+          %p.error_message.postage_type_error_message
+            選択してください
 
         %label.item_input__body__label
           発送元の地域
           %span.required 必須
         .pulldown
-          =f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, prompt: "選択してください", class: "postage_payer_box"
+          =f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, {prompt: "選択してください"}, {class: "prefecture_code_box"}
           = icon('fa', 'chevron-down')
         %p.error_message.prefecture_error_message
           選択してください
@@ -120,7 +133,7 @@
           発送までの日数
           %span.required 必須
         .pulldown
-          =f.collection_select :preparation_day_id, Preparation_day.all, :id, :name, prompt: "選択してください", class: "preparation_day_box"
+          =f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {prompt: "選択してください"}, {class: "preparation_day_box"}
           = icon('fa', 'chevron-down')
         %p.error_message.preparation_day_error_message
           選択してください
@@ -137,18 +150,18 @@
           .price_box__form
             %p.price_form
               ¥
-            =f.number_field :prace, class: "item_input__body__price_box", min: 300, max: 9999999, placeholder: "0"
+            =f.number_field :price, class: "item_input__body__price_box", min: 300, max: 9999999, placeholder: "0"
         %p.error_message.price_error_message
           300以上9999999以下で入力してください
 
         .charge
           %p.item_input__body__text
             販売手数料（10%）
-          %p ー
+          %p.charge_result ー
         .profit
           %p.item_input__body__text
             販売利益
-          %p ー
+          %p.profit_result ー
         .item_input__body__btn
           =f.submit "出品する", class:"item_input__body__btn__exhibition_btn"
           =link_to "もどる", root_path, class:"item_input__body__btn__return_btn"

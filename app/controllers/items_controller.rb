@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
+
+  before_action :set_category, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :destroy]
-  
+
   def index
   end
 
@@ -33,6 +35,14 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+
+  end
+
+  end
+
+  def destroy
+    @item.destroy(item_params)
+    redirect_to :root
   end
 
   def update
@@ -43,40 +53,32 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    @item.destroy(item_params)
-    redirect_to :root
+  private
+
+  #親カテゴリー
+  def set_category  
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
   end
 
-def edit
-end
+  def set_item
+    @item = Item.find(item_params[:id])
+  end
 
-private
-
-#親カテゴリー
-def set_category  
-  @category_parent_array = Category.where(ancestry: nil).pluck(:name)
-end
-
-def set_item
-  @item = Item.find(item_params[:id])
-end
-
-def item_params
-  params.require(:item).permit(
-    :name,
-    :item_condition_id,
-    :introduction,
-    :price,
-    :prefecture_code,
-    :trading_status,
-    :postage_payer_id,
-    :size_id,
-    :preparation_day_id,
-    :postage_type_id,
-    :category_id,
-    brand_attributes: [:name, :id],
-    item_imgs_attributes: [:src, :_destroy, :id]
-    ).merge(seller_id: current_user.id, trading_status: 0)
-end
+  def item_params
+    params.require(:item).permit(
+      :name,
+      :item_condition_id,
+      :introduction,
+      :price,
+      :prefecture_code,
+      :trading_status,
+      :postage_payer_id,
+      :size_id,
+      :preparation_day_id,
+      :postage_type_id,
+      :category_id,
+      brand_attributes: [:name, :id],
+      item_imgs_attributes: [:src, :_destroy, :id]
+      ).merge(seller_id: current_user.id, trading_status: 0)
+  end
 end

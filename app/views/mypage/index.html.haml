@@ -1,10 +1,6 @@
-.wrapper
-  = render 'layouts/header'
-  .side_menu
-    = render 'side_menu'
-  .main_menu
-    = render 'mypage_home'
-  = render 'layouts/footer'
-  //仮のボタン
+= render 'layouts/header'
+.mypage-wrap
+  = render 'side_menu'
+  = render 'mypage_home'
   = render partial: 'shared/exhibition'
-    
+= render 'layouts/footer'

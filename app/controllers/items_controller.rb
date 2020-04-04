@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params)
+    if @item.update(item_params[:id])
       redirect_to :root
     else
       render :edit
@@ -45,11 +45,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy(item_params)
+    @item.destroy(item_params[:id])
     redirect_to :root
   end
   
   def edit
+    @item = Item.find(item_params[:id])
   end
 
   private

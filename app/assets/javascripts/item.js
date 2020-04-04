@@ -185,6 +185,8 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
 
       //文字列を消す
       $('.image_text_message').css('display', 'none');
+      //エラーメッセージを消す
+      $('.img_error_message').css('display', 'none');
 
       //プレビュー画像が５枚になったら１段目inputを消し、２段目にinputを表示
       if (preview_count == 5) {
@@ -250,6 +252,12 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         $('.image-preview[data-index ='+5+']').appendTo('.item_imgs');
       }
     }
+    if (preview_count == 0) {
+      //文字列を表示
+      $('.image_text_message').css('display', 'block');
+      //エラーメッセージを表示
+      $('.img_error_message').css('display', 'block');
+    }
   });
   //--------------------------必須項目のエラーメッセージ表示--------------------------//
   $(document).on('click', 'input', function() {
@@ -282,7 +290,6 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
     });
 
     $('select#children_category').on('blur', function() {
-      console.log('aaaa');
       if ($('select#children_category').val() == '') {
         $(this).css('border-color', 'red');
         $('.category_top_error_message').css('display', 'block');
@@ -292,7 +299,6 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
       }
     });
     $('select#grandchildren_category').on('blur', function() {
-      console.log('bbbb');
       if ($('select#grandchildren_category').val() == '') {
         $(this).css('border-color', 'red');
         $('.category_top_error_message').css('display', 'block');
@@ -365,9 +371,23 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         $('.price_error_message').css('display', 'none');
       }
     });
+    $('label.item_imgs').on('blur', function() {
+      if ($('input.item_input__body__price_box').val() == "") {
+        $(this).css('border-color', 'red');
+        $('.price_error_message').css('display', 'block');
+      } else {
+        $(this).css('border-color', '#ccc');
+        $('.price_error_message').css('display', 'none');
+      }
+    });
   });
   //-----------------------------出品するボタンクリック時のバリデーション-----------------------------//
   $(document).on('click', '.item_input__body__btn__exhibition_btn', function() {
+    if ($('.preview').length){
+    } else {
+      $('.img_error_message').css('display', 'block');
+    }
+
     if ($('input#item_name').val() == "") {
       $('input#item_name').focus();
       return false;

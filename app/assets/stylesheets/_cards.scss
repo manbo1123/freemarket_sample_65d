@@ -1,0 +1,42 @@
+.main-form {
+  margin: 0 auto;
+  width: 700px;
+  background: white;
+  .credit-information {
+    margin: 10px 0;
+    padding: 0 200px;
+  }
+  .btn-wrapper {
+    margin-top: 30px;
+    .delete-btn {
+      border: 1px solid transparent;
+      background-color: #ea352d;
+      color: #fff;
+      line-height: 48px;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  }
+  
+}
+
+.card-logo {
+  display: flex;
+  margin-top: 10px;
+  .card-icon {
+    height: 30px;
+    padding-left: 5px;
+  }
+}
+
+.cards-expire__wrap {
+  display: inline-block;
+  .input-expire {
+    width: 80%;
+    background-color: white;
+    .exp_mpnth {
+      width: 40%;
+    }
+  }
+}

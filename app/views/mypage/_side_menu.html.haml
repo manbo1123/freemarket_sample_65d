@@ -1,0 +1,61 @@
+.side_menu
+  .top
+    .mypage
+      = link_to mypage_index_path do
+        マイページ
+        = icon('fa', 'chevron-right')
+    .notification
+      = link_to "#" do
+        お知らせ
+        = icon('fa', 'chevron-right')
+    .todo
+      = link_to "#" do
+        やることリスト
+        = icon('fa', 'chevron-right')
+    .like
+      = link_to "#" do
+        いいね！一覧
+        = icon('fa', 'chevron-right')
+    .items_new
+      = link_to new_item_path do
+        出品する
+        = icon('fa', 'chevron-right')
+    .items_selling
+      = link_to "#" do
+        出品した商品-出品中
+        = icon('fa', 'chevron-right')
+    .items_dealing
+      = link_to "#" do
+        出品した商品-取引中
+        = icon('fa', 'chevron-right')
+    .items_sold
+      = link_to "#" do
+        出品した商品-売却済み
+        = icon('fa', 'chevron-right')
+    .purchases_dealing
+      = link_to "#" do
+        購入した商品-取引中
+        = icon('fa', 'chevron-right')
+    .purchases_bought
+      = link_to "#" do
+        購入した商品-過去の取引
+        = icon('fa', 'chevron-right')
+    .review
+      = link_to "#" do
+        評価一覧
+        = icon('fa', 'chevron-right')
+  .config
+    %h2.title
+      設定
+    .prof
+      = link_to "#" do
+        評価一覧
+        = icon('fa', 'chevron-right')
+    .deliver_address
+      = link_to "#" do
+        発送元・お届け先住所変更
+        = icon('fa', 'chevron-right')
+    .card
+      = link_to new_card_path do
+        クレジットカード登録
+        = icon('fa', 'chevron-right')

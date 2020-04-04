@@ -1,20 +1,29 @@
 .exhibition-btn{
-  width: 100px;
-  background-color: #3CCACE;
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-  padding: 15px;
-  cursor: pointer;
-  border-radius: 4%;
-  text-align: center;
-  &__text{
-    color: #fff;
-    display: block;
+  .btnbox{
+    width: 120px;
     background-color: #3CCACE;
-  }
-  i{
-    color: white;
-    background-color: #3CCACE;
+    position: fixed;
+    right: 30px;
+    bottom: 32px;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 4%;
+    text-align: center;
+    box-sizing: border-box;
+    &:hover {
+      opacity: 0.5;
+    }
+    &__text{
+      color: #fff;
+      font-size: 18px;
+      display: block;
+      background-color: #3CCACE;
+      margin-bottom: 5px;
+    }
+    &__icon{
+      color: white;
+      background-color: #3CCACE;
+      width: 60%;
+    }
   }
 }

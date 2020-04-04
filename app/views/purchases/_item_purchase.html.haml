@@ -16,3 +16,10 @@
       配送先
       %p.purchase-contents__delivery-address--address-button
         = link_to "登録してください", "#"
+  .purchase-btn
+    -if user_signed_in?
+      .purchase-btn__btn
+        = link_to "購入する", "#"
+    -else
+      .purchase-btn__else-btn
+        購入する

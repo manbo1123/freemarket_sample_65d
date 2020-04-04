@@ -1,6 +1,7 @@
 .item_purchases_page {
     * {
     box-sizing: border-box;
+    text-decoration: none;
   }
 
   .header{
@@ -70,15 +71,49 @@
     &__delivery-address{
       background-color: #fff;
       width: 300px;
-      margin: 10px auto;
+      margin: 0 auto;
       height: 100px;
       font-size: 15px;
       font-weight: bold;
+      border-bottom: 1px solid #f5f5f5;
       &--address-button{
       margin: 10px 10px 0;
       background-color: #fff;
       font-weight: lighter;
       }
+    }
+  }
+  .purchase-btn{
+    width: 700px;
+    margin: 0 auto 10px;
+    background-color: #fff;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    &__btn{
+      text-align: center;
+      margin: 10px auto;
+      line-height: 50px;
+      width: 300px;
+      font-weight: bold;
+      font-size: 0.9em;
+      cursor: pointer;
+      background-color: #3CCACE;
+      a{
+        display: block;
+        text-decoration: none;
+        color: white;
+      }
+     }
+    &__else-btn{
+      color: white;
+      background-color: #888;
+      margin: 10px auto;
+      width: 300px;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+      font-size: 0.9em;
+      cursor: not-allowed;
     }
   }
   .footer{

@@ -1,5 +1,5 @@
 .header
-  .header__upper
+  %section.header__upper
     .headlogo
       = link_to root_path do
         = image_tag "logo/logo.png", class: "headlogo__img"
@@ -8,29 +8,44 @@
         = text_field_tag :search, '', placeholder: "キーワードから探す", class: "index__form"
         = button_tag type: 'submit', class: "index__btn" do
           = icon('fa', 'search fa-2x')
-  .header__bottom
-    .leftmenu
-      .categorylist
-        = icon('fa', 'bars')
-        カテゴリーから探す
-      .brandlist
-        = icon('fa', 'tags')
-        ブランドから探す
+  %section.header__bottom
+    %ul.leftmenu
+      %li.categorys
+        %p
+          = icon('fa', 'bars')
+          カテゴリーから探す
+        %ul.parent__lists
+          - Category.where(ancestry: nil).each do |parent|
+            %li
+              = link_to "#{parent.name}", toppage_path(parent.id), class: "parent_link" , data: {parent: parent.id}, method: :get
+        %ul.children__lists
+        %ul.groundchildren__lists
+
+      %li.brands
+        %p
+          = icon('fa', 'tags')
+          ブランドから探す
     .rightmenu
-      -if user_signed_in?
-        .favo
-          = icon('far', 'heart')
-          いいね！一覧
-        .notice
-          = icon('fas', 'check')
-          お知らせ
-        .todo
-          = icon('far', 'bell')
-          やることリスト
-        .mypage
-          = icon('far', 'smile-wink')
-          マイページ
-        = link_to "ログアウト", destroy_user_session_path, method: :delete #マイページ完成後移動
-      -else
-        = link_to "新規登録", signup_index_path
-        = link_to "ログイン", new_user_session_path
+      %ul
+        -if user_signed_in?
+          %li
+            = link_to "#" do
+              = icon('far', 'heart')
+              いいね！一覧
+          %li
+            = link_to "#" do
+              = icon('fas', 'check')
+              お知らせ
+          %li
+            = link_to "#" do
+              = icon('far', 'bell')
+              やることリスト
+          %li  
+            = link_to mypage_index_path do
+              = icon('far', 'smile-wink')
+              マイページ
+        -else
+          %li
+            = link_to "新規登録", signup_index_path
+          %li
+            = link_to "ログイン", new_user_session_path

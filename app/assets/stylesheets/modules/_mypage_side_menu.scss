@@ -1,0 +1,76 @@
+@mixin link-btm {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  vertical-align: middle;
+  border-bottom: solid 1px rgb(231, 231, 231);
+}
+
+@mixin link-text {
+  width: 100%;
+  display: block;
+  padding:16px;
+  position: relative;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}
+
+@mixin link-icon {
+  position: absolute;
+  right: 16px;
+  color: lightgray;
+}
+
+$top-links: mypage, notification, todo, like, items_new, items_selling, items_dealing, items_sold, purchases_dealing, purchases_bought, review;
+$config-links: prof, deliver_address, card;
+
+.mypage-wrap{
+  width: 1020px;
+  height:100%;
+  margin: 40px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  .side_menu{
+    width: 280px;
+    margin-right: 40px;
+    .top{
+      width: 100%;
+      padding-bottom: 20px;
+      @each $top in $top-links {
+        .#{$top}{
+          @include link-btm;
+          a{
+            @include link-text;
+          }
+          .fa{
+            @include link-icon;
+          }
+        }
+      }
+    }
+    .config{
+      width: 100%;
+      padding-bottom: 20px;
+      .title{
+        font-weight: bold;
+      }
+      @each $config in $config-links {
+        .#{$config}{
+          @include link-btm;
+          a{
+            @include link-text;
+          }
+          .fa{
+            @include link-icon;
+          }
+        }
+      }
+    }
+  }
+  .main_menu{
+    width: 700px;
+  }
+}

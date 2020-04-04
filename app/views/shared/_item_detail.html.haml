@@ -73,9 +73,15 @@
         = link_to "次の商品  >", "#"
   .other-items
     %section.other-items__seller-items
-      = link_to "出品者のその他の商品", "#"
+      %h2.other-items__seller-items--title
+        = link_to "出品者のその他の商品", "#"
+      .other-items_seller-items--images
+        = render "toppage/productlists"
     %section.other-items__relation-items
-      = link_to "関連商品", "#"
+      %h2.other-items__relation-items--title
+        = link_to "関連商品", "#"
+      .other-items_relation-items--images
+        = render "toppage/productlists"
 
   //仮のボタン
   = render partial: 'shared/exhibition'

@@ -35,9 +35,6 @@ class ItemsController < ApplicationController
     else
       render :new
     end
-
-  end
-
   end
 
   def destroy

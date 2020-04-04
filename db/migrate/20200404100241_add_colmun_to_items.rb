@@ -1,12 +1,12 @@
 class AddColmunToItems < ActiveRecord::Migration[5.0]
   def change
-    add_references :items, :brand, foreign_key: true
-    add_references :items, :item_condition, null: false, foreign_key: true
-    add_references :items, :postage_payer, null: false, foreign_key: true
-    add_references :items, :size, null: false, foreign_key: true
-    add_references :items, :preparation_day, null: false, foreign_key: true
-    add_references :items, :postage_type, null: false, foreign_key: true
-    add_references :items, :seller, null: false, foreign_key: true
-    add_references :items, :buyer, foreign_key: true
+    add_column :items, :brand_id, :integer
+    add_column :items, :item_condition_id, :integer, null: false
+    add_column :items, :postage_payer_id, :integer, null: false
+    add_column :items, :size_id, :integer, null: false
+    add_column :items, :preparation_day_id, :integer, null: false
+    add_column :items, :postage_type_id, :integer, null: false
+    add_column :items, :seller_id, :integer, null: false
+    add_column :items, :buyer_id, :integer
   end
 end

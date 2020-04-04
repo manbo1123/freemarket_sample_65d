@@ -1,48 +1,16 @@
-.productlists
-  .productlist
-    %a{:href => "/items/show"}
-      .productlist__img
-        = image_tag "pict/test_pict.png", class: "pic"
-      .productlist__info
-        %h3.name
-          りんご
-        .details
-          %ul
-            %li.price 30000円
-            %li.icon
-              %i.fa.fa-star
-                0
-          %p
-            (税込)
-
-  .productlist
-    %a{:href => "/items/show"}
-      .productlist__img
-        = image_tag "pict/test_pict.png", class: "pic"
-      .productlist__info
-        %h3.name
-          りんご
-        .details
-          %ul
-            %li.price 30000円
-            %li.icon
-              %i.fa.fa-star
-                0
-          %p
-            (税込)
-
-  .productlist
-    %a{:href => "/items/show"}
-      .productlist__img
-        = image_tag "pict/test_pict.png", class: "pic"
-      .productlist__info
-        %h3.name
-          りんご
-        .details
-          %ul
-            %li.price 30000円
-            %li.icon
-              %i.fa.fa-star
-                0
-          %p
-            (税込)
+.productlist
+  %a{:href => "/items/#{item.id}"}
+    .productlist__img
+      = image_tag "#{item.item_img}", class: "pic"
+    .productlist__info
+      %h3= "#{item.name}".name
+        
+      .details
+        %ul
+          %li.price= item.price
+          %li.icon
+            %i.fa.fa-star
+              0
+              -# いいね数のカウントは未実装
+        %p
+          (税込)

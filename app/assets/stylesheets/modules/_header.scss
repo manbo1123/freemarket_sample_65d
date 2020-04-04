@@ -56,19 +56,103 @@
       height: 100%;
       width: 40%;
       display: flex;
-      align-items: center;
-      .categorylist{
-        padding-left: 20px;
-        font-size: medium;
+      justify-content: flex-start;
+      line-height: 40px;
+      .categorys{
+        margin-left: 20px;
+        font-size: smaller;
+        font-weight: bold;
+        position: relative;
+        height: 100%;
+        ul.parent__lists{
+          position:absolute;
+          top: 100%;
+          left: 0;
+          width: 200px;
+          z-index: 1;
+          display: none;
+          li{
+            background-color: white;
+            height: 50px;
+            font-weight: normal;
+            a.parent_link{
+              display: block;
+              width: 200px;
+              color: black;
+              line-height: 50px;
+              text-decoration: none;
+            }
+            a.parent_link:hover{
+              color: white;
+              background-color: red;
+              cursor: pointer;
+            }
+          }
+        }
+        ul.children__lists{
+          position:absolute;
+          top: 100%;
+          left: 200px;
+          width:200px;
+          min-height:100%;
+          z-index: 1;
+          background-color: white;
+          display: none;
+          li{
+            background-color: white;
+            height: 40px;
+            font-weight: normal;
+            a.child_link{
+              display: block;
+              width: 200px;
+              color: black;
+              line-height: 40px;
+              text-decoration: none;
+            }
+            a.child_link:hover{
+              color: white;
+              background-color: red;
+              cursor: pointer;
+            }
+          }
+        }
+        ul.groundchildren__lists{
+          position:absolute;
+          top: 100%;
+          left: 400px;
+          width:250px;
+          min-height:100%;
+          z-index: 1;
+          background-color: white;
+          display: none;
+          li{
+            background-color: white;
+            height: 40px;
+            font-weight: normal;
+            a.groundchild_link{
+              display: block;
+              width: 250px;
+              color: black;
+              line-height: 40px;
+              text-decoration: none;
+            }
+            a.groundchild_link:hover{
+              color: white;
+              background-color: red;
+              cursor: pointer;
+            }
+          }
+        }
       }
-      .categorylist:hover{
-        display: block;
+      .categorys:hover{
         color: red;
         cursor: pointer;
       }
-      .brandlist{
-        padding-left: 20px;
-        font-size: medium;
+      .brands{
+        margin-left: 20px;
+        font-size: smaller;
+        font-weight: bold;
+        position: relative;
       }
       .brandlist:hover{
         display: block;
@@ -79,51 +163,30 @@
     .rightmenu{
       width: 60%;
       height: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      .favo{
-        padding-right: 20px;
-        font-size: medium;
-      }
-      .favo:hober{
-        display: block;
-        color: red;
-        cursor: pointer;
-      }
-      .notice{
-        padding-right: 20px;
-        font-size: medium;
-      }
-      .notice:hober{
-        display: block;
-        color: red;
-        cursor: pointer;
-      }
-      .todo{
-        padding-right: 20px;
-        font-size: medium;
-      }
-      .todo:hober{
-        display: block;
-        color: red;
-        cursor: pointer;
-      }
-      .mypage{
-        padding-right: 20px;
-        font-size: medium;
-      }
-      .mypage:hober{
-        display: block;
-        color: red;
-        cursor: pointer;
-      }
-      a {
-        text-decoration: none;
-        color: black;
-        padding-left: 16px;
+      ul{
+        display: flex;
+        justify-content: flex-end;
+        line-height: 40px;
+        a{
+          text-decoration: none;
+          color: black;
+          padding-right: 20px;
+          font-size: smaller;
+        }
+        a:hover{
+          display: block;
+          color: red;
+          cursor: pointer;
+        }
       }
     }
   }
 }
 
+ul.categorys{
+  display: none;
+}
+
+ul.groundcategorys{
+  display: none;
+}

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks',
   }
   resources :signup do
     collection do
       get 'index'
-      get 'done' 
     end
   end
   devise_scope :user do
@@ -14,11 +14,24 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
-  # resources :toppage, only: [:index, :show]
-  resources :mypage, only: [:index]
 
+  namespace :api do
+    resources :toppage, only: :index, defaults: { format: 'json' }
+  end
+
+  resources :mypage, only: [:index] do
+    collection do
+      get 'logout' 
+    end
+  end
+
+  resources :items do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
   
-  resources :items
   resources :purchases
 
   resources :cards, only: [:index, :new, :show] do
@@ -26,6 +39,8 @@ Rails.application.routes.draw do
       post 'show', to: 'cards#show'
       post 'pay', to: 'cards#pay'
       post 'delete', to: 'cards#delete'
+      post 'buy', to: 'cards#buy'
     end
   end
 end
+

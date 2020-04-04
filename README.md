@@ -165,7 +165,6 @@ Things you may want to cover:
 |size|references|null: false, foreign_key: true|
 |preparation_day|references|null: false, foreign_key: true|
 |postage_type|references|null: false, foreign_key: true|
-|item_img|references|null: false, foreign_key: true|
 |category|references|null: false, foreign_key: true|
 |trading_status|enum|null: false|
 |seller|references|null: false, foreign_key: true|
@@ -201,7 +200,7 @@ Things you may want to cover:
 # item_imgs table
 |Column|Type|Options|
 |------|----|-------|
-|url|string|null:false|
+|src|string|null:false|
 |item|references|null: false, foreign_key: true|
 
 ## Association

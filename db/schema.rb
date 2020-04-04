@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200328011301) do
+ActiveRecord::Schema.define(version: 20200404002852) do
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "customer_id", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20200328011301) do
     t.index ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
   end
 
-  create_table "itemimgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "item_imgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "url",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,6 +107,6 @@ ActiveRecord::Schema.define(version: 20200328011301) do
   add_foreign_key "cards", "users"
   add_foreign_key "credit_cards", "users"
   add_foreign_key "items", "categories"
-  add_foreign_key "items", "itemimgs"
+  add_foreign_key "items", "item_imgs", column: "itemimg_id"
   add_foreign_key "sending_destinations", "users"
 end

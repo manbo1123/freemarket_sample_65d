@@ -17,7 +17,13 @@ Rails.application.routes.draw do
   resources :toppage, only: [:index, :show]
   root 'toppage#index'
  
-  resources :items
+  resources :items do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
+  
   resources :purchases
 
   resources :cards, only: [:index, :new, :show] do

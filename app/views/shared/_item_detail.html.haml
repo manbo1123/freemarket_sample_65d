@@ -22,6 +22,7 @@
         %tr
           %th カテゴリー
           %td
+          -@category.each do |cate|
             = link_to @item.category, item_path, method: :get
         %tr
           %th 出品のサイズ

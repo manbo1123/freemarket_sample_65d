@@ -1,7 +1,7 @@
-class Postage_type < ActiveHash::Base
+class Postagetype < ActiveHash::Base
   self.data = [
     {id: 1, name: '未定'}, 
-    {id: 2, name: '￥らくらくメルカリ便'}, 
+    {id: 2, name: 'らくらくメルカリ便'}, 
     {id: 3, name: 'ゆうメール'}, 
     {id: 4, name: 'レターパック'}, 
     {id: 5, name: '普通郵便(定型、定形外)'}, 

@@ -4,7 +4,12 @@
     %h1.purchase-main__purchase-head
       購入内容の確認
     .purchase-main__purchase-info
-      
+      .item-small-detail
+        = image_tag "pict/test_pict.png", class: "item-small-detail__pic"
+        .item-small-detail__item-name
+          商品の名前
+          .item-small-detail__item-name--price
+            ¥999(税込み)
   .purchase-contents
     %ul.purchase-contents__payment-price
       %li.purchase-contents__payment-price--text 支払い金額

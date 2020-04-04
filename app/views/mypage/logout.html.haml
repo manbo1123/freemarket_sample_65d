@@ -1,0 +1,9 @@
+%body
+  = render 'layouts/header_simple'
+  .main-form
+    .main-form__wrapper
+      .main-contents
+        .contents-field--first
+          .default-btn.default-btn--logout
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+  = render 'layouts/footer_simple'

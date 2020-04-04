@@ -1,0 +1,20 @@
+%body
+  = render 'layouts/header_simple'
+  .main-form
+    %h2.main-form__title
+      お支払方法
+    .main-form__wrapper
+      .main-contents
+        .credit-information__text
+          クレジットカード情報
+        .credit-information__number
+          = "**** **** **** " + @card_information.last4
+        .credit-information__date
+          - exp_month = @card_information.exp_month.to_s
+          - exp_year = @card_information.exp_year.to_s.slice(2,3)
+          = exp_month + " / " + exp_year
+        = form_tag(delete_cards_path, method: :post, class: 'btn-wrapper',  name: "inputForm") do
+          %input{ type: "hidden", name: "card_id", value: "" }
+          = submit_tag "削除する", class: 'delete-btn'
+    = link_to "トップページへ戻る", root_path
+  = render 'layouts/footer_simple'

@@ -2,55 +2,55 @@
 
   %section.main-topic
     %h1.main-topic__item-name
-      user.item
+    = @item.name
   .item-info.clearfix
     .item-info__item-image
-      = image_tag "pict/test_pict.png"
+      = image_tag (@itemimges.first.url, class: "display-images")
       .item-info__item-image--items
-        = image_tag "pict/test_pict.png", class: "pic"
-      .item-info__item-image--items
-        = image_tag "pict/test_pict.png", class: "pic"
-      .item-info__item-image--items
-        = image_tag "pict/test_pict.png", class: "pic"
+        = render partial: "itemimgs",collection: @itemimgs, as: :itemimg
+      //.item-info__item-image--items
+        //= image_tag "pict/test_pict.png", class: "pic"
+      //.item-info__item-image--items
+        //= image_tag "pict/test_pict.png", class: "pic"
     //商品詳細のテーブル
     %table.item-info__item-details
       %tbody
         %tr
           %th 出品者
           %td
-            %a{:herf => "#"}
+             = link_to @item.seller.nickname, "#"
         %tr
           %th カテゴリー
           %td
-            %a{:herf => "#"}
+            = link_to @item.category, item_path, method: :get
         %tr
           %th 出品のサイズ
           %td
-            free
+            = link_to @item.size
         %tr
           %th 商品の状態
           %td
-            目立った傷汚れなし
+            = link_to @item.condition
         %tr
           %th 配送料の負担
           %td
-            送料込み（出品者負担）
+            = link_to @item.postage_payer
         %tr
           %th 配送の方法
           %td
-            ゆうゆうメール
+            = link_to @item.postage_type
         %tr
           %th 配送元地域
           %td
-            東京都
+            = link_to @item.prefecture_code
         %tr
           %th 配送日の目安
           %td
-            １〜２日で発送
+            = link_to @item.preparation_day
   .item-price
     .item-price__price-details
       %span.item-price__price-details--price
-        ¥999
+        = "¥#{@item.price}"
       %span.item-price__price-details--tax
         （税込み）
       %span.item-price__price-details--fee
@@ -59,6 +59,7 @@
       = link_to "購入画面に進む", "/purchases"
   .item-description
     .item-description__introduction
+      = @item.discription
     .item-description__button-container
       .item-description__button-container--favorite-button
         = link_to "♡　いいね！"

@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.all
+    @item = Item.find(params[:id])
+    @itemimgs = Itemimg.where.(item_id :@item)
   end
   
   def new

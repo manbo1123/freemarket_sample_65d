@@ -90,17 +90,23 @@
       ピックアップカテゴリー
     .productcontent
       .producthead
-        %a{:href => "/toppage/show"}
+        %a{:href => "/items/show"}
           %h3.title
             新規投稿商品
-      = render "toppage/productlists"
+      .productlists
+        - @items.each do |item|
+          = render "items/productlists"
+
+      
 
   %section.main__pickup
     %h2.subtitle
       ピックアップブランド
     .productcontent
       .producthead
-        %a{:href => "/toppage/show"}
+        %a{:href => "/items/show"}
           %h3.title
             アーカイバ
-      = render "toppage/productlists"
+      .productlists
+        - @items.each do |item|
+          = render "items/productlists"

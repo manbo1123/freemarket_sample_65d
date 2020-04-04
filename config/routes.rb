@@ -13,9 +13,8 @@ Rails.application.routes.draw do
     post 'sending_destinations', to: 'users/registrations#create_sending_destination'
   end
 
-  root 'toppage#index'
+  root 'items#index'
 
-  resources :toppage, only: [:index, :show]
   namespace :api do
     resources :toppage, only: :index, defaults: { format: 'json' }
   end

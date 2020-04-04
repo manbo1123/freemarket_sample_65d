@@ -3,9 +3,11 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
+    @items = Item.all
   end
 
   def show
+    @item = Item.find(params[:id])
   end
   
   def new

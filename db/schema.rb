@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200331101049) do
+ActiveRecord::Schema.define(version: 20200330011018) do
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
-ActiveRecord::Schema.define(version: 20200330011018) do
+  end
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "customer_id", null: false
@@ -26,7 +25,6 @@ ActiveRecord::Schema.define(version: 20200330011018) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["user_id"], name: "index_cards_on_user_id", using: :btree
-
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -45,31 +43,15 @@ ActiveRecord::Schema.define(version: 20200330011018) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                                         null: false
-    t.text     "introduction",       limit: 65535,             null: false
-    t.integer  "price",                                        null: false
-    t.integer  "prefecture_code",                              null: false
-    t.integer  "trading_status",                   default: 0
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.integer  "category_id",                                  null: false
-    t.integer  "brand_id"
-    t.integer  "item_condition_id",                            null: false
-    t.integer  "postage_payer_id",                             null: false
-    t.integer  "size_id",                                      null: false
-    t.integer  "preparation_day_id",                           null: false
-    t.integer  "postage_type_id",                              null: false
-    t.integer  "seller_id",                                    null: false
-    t.integer  "buyer_id"
-    t.index ["brand_id"], name: "index_items_on_brand_id", using: :btree
-    t.index ["buyer_id"], name: "index_items_on_buyer_id", using: :btree
+    t.string   "name",                                      null: false
+    t.text     "introduction",    limit: 65535,             null: false
+    t.integer  "price",                                     null: false
+    t.integer  "prefecture_code",                           null: false
+    t.integer  "trading_status",                default: 0
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "category_id",                               null: false
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
-    t.index ["item_condition_id"], name: "index_items_on_item_condition_id", using: :btree
-    t.index ["postage_payer_id"], name: "index_items_on_postage_payer_id", using: :btree
-    t.index ["postage_type_id"], name: "index_items_on_postage_type_id", using: :btree
-    t.index ["preparation_day_id"], name: "index_items_on_preparation_day_id", using: :btree
-    t.index ["seller_id"], name: "index_items_on_seller_id", using: :btree
-    t.index ["size_id"], name: "index_items_on_size_id", using: :btree
   end
 
   create_table "prefectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -119,9 +101,8 @@ ActiveRecord::Schema.define(version: 20200330011018) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-
-  add_foreign_key "item_imgs", "items"
   add_foreign_key "cards", "users"
+  add_foreign_key "item_imgs", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "sending_destinations", "users"
   add_foreign_key "sns_credentials", "users"

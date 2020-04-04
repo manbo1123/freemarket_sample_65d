@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20200330011018) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["user_id"], name: "index_cards_on_user_id", using: :btree
-
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -122,6 +121,7 @@ ActiveRecord::Schema.define(version: 20200330011018) do
 
   add_foreign_key "item_imgs", "items"
   add_foreign_key "cards", "users"
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "sending_destinations", "users"
   add_foreign_key "sns_credentials", "users"

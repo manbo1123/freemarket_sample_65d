@@ -132,7 +132,7 @@
   });
 
   //-------------------------商品説明ボックスの文字カウント-------------------------//
-$(document).on('turbolinks:load', function () {
+$(document).on('keyup', '.item_input__body__text_area', function() {
   $('.item_input__body__text_area').keyup(function() {
     let count = $(this).val().length;
     $('.countup').text(count);
@@ -252,7 +252,7 @@ $(document).on('turbolinks:load', function () {
     }
   });
   //--------------------------必須項目のエラーメッセージ表示--------------------------//
-  $(document).on('turbolinks:load', function () {
+  $(document).on('click', 'input', function() {
     $('input#item_name').on('blur', function() {    
       if ($('input#item_name').val() == "") {
         $(this).css('border-color', 'red');
@@ -405,5 +405,4 @@ $(document).on('turbolinks:load', function () {
       $('.item_input__body__price_box').focus();
       return false;
     }
-  });
-
+  })

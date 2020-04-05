@@ -288,8 +288,7 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         $('.category_top_error_message').css('display', 'none');
       }
     });
-
-    $('select#children_category').on('blur', function() {
+    $('#children_box').on('blur','select#children_category', function() {
       if ($('select#children_category').val() == '') {
         $(this).css('border-color', 'red');
         $('.category_top_error_message').css('display', 'block');
@@ -298,7 +297,7 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         $('.category_top_error_message').css('display', 'none');
       }
     });
-    $('select#grandchildren_category').on('blur', function() {
+    $('#grandchildren_box').on('blur','select#grandchildren_category', function() {
       if ($('select#grandchildren_category').val() == '') {
         $(this).css('border-color', 'red');
         $('.category_top_error_message').css('display', 'block');
@@ -307,7 +306,6 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         $('.category_top_error_message').css('display', 'none');
       }
     });
-
     $('select.size_box').on('blur', function() {
       if ($('select.size_box').val() == "") {
         $(this).css('border-color', 'red');
@@ -386,6 +384,9 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
     if ($('.preview').length){
     } else {
       $('.img_error_message').css('display', 'block');
+      //$('.up-image').focus();
+      alert('出品画像を1枚以上登録してください');
+      return false;
     }
 
     if ($('input#item_name').val() == "") {

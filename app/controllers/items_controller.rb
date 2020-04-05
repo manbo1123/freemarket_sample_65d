@@ -27,9 +27,8 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    @item.build_brand
     @item.build_brand(name: params[:item][:brand][:name])
-    if @item.save!
+    if @item.save
       redirect_to :root
     else
       render :new

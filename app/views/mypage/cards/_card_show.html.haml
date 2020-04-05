@@ -1,0 +1,19 @@
+.main-form
+  %h2.main-form__title
+    クレジットカード情報
+  .main-form__wrapper
+    .main-contents
+      .contents-field--first
+        = label_tag "number", "カード番号", class: 'label'
+        %br/
+        = "**** **** **** " + @card_information.last4
+        %br/
+      .credit-information__date
+        = label_tag "number", "有効期限", class: 'label'
+        %br/
+        - exp_month = @card_information.exp_month.to_s
+        - exp_year = @card_information.exp_year.to_s.slice(2,3)
+        = exp_month + " / " + exp_year
+      = form_tag(mypage_cards_delete_path, method: :post, class: 'btn-wrapper',  name: "inputForm") do
+        %input{ type: "hidden", name: "card_id", value: "" }
+        = submit_tag "削除する", class: 'delete-btn'

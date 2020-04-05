@@ -21,16 +21,18 @@ Rails.application.routes.draw do
 
   resources :mypage, only: [:index] do
     collection do
-      get 'logout' 
+      delete 'logout' 
     end
   end
-  # namespace :mypage do
-  #   resources :sending_destination, only: [:edit, :update]
-  # end
 
   namespace :mypage do
     get 'sending_destinations/edit'
     patch 'sending_destinations/update'
+    get 'cards/show'
+    post 'cards/delete'
+    get 'cards/index'
+    get 'cards/new'
+    post 'cards/pay'
   end
 
   

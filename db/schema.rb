@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200325135109) do
+ActiveRecord::Schema.define(version: 20200404100241) do
+
+  create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "customer_id", null: false
@@ -38,14 +44,22 @@ ActiveRecord::Schema.define(version: 20200325135109) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                          null: false
-    t.text     "introduction",    limit: 65535, null: false
-    t.integer  "price",                         null: false
-    t.integer  "prefecture_code",               null: false
-    t.integer  "trading_status",                null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "category_id",                   null: false
+    t.string   "name",                                         null: false
+    t.text     "introduction",       limit: 65535,             null: false
+    t.integer  "price",                                        null: false
+    t.integer  "prefecture_code",                              null: false
+    t.integer  "trading_status",                   default: 0
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.integer  "category_id",                                  null: false
+    t.integer  "brand_id"
+    t.integer  "item_condition_id",                            null: false
+    t.integer  "postage_payer_id",                             null: false
+    t.integer  "size_id",                                      null: false
+    t.integer  "preparation_day_id",                           null: false
+    t.integer  "postage_type_id",                              null: false
+    t.integer  "seller_id",                                    null: false
+    t.integer  "buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
   end
 

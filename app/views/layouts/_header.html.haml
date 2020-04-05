@@ -17,7 +17,7 @@
         %ul.parent__lists
           - Category.where(ancestry: nil).each do |parent|
             %li
-              = link_to "#{parent.name}", toppage_path(parent.id), class: "parent_link" , data: {parent: parent.id}, method: :get
+              = link_to "#{parent.name}", item_path(parent.id), class: "parent_link" , data: {parent: parent.id}, method: :get
         %ul.children__lists
         %ul.groundchildren__lists
 

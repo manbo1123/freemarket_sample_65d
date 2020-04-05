@@ -3,7 +3,7 @@ $(function(){
   function childbuildHTML(child){
     var html = 
       `<li>
-        <a class="child_link" data-child="${child.id}" data-method="get" href="/toppage/${child.id}">${child.name}</a>
+        <a class="child_link" data-child="${child.id}" data-method="get" href="/items/${child.id}">${child.name}</a>
       </li>
       `
       return html;
@@ -12,7 +12,7 @@ $(function(){
   function groundchildbuildHTML(groundchild){
     var html = 
       `<li>
-        <a class="groundchild_link" data-groundchild="${groundchild.id}" data-method="get" href="/toppage/${groundchild.id}">${groundchild.name}</a>
+        <a class="groundchild_link" data-groundchild="${groundchild.id}" data-method="get" href="/items/${groundchild.id}">${groundchild.name}</a>
       </li>
       `
       return html;
@@ -27,30 +27,30 @@ $(function(){
   $('.categorys').hover(function(e){
       e.preventDefault();
       $(".parent__lists").css("display", "block");
-      // $(".children__lists").css("display", "block");
     },function(e){
       e.preventDefault();
+      $(".children__lists").empty();
+      $(".groundchildren__lists").empty();
       $(".parent__lists").css("display", "none");
       $(".children__lists").css("display", "none");
       $(".groundchildren__lists").css("display", "none");
-      // $(".children__lists").css("display", "none");
     }
   );
   
   // 各ルート要素にホバーした際に、子要素を表示
   $('.parent_link').mouseover(function(e) {
     e.preventDefault();
+
     // 子要素を削除
     $(".children__lists").empty();
-    $(".children__lists").css("display", "none");
     $(".groundchildren__lists").empty();
     $(".groundchildren__lists").css("display", "none");
-    
+    $(".children__lists").css("display", "block");
+
     // ルート要素のidを取得しajaxを実行。apiによりidに紐づく子要素を取得
     var parent_id = $(this).data('parent');
-    console.log(parent_id);
     $.ajax({
-      url: "/api/toppage",
+      url: "/api/items",
       type: 'get',
       dataType: 'json',
       data: {id: parent_id}
@@ -61,13 +61,10 @@ $(function(){
       if (children.length !== 0) {
         var insertHTML = '';
         $.each(children, function(i, child) {
-          // console.log(child)
           insertHTML += childbuildHTML(child)
-          // console.log(child)
         });
         $('.children__lists').append(insertHTML);
       }
-      $(".children__lists").css("display", "block");
     })
   });
 
@@ -75,13 +72,12 @@ $(function(){
   $(document).on("mouseover",'.child_link',function() {
     // 孫要素を削除
     $(".groundchildren__lists").empty();
-    $(".groundchildren__lists").css("display", "none");
-    
+    $(".groundchildren__lists").css("display", "block");
+
     // 子要素のidを取得しajaxを実行。apiによりidに紐づく孫要素を取得
     var child_id = $(this).data('child');
-    console.log(child_id);
     $.ajax({
-      url: "/api/toppage",
+      url: "/api/items",
       type: 'get',
       dataType: 'json',
       data: {id: child_id}
@@ -92,13 +88,10 @@ $(function(){
       if (children.length !== 0) {
         var insertHTML = '';
         $.each(children, function(i, groundchild) {
-          // console.log(child)
           insertHTML += groundchildbuildHTML(groundchild)
-          console.log(groundchild)
         });
         $('.groundchildren__lists').append(insertHTML);
       }
-      $(".groundchildren__lists").css("display", "block");
     })
   });
 });

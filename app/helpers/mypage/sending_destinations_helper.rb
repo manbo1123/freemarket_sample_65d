@@ -1,0 +1,2 @@
+module Mypage::SendingDestinationsHelper
+end

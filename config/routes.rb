@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks',
@@ -16,13 +17,25 @@ Rails.application.routes.draw do
   root 'items#index'
 
   namespace :api do
-    resources :toppage, only: :index, defaults: { format: 'json' }
+    resources :items, only: :index, defaults: { format: 'json' }
   end
 
   resources :mypage, only: [:index] do
     collection do
-      get 'logout' 
+      delete 'logout' 
     end
+  end
+
+  namespace :mypage do
+    get 'sending_destinations/edit'
+    patch 'sending_destinations/update'
+    get 'cards/show'
+    post 'cards/delete'
+    get 'cards/index'
+    get 'cards/new'
+    post 'cards/pay'
+    get 'accounts/edit'
+    patch 'accounts/update'
   end
 
   resources :items do

@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
     Rails.env.production?
   end
 
+  def authenticate_user
+    if current_user == nil
+      redirect_to root_path
+    end
+  end
+
   private
   def basic_auth  #本番環境のみベースシック認証
     authenticate_or_request_with_http_basic do |username, password|

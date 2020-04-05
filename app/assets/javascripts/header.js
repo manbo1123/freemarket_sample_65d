@@ -3,7 +3,7 @@ $(function(){
   function childbuildHTML(child){
     var html = 
       `<li>
-        <a class="child_link" data-child="${child.id}" data-method="get" href="/toppage/${child.id}">${child.name}</a>
+        <a class="child_link" data-child="${child.id}" data-method="get" href="/items/${child.id}">${child.name}</a>
       </li>
       `
       return html;
@@ -12,7 +12,7 @@ $(function(){
   function groundchildbuildHTML(groundchild){
     var html = 
       `<li>
-        <a class="groundchild_link" data-groundchild="${groundchild.id}" data-method="get" href="/toppage/${groundchild.id}">${groundchild.name}</a>
+        <a class="groundchild_link" data-groundchild="${groundchild.id}" data-method="get" href="/items/${groundchild.id}">${groundchild.name}</a>
       </li>
       `
       return html;
@@ -50,7 +50,7 @@ $(function(){
     // ルート要素のidを取得しajaxを実行。apiによりidに紐づく子要素を取得
     var parent_id = $(this).data('parent');
     $.ajax({
-      url: "/api/toppage",
+      url: "/api/items",
       type: 'get',
       dataType: 'json',
       data: {id: parent_id}
@@ -77,7 +77,7 @@ $(function(){
     // 子要素のidを取得しajaxを実行。apiによりidに紐づく孫要素を取得
     var child_id = $(this).data('child');
     $.ajax({
-      url: "/api/toppage",
+      url: "/api/items",
       type: 'get',
       dataType: 'json',
       data: {id: child_id}

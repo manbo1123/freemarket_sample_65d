@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   root 'items#index'
 
   namespace :api do
-    resources :toppage, only: :index, defaults: { format: 'json' }
+    resources :items, only: :index, defaults: { format: 'json' }
   end
 
   resources :mypage, only: [:index] do
@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     get 'cards/index'
     get 'cards/new'
     post 'cards/pay'
+    get 'accounts/edit'
+    patch 'accounts/update'
   end
 
   resources :items do

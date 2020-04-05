@@ -1,4 +1,6 @@
 class Mypage::SendingDestinationsController < ApplicationController
+  before_action :authenticate_user
+
   def edit
     @sending_destinations = SendingDestination.find_by(user_id: current_user.id)
   end
@@ -13,16 +15,12 @@ class Mypage::SendingDestinationsController < ApplicationController
       destination_fm2 = sending_destination_params[coulum]
       if destination_fm != destination_fm2
         change_coulum += 1
-      # flash[:notice] = "変更がありません"
-      # render :edit
       end
     end
-    # binding.pry
     if change_coulum == 0
       @sending_destinations.errors[:base] << "変更がありません"
       flash.now[:alert] = @sending_destinations.errors.full_messages
       render :edit
-      # redirect_to mypage_sending_destinations_edit_path, notice: "変更がありません"
     else
       @sending_destinations.update(sending_destination_params)
       if @sending_destinations.save

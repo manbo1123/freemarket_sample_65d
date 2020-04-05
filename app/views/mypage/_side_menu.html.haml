@@ -4,10 +4,10 @@
       = link_to mypage_index_path do
         マイページ
         = icon('fa', 'chevron-right')
-    .notification
-      = link_to "#" do
-        お知らせ
-        = icon('fa', 'chevron-right')
+    -# .notification
+    -#   = link_to "#" do
+    -#     お知らせ
+    -#     = icon('fa', 'chevron-right')
     .todo
       = link_to "#" do
         やることリスト
@@ -47,15 +47,19 @@
   .config
     %h2.title
       設定
+    .account
+      = link_to "#" do
+        会員情報
+        = icon('fa', 'chevron-right')
     .deliver_address
       = link_to mypage_sending_destinations_edit_path do
-        発送元・お届け先住所変更
+        発送元・お届け先住所
         = icon('fa', 'chevron-right')
     .card
-      = link_to new_card_path do
-        クレジットカード登録
+      = link_to mypage_cards_show_path do
+        クレジットカード情報
         = icon('fa', 'chevron-right')
     .logout
-      = link_to destroy_user_session_path, method: :delete do
+      = link_to logout_mypage_index_path, method: :delete do
         ログアウト
         = icon('fa', 'chevron-right')

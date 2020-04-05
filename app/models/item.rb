@@ -14,16 +14,16 @@ class Item < ApplicationRecord
 
   enum trading_status: {selling: 0, during_deal: 1, deal_closed: 2}
 
-  #validates :name, presence: true
-  #validates :introduction, presence: true
-  #validates :price, presence: true
-  #validates :prefecture_code, presence: true
-  #validates :trading_status, presence: true
-  #validates :category_id, presence: true
-  #validates :item_condition_id, presence: true
-  #validates :postage_payer_id, presence: true
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true
+  validates :prefecture_code, presence: true
+  validates :trading_status, presence: true
+  validates :category_id, presence: true
+  validates :item_condition_id, presence: true
+  validates :postage_payer_id, presence: true
 
-  #validates :preparation_day_id, presence: true
-  #validates :postage_type_id, presence: true
-  #validates :seller_id, presence: true
+  validates :preparation_day_id, presence: true
+  validates :postage_type_id, presence: true
+  validates :seller_id, presence: true
 end

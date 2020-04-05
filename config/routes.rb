@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -22,6 +23,14 @@ Rails.application.routes.draw do
     collection do
       get 'logout' 
     end
+  end
+  # namespace :mypage do
+  #   resources :sending_destination, only: [:edit, :update]
+  # end
+
+  namespace :mypage do
+    get 'sending_destinations/edit'
+    patch 'sending_destinations/update'
   end
 
   

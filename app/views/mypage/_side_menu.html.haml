@@ -48,8 +48,12 @@
     %h2.title
       設定
     .account
-      = link_to "#" do
+      = link_to mypage_accounts_edit_path do
         会員情報
+        = icon('fa', 'chevron-right')
+    .pass
+      = link_to "#" do
+        パスワード
         = icon('fa', 'chevron-right')
     .deliver_address
       = link_to mypage_sending_destinations_edit_path do

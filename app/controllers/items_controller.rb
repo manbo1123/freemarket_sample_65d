@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   
   def new
     @item = Item.new
-    @item.item_imgs.new
+    @item.item_imgs.build
   end
 
     #jsonで親の名前で検索し、紐づく小カテゴリーの配列を取得
@@ -27,8 +27,7 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    @item.build_brand
-
+    @item.build_brand(name: params[:item][:brand][:name])
     if @item.save
       redirect_to :root
     else
@@ -77,7 +76,6 @@ class ItemsController < ApplicationController
       :preparation_day_id,
       :postage_type_id,
       :category_id,
-      brand_attributes: [:name, :id],
       item_imgs_attributes: [:src, :_destroy, :id]
       ).merge(seller_id: current_user.id, trading_status: 0)
   end

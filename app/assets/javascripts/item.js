@@ -178,9 +178,9 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
 
       //アップロード完了したら、inputタグを追加
       if (preview_count <= 4) {
-        $('.item_imgs').append(nextInput(preview_count + 1));
+        $('.item_imgs').prepend(nextInput(preview_count + 1));
       } else {
-        $('.item_imgs_2nd_row').append(nextInput(preview_count + 1));
+        $('.item_imgs_2nd_row').prepend(nextInput(preview_count + 1));
       }
 
       //文字列を消す
@@ -279,35 +279,34 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         $('.item_introduction_error_message').css('display', 'none');
       }
     });
+    let category_error_message = $('.category_top_error_message')
     $('select#parent_category').on('blur', function() {
       if ($('select#parent_category').val() == '') {
         $(this).css('border-color', 'red');
-        $('.category_top_error_message').css('display', 'block');
+        category_error_message.css('display', 'block');
       } else {
         $(this).css('border-color', '#ccc');
-        $('.category_top_error_message').css('display', 'none');
+        category_error_message.css('display', 'none');
       }
     });
-
-    $('select#children_category').on('blur', function() {
+    $('#children_box').on('blur','select#children_category', function() {
       if ($('select#children_category').val() == '') {
         $(this).css('border-color', 'red');
-        $('.category_top_error_message').css('display', 'block');
+        category_error_message.css('display', 'block');
       } else {
         $(this).css('border-color', '#ccc');
-        $('.category_top_error_message').css('display', 'none');
+        category_error_message.css('display', 'none');
       }
     });
-    $('select#grandchildren_category').on('blur', function() {
+    $('#grandchildren_box').on('blur','select#grandchildren_category', function() {
       if ($('select#grandchildren_category').val() == '') {
         $(this).css('border-color', 'red');
-        $('.category_top_error_message').css('display', 'block');
+        category_error_message.css('display', 'block');
       } else {
         $(this).css('border-color', '#ccc');
-        $('.category_top_error_message').css('display', 'none');
+        category_error_message.css('display', 'none');
       }
     });
-
     $('select.size_box').on('blur', function() {
       if ($('select.size_box').val() == "") {
         $(this).css('border-color', 'red');
@@ -386,6 +385,8 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
     if ($('.preview').length){
     } else {
       $('.img_error_message').css('display', 'block');
+      alert('出品画像を1枚以上登録してください');
+      return false;
     }
 
     if ($('input#item_name').val() == "") {

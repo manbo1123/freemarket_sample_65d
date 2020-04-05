@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20200404100241) do
 
+
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -34,13 +35,12 @@ ActiveRecord::Schema.define(version: 20200404100241) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "credit_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "card_number",      null: false
-    t.integer "expiration_year",  null: false
-    t.integer "expiration_month", null: false
-    t.integer "security_code",    null: false
-    t.integer "user_id",          null: false
-    t.index ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
+  create_table "item_imgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "src",        null: false
+    t.integer  "item_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_imgs_on_item_id", using: :btree
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -83,10 +83,13 @@ ActiveRecord::Schema.define(version: 20200404100241) do
     t.index ["user_id"], name: "index_sending_destinations_on_user_id", using: :btree
   end
 
-  create_table "tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "sns_credentials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "image"
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -108,7 +111,8 @@ ActiveRecord::Schema.define(version: 20200404100241) do
   end
 
   add_foreign_key "cards", "users"
-  add_foreign_key "credit_cards", "users"
+  add_foreign_key "item_imgs", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "sending_destinations", "users"
+  add_foreign_key "sns_credentials", "users"
 end

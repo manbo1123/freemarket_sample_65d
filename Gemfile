@@ -80,4 +80,7 @@ gem 'pry-rails'
 gem 'ancestry'
 gem 'font-awesome-sass'
 gem 'jp_prefecture'
-gem 'dotenv-rails' #環境変数を設定するため
+gem 'dotenv-rails'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"

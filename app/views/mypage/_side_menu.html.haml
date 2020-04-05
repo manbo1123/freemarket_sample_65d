@@ -47,15 +47,15 @@
   .config
     %h2.title
       設定
-    .prof
-      = link_to "#" do
-        評価一覧
-        = icon('fa', 'chevron-right')
     .deliver_address
-      = link_to "#" do
+      = link_to mypage_sending_destinations_edit_path do
         発送元・お届け先住所変更
         = icon('fa', 'chevron-right')
     .card
       = link_to new_card_path do
         クレジットカード登録
+        = icon('fa', 'chevron-right')
+    .logout
+      = link_to destroy_user_session_path, method: :delete do
+        ログアウト
         = icon('fa', 'chevron-right')

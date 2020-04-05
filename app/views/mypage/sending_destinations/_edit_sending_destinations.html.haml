@@ -1,0 +1,46 @@
+%main
+  .main-form
+    = form_for(@sending_destinations, url: mypage_sending_destinations_update_path) do |f|
+      = render 'layouts/error_messages', model: f.object
+      %h2.main-form__title お届け先住所入力
+      .main-form__wrapper
+        .main-contents
+          .contents-field
+            = f.label :お名前（全角）
+            %span.contents-field__require 必須
+            %br
+            = f.text_field :destination_family_name, class:"contents-field__input half"
+            = f.text_field :destination_first_name, class:"contents-field__input half"
+
+          .contents-field
+            = f.label :お名前カナ（全角）
+            %span.contents-field__require 必須
+            %br
+            = f.text_field :destination_family_name_kana, class:"contents-field__input half"
+            = f.text_field :destination_first_name_kana, class:"contents-field__input half"
+          .contents-field
+            = f.label :郵便番号
+            %span.contents-field__require 必須
+            = f.number_field :post_code, class:"contents-field__input"
+          .contents-field
+            = f.label :都道府県
+            %span.contents-field__require 必須
+            %br
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+          .contents-field
+            = f.label :市区町村
+            %span.contents-field__require 必須
+            = f.text_field :city, class:"contents-field__input"
+          .contents-field
+            = f.label :番地
+            %span.contents-field__require 必須
+            = f.text_field :house_number, class:"contents-field__input", placeholder:"例）神南１丁目１８−２"
+          .contents-field
+            = f.label :建物名
+            %span.contents-field__any 任意
+            = f.text_field :building_name, class:"contents-field__input", placeholder:"例）フレーム神南坂 4階"
+          .contents-field
+            = f.label :電話番号
+            %span.contents-field__any 任意
+            = f.text_field :phone_number, class:"contents-field__input", placeholder:"例）22233334444"
+            = f.submit "登録内容を変更", class:'default-btn'

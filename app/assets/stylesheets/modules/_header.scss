@@ -63,6 +63,7 @@
         font-size: smaller;
         font-weight: bold;
         position: relative;
+        z-index: 2;
         height: 100%;
         ul.parent__lists{
           position:absolute;
@@ -181,12 +182,4 @@
       }
     }
   }
-}
-
-ul.categorys{
-  display: none;
-}
-
-ul.groundcategorys{
-  display: none;
 }

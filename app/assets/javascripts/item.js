@@ -178,9 +178,9 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
 
       //アップロード完了したら、inputタグを追加
       if (preview_count <= 4) {
-        $('.item_imgs').append(nextInput(preview_count + 1));
+        $('.item_imgs').prepend(nextInput(preview_count + 1));
       } else {
-        $('.item_imgs_2nd_row').append(nextInput(preview_count + 1));
+        $('.item_imgs_2nd_row').prepend(nextInput(preview_count + 1));
       }
 
       //文字列を消す

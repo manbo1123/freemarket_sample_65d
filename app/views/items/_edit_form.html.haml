@@ -8,26 +8,47 @@
           %span.required 必須
         %p.item_input__body__text 最大10枚までアップロードできます
         .up-image
-          = f.fields_for :item_imgs do |image| 
-            .up-image__group
-              .previews
-              %label.item_imgs
+          .up-image__group
+            .previews
+              - if @item.persisted?
+                - @item.item_imgs.each.with_index(1) do |img, i|
+                  - next if i >= 6
+                  .preview{{data:{name: i}},{data:{index: i}}}
+                    .img_box
+                      = image_tag img.src.url, data: {index: i}, class: "preview_image"
+                    .preview_btn
+                      削除
+            %label.item_imgs
+              = icon('fas', 'camera')
+              .image_text_message
+                %p.item_input__body__image_text
+                  ドラッグ アンド ドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
+              .up-image__group__dropbox{data: {index: 1}}
+                = f.file_field :src, class: "item_imgs__default", id: "up_img_last", type: 'file', multiple: true, accept: "image/*"
+              - if @item.persisted?
+                = f.fields_for :item_imgs do |image| 
+                  .image-preview{data: {index: image.index+1}}
+                    = image.file_field :src, class: "item_imgs__default", id: "up_img_last", type: 'file', multiple: true, accept: "image/*"
+                  = image.check_box :_destroy, data:{index: image.index+1}, class: 'hidden-destroy'
+
+          .under_group
+            .up-image__group_2nd_row
+              .previews_2nd_row
+                - if @item.persisted?
+                  - @item.item_imgs.each.with_index(1) do |img, i|
+                    - next if i <= 5
+                    .preview{{data:{name: i}},{data:{index: i}}}
+                      .img_box
+                        = image_tag img.src.url, data: {index: i}, class: "preview_image"
+                      .preview_btn
+                        削除
+              %label.item_imgs_2nd_row
                 = icon('fas', 'camera')
-                .image_text_message
-                  %p.item_input__body__image_text
-                    ドラッグ アンド ドロップ
-                    %br
-                    またはクリックしてファイルをアップロード
-                .up-image__group__dropbox{data: {index: 1}}
-                  = image.file_field :src, class: "item_imgs__default", id: "up_img_last", type: 'file', multiple: true, accept: "image/*"
-            .under_group
-              .up-image__group_2nd_row
-                .previews_2nd_row
-                %label.item_imgs_2nd_row
-                  = icon('fas', 'camera')
             
-          %p.error_message.img_error_message
-            画像がありません
+        %p.error_message.img_error_message
+          画像がありません
 
       -# 商品名、商品の説明
       .item_input__body
@@ -57,13 +78,20 @@
           %span.required 必須
         .item_input__body__category#category_box
           .pulldown#partent_box
-            = f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"}
-            = icon('fa', 'chevron-down')
+            - if @item.persisted?
+              = f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}, selected:@category_parent.id),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"}
+              = icon('fa', 'chevron-down')
 
           .pulldown.item_input__body__category__children#children_box
             -#親カテゴリー選択によって子カテゴリー表示
+            - if @item.persisted?
+              = f.select :category_id, options_for_select( @category_children.map{|c| [c[:name], c[:id]]}, selected:@child_category.id),{include_blank: "選択してください"}, { class: "item_input__body__category__children--select", id: "children_category"}
+              = icon('fa', 'chevron-down')
           .pulldown.item_input__body__category__grandchildren#grandchildren_box
             -#子カテゴリー選択によって孫カテゴリー表示
+            - if @item.persisted?
+              = f.select :category_id, options_for_select( @category_grandchildren.map{|c| [c[:name], c[:id]]}, selected:@grandchild_category.id),{include_blank: "選択してください"}, { class: "item_input__body__category__children--select", id: "children_category"}
+              = icon('fa', 'chevron-down')
 
           %p.error_message.category_top_error_message
             選択してください
@@ -75,6 +103,7 @@
             .pulldown#size_selectbox
               =f.collection_select :size_id, Size.all, :id, :name, {include_blank: "選択してください"}, {class: "size_box"}
               = icon('fa', 'chevron-down')
+
             %p.error_message.category_size_error_message
               選択してください
 
@@ -83,7 +112,7 @@
             %label.item_input__body__label
               ブランド
               %span.option 任意
-            =b.text_field :name, class: "item_input__body__text_form", placeholder: "例）シャネル"
+            =b.text_field :name, value: @item.brand.name, class: "item_input__body__text_form", placeholder: "例）シャネル"
 
         .item_input__body__item_condition
           %label.item_input__body__label
@@ -163,7 +192,9 @@
             販売利益
           %p.profit_result ー
         .item_input__body__btn
-          =f.submit "出品する", class:"item_input__body__btn__exhibition_btn"
+          =f.submit "変更する", class:"item_input__body__btn__exhibition_btn"
+          - if @item.persisted?
+            =button_to "出品を削除する", "/items/#{@item.id}/destroy", class:"item_input__body__btn__delete_btn", method: :delete
           =link_to "もどる", root_path, class:"item_input__body__btn__return_btn"
         -# 確認事項
         .item_input__body__nav

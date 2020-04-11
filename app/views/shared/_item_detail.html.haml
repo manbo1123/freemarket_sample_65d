@@ -1,87 +1,98 @@
 .item_detail_page
 
   %section.main-topic
-    %h1.main-topic__item-name
-      商品の名前
-  .item-info.clearfix
-    .item-info__item-image
-      = image_tag "pict/test_pict.png", class: "pic"
-    //商品詳細のテーブル
-    %table.item-info__item-details
-      %tbody
-        %tr
-          %th 出品者
-          %td
-            %a{:herf => "#"}
-        %tr
-          %th カテゴリー
-          %td
-            %a{:herf => "#"}
-        %tr
-          %th 出品のサイズ
-          %td
-            free
-        %tr
-          %th 商品の状態
-          %td
-            目立った傷汚れなし
-        %tr
-          %th 配送料の負担
-          %td
-            送料込み（出品者負担）
-        %tr
-          %th 配送の方法
-          %td
-            ゆうゆうメール
-        %tr
-          %th 配送元地域
-          %td
-            東京都
-        %tr
-          %th 配送日の目安
-          %td
-            １〜２日で発送
-  .item-price
-    .item-price__price-details
-      %span.item-price__price-details--price
-        ¥999
-      %span.item-price__price-details--tax
-        （税込み）
-      %span.item-price__price-details--fee
-        送料込み
-    .item-price__purchase-button
-      = link_to "購入画面に進む", "/purchases"
-  .item-description
-    .item-description__introduction
-    .item-description__button-container
-      .item-description__button-container--favorite-button
-        ♡　いいね！
-      .item-description__button-container--note-text
-        不適切な商品の報告
+    %h2.main-topic__item-name
+      商品名
+    //= @item.name
+    .main-topic__item-info
+      .main-topic__item-info__item-image
+        = image_tag "pict/test_pict.png", class: "pic"
+      // = image_tag (@itemimges.first.url, class: "display-images")
+      %ul.main-topic__item-info__item-image--items
+        %li.images
+          = image_tag "pict/test_pict.png", class: "pic"
+          = image_tag "pict/test_pict.png", class: "pic"
+          = image_tag "pict/test_pict.png", class: "pic"
+    .main-topic__item-price
+      .main-topic__item-price__price-details
+        .main-topic__item-price__price
+          ¥10000
+        %span.main-topic__item-price__tax
+          （税込み）
+        %span
+          送料込み
+    .main-topic__item-introduction
+      親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+    .main-topic__item-details
+      %table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              hoge
+              //= link_to @item.seller.nickname, "#"
+          %tr
+            %th カテゴリー
+            %td
+              = link_to "ベビー.キッズ", "#"
+              %br
+              = link_to "ベビー服（男女兼用）~95cm", "#" 
+              %br
+              = link_to "アウター", "#" 
+            //-@category.each do |cate|
+            //= link_to @item.category, item_path, method: :get
+          %tr
+            %th ブランド
+            %td
+          %tr
+            %th 商品のサイズ
+            %td
+              //= link_to @item.size
+          %tr
+            %th 商品の状態
+            %td
+              未使用に近い
+              //= link_to @item.condition
+          %tr
+            %th 配送料の負担
+            %td
+              送料込み（出品者負担）
+              //= link_to @item.postage_payer
+          %tr
+            %th 配送元地域
+            %td
+              = link_to "岩手県","#"
+              //= link_to @item.prefecture_code
+          %tr
+            %th 配送日の目安
+            %td
+              4-7日で発送
+    .main-topic__button-container
+      %ul.favorite-button
+        %li.likebtn
+          %i.fa.fa-star お気に入り 0
+      %ul.option-btn
+        = link_to "#" do
+          %li.btn
+            %i.fa.fa-flag 不適切な内容の報告
   .message
-    %p.message__notes
-      相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
     .message__comment
-      良い商品
+    %p.message__notes
+      相手のことを考え丁寧なコメントを心がけましょう。
+      %br
+      不快な言葉遣いなどは利用制限や退会処分となることがあります。
     %button.message__comment-button{:type => "submit"}
-      コメントする
+      %i.fa.fa-comment コメントする
   .nav-content
-    %ul.nav-content__nav-items.clearfix
+    %ul.nav-content__nav-items
       %li.nav-content__nav-items--nav-item-before
-        = link_to "<  前の商品", "#"
+        = link_to "#" do
+          %span
+          %i.fa.fa-angle-left 前の商品
       %li.nav-content__nav-items--nav-item-after
-        = link_to "次の商品  >", "#"
-  .other-items
-    %section.other-items__seller-items
-      .other-items__seller-items--title
-        = link_to "出品者さんのその他の出品", "#" 
-      .other-items_seller-items--images
-        = render "toppage/productlists"
-    %section.other-items__relation-items
-      .other-items__relation-items--title
-        = link_to "カテゴリーの関連商品", "#"
-      .other-items_relation-items--images
-        = render "toppage/productlists"
-
-  //仮のボタン
-  = render partial: 'shared/exhibition'
+        = link_to "#" do
+          次の商品
+          %span
+          %i.fa.fa-angle-right
+  .category-items
+    = link_to "ベビー・キッズをもっと見る", "#"

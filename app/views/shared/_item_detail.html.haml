@@ -2,12 +2,11 @@
 
   %section.main-topic
     %h2.main-topic__item-name
-      商品名
-    //= @item.name
+      = @item.name
     .main-topic__item-info
       .main-topic__item-info__item-image
         = image_tag "pict/test_pict.png", class: "pic"
-      // = image_tag (@itemimges.first.url, class: "display-images")
+      //= image_tag (@itemimges.first.url, class: "display-images")
       %ul.main-topic__item-info__item-image--items
         %li.images
           = image_tag "pict/test_pict.png", class: "pic"
@@ -16,7 +15,7 @@
     .main-topic__item-price
       .main-topic__item-price__price-details
         .main-topic__item-price__price
-          ¥10000
+          = @item.price
         %span.main-topic__item-price__tax
           （税込み）
         %span
@@ -29,8 +28,7 @@
           %tr
             %th 出品者
             %td
-              hoge
-              //= link_to @item.seller.nickname, "#"
+              = link_to @item.seller.nickname, "#"
           %tr
             %th カテゴリー
             %td
@@ -47,22 +45,22 @@
           %tr
             %th 商品のサイズ
             %td
-              //= link_to @item.size
+              = link_to @item.size
           %tr
             %th 商品の状態
             %td
               未使用に近い
-              //= link_to @item.condition
+              = link_to @item.item_condition
           %tr
             %th 配送料の負担
             %td
               送料込み（出品者負担）
-              //= link_to @item.postage_payer
+              = link_to @item.postage_payer
           %tr
             %th 配送元地域
             %td
               = link_to "岩手県","#"
-              //= link_to @item.prefecture_code
+              = link_to @item.prefecture_code
           %tr
             %th 配送日の目安
             %td

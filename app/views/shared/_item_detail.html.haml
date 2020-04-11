@@ -76,12 +76,12 @@
       .other-items__seller-items--title
         = link_to "出品者さんのその他の出品", "#" 
       .other-items_seller-items--images
-        = render "toppage/productlists"
+        = render partial: 'items/item', collection: @items
     %section.other-items__relation-items
       .other-items__relation-items--title
         = link_to "カテゴリーの関連商品", "#"
       .other-items_relation-items--images
-        = render "toppage/productlists"
+        = render partial: 'items/item', collection: @items
 
   //仮のボタン
   = render partial: 'shared/exhibition'

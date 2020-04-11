@@ -1,9 +1,10 @@
 .productlist
-  %a{:href => "/items/#{item.id}"}
+  -# %a{:href => "/items/#{productlists.id}"}
+  = link_to "/items/#{item.id}" do
     .productlist__img
-      = image_tag "#{item.item_img}", class: "pic"
+      = image_tag "#{item.item_imgs.first.src.url}", class: "pic"
     .productlist__info
-      %h3= "#{item.name}".name
+      %h3= "#{item.name}"
         
       .details
         %ul

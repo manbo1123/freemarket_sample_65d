@@ -19,9 +19,13 @@
         %span.main-topic__item-price__tax
           （税込み）
         %span
-          送料込み
+          - if @item.postage_payer.id == 1
+            送料込み
+          - else @item.postage_payer.id == ２
+            着払い
     .main-topic__item-introduction
-      親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+      //親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+      =@item.introduction
     .main-topic__item-details
       %table
         %tbody
@@ -32,39 +36,35 @@
           %tr
             %th カテゴリー
             %td
-              = link_to "ベビー.キッズ", "#"
+              = link_to @item.category.parent.parent.name
               %br
-              = link_to "ベビー服（男女兼用）~95cm", "#" 
+              = link_to @item.category.parent.name
               %br
-              = link_to "アウター", "#" 
-            //-@category.each do |cate|
-            //= link_to @item.category, item_path, method: :get
+              = link_to @item.category.name
           %tr
             %th ブランド
             %td
+              = link_to @item.brand.name
           %tr
             %th 商品のサイズ
             %td
-              = link_to @item.size
+              = link_to @item.size.name
           %tr
             %th 商品の状態
             %td
-              未使用に近い
-              = link_to @item.item_condition
+              = link_to @item.item_condition.name
           %tr
             %th 配送料の負担
             %td
-              送料込み（出品者負担）
-              = link_to @item.postage_payer
+              = link_to @item.postage_payer.name
           %tr
             %th 配送元地域
             %td
-              = link_to "岩手県","#"
               = link_to @item.prefecture_code
           %tr
             %th 配送日の目安
             %td
-              4-7日で発送
+              = link_to @item.preparation_day.name
     .main-topic__button-container
       %ul.favorite-button
         %li.likebtn

@@ -18,7 +18,6 @@ class ItemsController < ApplicationController
     #jsonで親の名前で検索し、紐づく小カテゴリーの配列を取得
   def get_category_children
     @category_children = Category.find(params[:parent_name]).children
-    #@category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
   end
 
     #jsonで子カテゴリーに紐づく孫カテゴリーの配列を取得

@@ -38,41 +38,7 @@ crumb :mypage_logout do
   parent :mypage
 end
 #----------------------------------商品関連-------------------------------#
-# 商品詳細
-crumb :item do |item|
-  link "#{item.name}", item_path(item)
-  parent :root
-end
-
-# 商品検索結果
-crumb :search do |query|
-  link "#{query}"
-  parent :root
-end
-
-# カテゴリー一覧
-crumb :category do
-  link 'カテゴリー一覧', category_index_path
-  parent :root
-end
-
-# トップカテゴリー
-crumb :top_category do |top|
-  link "#{top.name}", category_path(top)
-  parent :category
-end
-
-# ミドルカテゴリー
-crumb :middle_category do |middle|
-  link "#{middle.name}", category_path(middle)
-  parent :top_category, middle.parent
-end
-
-# ボトムカテゴリー
-crumb :bottom_category do |bottom|
-  link "#{bottom.name}", category_path(bottom)
-  parent :middle_category, bottom.parent
-end
+#商品関連ページ実装後に作成
 
 
 # crumb :projects do

@@ -32,7 +32,7 @@
           %tr
             %th 出品者
             %td
-              = link_to @item.seller.nickname, "#"
+              = @item.seller.nickname
           %tr
             %th カテゴリー
             %td
@@ -44,19 +44,19 @@
           %tr
             %th ブランド
             %td
-              = link_to @item.brand.name
+              = @item.brand.name
           %tr
             %th 商品のサイズ
             %td
-              = link_to @item.size.name
+              = @item.size.name
           %tr
             %th 商品の状態
             %td
-              = link_to @item.item_condition.name
+              = @item.item_condition.name
           %tr
             %th 配送料の負担
             %td
-              = link_to @item.postage_payer.name
+              = @item.postage_payer.name
           %tr
             %th 配送元地域
             %td
@@ -64,7 +64,7 @@
           %tr
             %th 配送日の目安
             %td
-              = link_to @item.preparation_day.name
+              = @item.preparation_day.name
     .main-topic__button-container
       %ul.favorite-button
         %li.likebtn
@@ -89,6 +89,9 @@
             .main-topic__button-user--item-buy-btn 購入画面に進む
         -else
           .main-topic__button-user--item-buy-btn-sold 売り切れました
+    -else 
+      = link_to "/signup/index" do
+        .main-topic__button-user--item-buy-btn 購入画面に進む
   .message
     .message__comment
     %p.message__notes

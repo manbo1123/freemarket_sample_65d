@@ -1,4 +1,8 @@
 = render 'layouts/header'
+-# パンくずリスト
+.breadcrumbs_list
+  - breadcrumb :mypage
+  = breadcrumbs separator: " &rsaquo; "
 .mypage-wrap
   = render 'side_menu'
   = render 'mypage_home'

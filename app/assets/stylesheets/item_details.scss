@@ -133,6 +133,52 @@
         }
       }
     }
+    &__button-user{
+      a{
+        display: block;
+        text-decoration: none;
+        color: white;
+        background-color: #3CCACE;
+      }
+      &--item-edit-btn{
+        text-align: center;
+        line-height: 60px;
+        margin: 20px 150px 0;
+        font-weight: bold;
+        font-size: 1.5em;
+        cursor: pointer;
+      }
+      &--item-stop-btn{
+        text-align: center;
+        line-height: 60px;
+        margin: 20px 150px 0;
+        font-weight: bold;
+        font-size: 1.5em;
+        cursor: pointer;
+      }
+      &--item-btn-or{
+        line-height: 30px;
+        margin: 10px 340px;
+        color: black;
+        font-size: 1.0em;
+      }
+      &--item-delete-btn{
+        text-align: center;
+        line-height: 60px;
+        margin: 20px 150px 0;
+        font-weight: bold;
+        font-size: 1.5em;
+        cursor: pointer;
+      }
+      &--item-buy-btn{
+        text-align: center;
+        line-height: 60px;
+        margin: 20px 150px 0;
+        font-weight: bold;
+        font-size: 1.5em;
+        cursor: pointer;
+      }
+    }
   }
   .message {
     width: 700px;

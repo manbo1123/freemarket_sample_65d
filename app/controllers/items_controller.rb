@@ -86,9 +86,9 @@ class ItemsController < ApplicationController
   def buy
     Payjp.api_key = Rails.application.secrets.payjp_private_key
     Payjp::Charge.create(
-    amount: "@item.price",
-    customer: "@card.customer_id",
-    currency: "jpy",
+    amount: @item.price,
+    customer: @card.customer_id,
+    currency: 'jpy',
     )
     if @item.update(trading_status: 1, buyer_id: current_user.id)
       redirect_to item_path(@item)

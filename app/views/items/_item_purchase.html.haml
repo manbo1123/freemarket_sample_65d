@@ -9,7 +9,7 @@
         .item-small-detail__item-name
           商品の名前
           .item-small-detail__item-name--price
-            ¥999(税込み)
+            = "¥#{@item.price}(税込み)"
   .purchase-contents
     %ul.purchase-contents__payment-price
       %li.purchase-contents__payment-price--text 支払い金額
@@ -23,9 +23,10 @@
       %p.purchase-contents__delivery-address--address-button
         = link_to "登録してください", "/sending_destinations"
   .purchase-btn
-    -if user_signed_in?
-      .purchase-btn__btn
-        = link_to "購入する", "#"
-    -else
-      .purchase-btn__else-btn
-        購入する
+    .purchase-btn__btn
+      -if user_signed_in?
+        = form_tag(action: :buy, method: :post) do
+          %button 購入する
+      -else
+        .purchase-btn__else-btn
+          購入する

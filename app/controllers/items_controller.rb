@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_category, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :set_item, only: [:edit, :update, :destroy, :purchase, :buy]
 
   def index
     @items = Item.all
@@ -52,6 +52,28 @@ class ItemsController < ApplicationController
     @item = Item.find(item_params[:id])
   end
 
+  def purchase
+    card = Card.where(user_id: current_user.id).first
+    # if card.blank?
+    #   redirect_to controller: "card", action: "new"
+    # else
+    #   Payjp.api_key = Rails.application.secrets.payjp_private_key
+    #   customer = Payjp::Customer.retrieve(card.customer_id)
+    #   @default_card_information = customer.cards.retrieve(card.card_id)
+    # end
+  end
+
+  def buy
+    card = Card.where(user_id: current_user.id).first
+    Payjp.api_key = Rails.application.secrets.payjp_private_key
+    Payjp::Charge.create(
+    :amount => @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
+    :customer => card.customer_id,
+    :currency => 'jpy',
+    )
+    redirect_to root_path
+  end
+
   private
 
   #親カテゴリー
@@ -60,11 +82,11 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(item_params[:id])
+    @item = Item.find(params[:id])
   end
 
   def item_params
-    params.require(:item).permit(
+    params.permit(
       :name,
       :item_condition_id,
       :introduction,

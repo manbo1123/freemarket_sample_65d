@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.build_brand(name: params[:item][:brand][:name])
     if @item.save
-      redirect_to :root
+      redirect_to item_path(@item)
       flash[:success] = "商品出品が完了しました"
     else
       render :new
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   def update
     @item.build_brand(name: params[:item][:brand][:name])
     if @item.update(item_params)
-      redirect_to :root
+      redirect_to item_path(@item)
       flash[:success] = "商品情報を更新しました"
     else
       render :edit
@@ -114,7 +114,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.permit(
+    params.require(:item).permit(
       :name,
       :item_condition_id,
       :introduction,

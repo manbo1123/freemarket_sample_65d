@@ -32,6 +32,12 @@ crumb :mypage_cards_new do
   parent :mypage_cards_index
 end
 
+# クレジットカード情報登録後の表示
+crumb :mypage_cards_show do
+  link 'クレジットカード情報', mypage_cards_show_path
+  parent :mypage_cards_index
+end
+
 # ログアウト
 crumb :mypage_logout do
   link 'ログアウト', logout_mypage_index_path

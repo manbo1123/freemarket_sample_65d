@@ -53,14 +53,16 @@ class ItemsController < ApplicationController
   end
 
   def purchase
+    @user = current_user
+    @sending_destination = SendingDestination.where(user_id: current_user.id).first
     card = Card.where(user_id: current_user.id).first
-    # if card.blank?
-    #   redirect_to controller: "card", action: "new"
-    # else
-    #   Payjp.api_key = Rails.application.secrets.payjp_private_key
-    #   customer = Payjp::Customer.retrieve(card.customer_id)
-    #   @default_card_information = customer.cards.retrieve(card.card_id)
-    # end
+    if card.blank?
+      redirect_to mypage_cards_new_path
+    else
+      Payjp.api_key = Rails.application.secrets.payjp_private_key
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @card_information = customer.cards.retrieve(card.card_id)
+    end
   end
 
   def buy
@@ -71,7 +73,12 @@ class ItemsController < ApplicationController
     :customer => card.customer_id,
     :currency => 'jpy',
     )
-    redirect_to root_path
+    if @item.update(trading_status: 1, buyer_id: current_user.id)
+      redirect_to item_path(@item)
+    else
+      redirect_to item_path(@item)
+    end
+    
   end
 
   private

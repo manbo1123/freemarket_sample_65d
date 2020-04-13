@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
-  before_action :set_item, only: [:edit, :update, :destroy]
-
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :purchase, :buy]
+  before_action :set_card, only: [:purchase, :buy]
+  
   def index
     @items = Item.all
   end
@@ -71,6 +72,32 @@ class ItemsController < ApplicationController
     @category_grandchildren = @item.category.parent.children
   end
 
+  def purchase
+    @sending_destination = SendingDestination.where(user_id: current_user.id).first
+    if @card.blank?
+      redirect_to mypage_cards_new_path
+    else
+      Payjp.api_key = Rails.application.secrets.payjp_private_key
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @card_information = customer.cards.retrieve(@card.card_id)
+    end
+  end
+
+  def buy
+    Payjp.api_key = Rails.application.secrets.payjp_private_key
+    Payjp::Charge.create(
+    amount: "@item.price",
+    customer: "@card.customer_id",
+    currency: "jpy",
+    )
+    if @item.update(trading_status: 1, buyer_id: current_user.id)
+      redirect_to item_path(@item)
+    else
+      redirect_to item_path(@item)
+    end
+    
+  end
+
   private
 
   #親カテゴリー
@@ -82,8 +109,12 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def set_card
+    @card = Card.where(user_id: current_user.id).first
+  end
+
   def item_params
-    params.require(:item).permit(
+    params.permit(
       :name,
       :item_condition_id,
       :introduction,

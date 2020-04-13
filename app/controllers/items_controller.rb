@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_category, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :destroy, :purchase, :buy]
-
+  before_action :set_card, only: [:purchase, :buy]
   def index
     @items = Item.all
   end
@@ -53,9 +53,7 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    @user = current_user
     @sending_destination = SendingDestination.where(user_id: current_user.id).first
-    card = Card.where(user_id: current_user.id).first
     if card.blank?
       redirect_to mypage_cards_new_path
     else
@@ -66,7 +64,6 @@ class ItemsController < ApplicationController
   end
 
   def buy
-    card = Card.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.secrets.payjp_private_key
     Payjp::Charge.create(
     :amount => @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
@@ -90,6 +87,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_card
+    card = Card.where(user_id: current_user.id).first
   end
 
   def item_params

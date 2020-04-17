@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :set_category, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_item, only: [:edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :purchase, :buy]
+  
   def index
     @items = Item.all
   end
@@ -34,17 +35,22 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.build_brand(name: params[:item][:brand][:name])
     if @item.save
-      redirect_to :root
+      redirect_to item_path(@item)
+      flash[:success] = "商品出品が完了しました"
     else
       render :new
+      flash[:danger] = "商品出品に失敗しました"
     end
   end
 
   def update
-    if @item.update(item_params[:id])
-      redirect_to :root
+    @item.build_brand(name: params[:item][:brand][:name])
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+      flash[:success] = "商品情報を更新しました"
     else
       render :edit
+      flash.now[:alert] = '商品情報の更新に失敗しました'
     end
   end
 

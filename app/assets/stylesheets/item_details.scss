@@ -227,14 +227,14 @@
       margin: 10px 0;
       text-align: left;
     }
-    &__comment-button {
-      line-height: 48px;
-      background: #3CCACE;
-      border: 1px solid #3CCACE;
-      color: #fff;
+    .comment-btn {
       width: 60%;
+      border-radius: 40px;
+      line-height: 48px;
+      color: #fff;
       font-size: 18px;
-      border-radius: 100px;
+      border: 1px solid #3CCACE;
+      background: #3CCACE; 
     }
   }
   .nav-content{

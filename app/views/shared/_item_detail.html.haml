@@ -78,14 +78,14 @@
         %ul.favorite-button
           %li.likebtn
             %div{id: "like-#{@item.id}"}
-              - if Favorite.find_by(user: current_user, item_id: item.id)
-                = link_to "/items/#{item.id}/favorites", method: :delete, remote: true do
+              - if Favorite.find_by(user: current_user, item_id: @item.id)
+                = link_to "/items/#{@item.id}/favorites", method: :delete, remote: true do
                   .i{class: "fa fa-star yellow_star"}
                     %span.yellow_star
                     %span お気に入り
                     %span 0
               - else
-                = link_to "/items/#{item.id}/favorites", method: :post, remote: true do
+                = link_to "/items/#{@item.id}/favorites", method: :post, remote: true do
                   .i{class: "fa fa-star none_star"}
                     %span.none_star
                     %span お気に入り
@@ -101,7 +101,7 @@
           .item-edit-btn 商品の編集
           .item-btn-or or
           .item-stop-btn 出品を一旦停止する
-        = link_to item_path(@item), class: "item-btn", method: :delete, data: { turbolinks: false} do
+        = link_to item_path(@item), class: "item-btn", method: :delete, data: {confirm: '削除しますか？' }  do
           .item-delete-btn この商品を削除する   
       -else
         -if @item.buyer_id == null
@@ -114,14 +114,14 @@
         購入画面に進む
   .message
     .message__comment
-      = form_for(@comment, url:"/item/#{@item.id}/comments") do |f|
-        =f.text_area :comment, class: "comment-send"
-    %p.message__notes
-      相手のことを考え丁寧なコメントを心がけましょう。
-      %br
-      不快な言葉遣いなどは利用制限や退会処分となることがあります。
-    %button.message__comment-button{:type => "submit"}
-      %i.fa.fa-comment コメントする
+      = form_for(@comment, url:"/items/#{@item.id}/comments") do |f|
+        = f.text_area :comment, class: "comment-send"
+        %p.message__notes
+          相手のことを考え丁寧なコメントを心がけましょう。
+          %br
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        = button_tag type: 'submit', class: "comment-btn" do
+          %i.fa.fa-flag コメントする
   .nav-content
     %ul.nav-content__nav-items
       %li.nav-content__nav-items--nav-item-before

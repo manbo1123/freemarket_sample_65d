@@ -3,7 +3,6 @@ class Item < ApplicationRecord
   has_many :item_imgs, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments
-  has_many :replies, class_name: Comment, foreign_key: :reply_comment, dependent: :destroy
   belongs_to :category
   belongs_to :brand, optional: true
   belongs_to :seller, class_name: "User"

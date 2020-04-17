@@ -49,14 +49,26 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.seller_id == current_user.id
-      @item.destroy
-      redirect_to root notice: '商品を削除しました'
+    if @item.destroy
+      redirect_to :root
+      flash[:success] = "商品情報を削除しました"
+    else
+      render :show
     end
   end
   
   def edit
-    @item = Item.find(item_params[:id])
+    #カテゴリーデータ取得
+    @grandchild_category = @item.category
+    @child_category = @grandchild_category.parent 
+    @category_parent = @child_category.parent
+
+    #カテゴリー一覧を作成
+    @category = Category.find(params[:id])
+    # 紐づく孫カテゴリーの親（子カテゴリー）の一覧を配列で取得
+    @category_children = @item.category.parent.parent.children
+    # 紐づく孫カテゴリーの一覧を配列で取得
+    @category_grandchildren = @item.category.parent.children
   end
 
   private

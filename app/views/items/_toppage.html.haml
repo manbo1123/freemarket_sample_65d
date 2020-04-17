@@ -94,10 +94,7 @@
           %h3.title
             新規投稿商品
       .productlists
-        - @items.each do |item|
-          = render "items/productlists"
-
-      
+        = render @items
 
   %section.main__pickup
     %h2.subtitle
@@ -108,5 +105,4 @@
           %h3.title
             アーカイバ
       .productlists
-        - @items.each do |item|
-          = render "items/productlists"
+        = render @items

@@ -44,16 +44,19 @@ Rails.application.routes.draw do
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
     resources :comments, only: [:create,:destroy]
+    member do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'purchase', to: 'items#purchase'
+      post 'buy', to: 'items#buy'
+    end
   end
-  
-  resources :purchases
 
   resources :cards, only: [:index, :new, :show] do
     collection do
       post 'show', to: 'cards#show'
       post 'pay', to: 'cards#pay'
       post 'delete', to: 'cards#delete'
-      post 'buy', to: 'cards#buy'
     end
   end
 

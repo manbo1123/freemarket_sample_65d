@@ -1,5 +1,9 @@
 %body
   = render 'layouts/header_simple'
+  -# パンくずリスト
+  .breadcrumbs_list
+    - breadcrumb :mypage_logout
+    = breadcrumbs separator: " &rsaquo; "
   .main-form
     .main-form__wrapper
       .main-contents

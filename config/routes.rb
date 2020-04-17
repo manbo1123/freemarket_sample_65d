@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       post 'buy', to: 'items#buy'
     end
     resources :comments, only: [:create,:destroy]
+    resource :favorites, only: [:create, :destroy]
   end
 
   resources :cards, only: [:index, :new, :show] do
@@ -59,8 +60,5 @@ Rails.application.routes.draw do
       post 'delete', to: 'cards#delete'
     end
   end
-
-  post '/items/:item_id/favorites', to: "favorites#create"
-  delete '/items/:item_id/favorites', to: "favorites#destroy"
 end
 

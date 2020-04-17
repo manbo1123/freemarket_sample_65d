@@ -1,14 +1,14 @@
 class CommentsController < ApplicationController
-before_action :set_instance
+  before_action :set_instance
   def create
     Comment.create(comment_params)
-    redirect_to "/items/#{@item.id}"
+    redirect_to item_path(@item)
   end
 
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @comment.destroy
-    redirect_to "/items/#{@item.id}"
+    redirect_to item_path(@item)
   end
 
   private

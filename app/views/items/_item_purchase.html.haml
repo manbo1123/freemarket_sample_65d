@@ -7,9 +7,16 @@
       .item-small-detail
         = image_tag @item.item_imgs.first.src.url, class: "item-small-detail__pic"
         .item-small-detail__item-name
-          商品の名前
+          = @item.name
           .item-small-detail__item-name--price
-            = "¥#{@item.price}(税込み)"
+            = "¥#{@item.price}"
+            %span.tax
+              (税込み)
+            %span
+              - if @item.postage_payer == 1
+                送料込み
+              - else
+                着払い
   .purchase-contents
     %ul.purchase-contents__payment-price
       %li.purchase-contents__payment-price--text 支払い金額
@@ -37,7 +44,6 @@
         = @sending_destination.destination_first_name
     .purchase-btn__btn
       -if user_signed_in?
-        = link_to "購入する", buy_item_path(@item.id), method: :pots
+        = link_to "購入する", buy_item_path(@item.id), class: "buy-btn", method: :pots
       -else
-        .purchase-btn__else-btn
-          購入する
+        .else-btn 購入する

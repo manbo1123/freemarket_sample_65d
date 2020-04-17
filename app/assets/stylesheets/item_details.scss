@@ -121,7 +121,7 @@
             font-size: inherit;
             cursor: pointer;
           }
-       }
+        }
       }
       .option-btn{
         margin: 10px 0 0;
@@ -198,6 +198,17 @@
       font-size: 1.0em;
       cursor: pointer;
     }
+    .item-buy-btn-sold{
+      width: 80%;
+      text-align: center;
+      line-height: 50px;
+      margin: 20px auto;
+      font-weight: bold;
+      font-size: 1.0em;
+      background: #888;
+      cursor: not-allowed;
+      color: #fff;
+    }
   }
   .message {
     width: 700px;
@@ -205,6 +216,68 @@
     background-color: #fff;
     margin: 10px auto 10px;
     text-align: center;
+    &__box{
+      .item-message-content{
+        margin-top:20px;
+        background-color:#fff;
+        padding:24px;
+        .item-message-comment{
+          margin-bottom:40px;
+          .message-user{
+            position: relative;
+            .user-icon{
+              float: right;
+              padding-left: 10px;
+              img{
+                width: 100%;
+                text-decoration: none;
+              }
+            }
+            .message-user-name{
+              text-align: right;
+            }
+          }
+          .message-body{
+            margin: 10px auto;
+            position: relative;
+            width: 600px;
+            padding: 16px;
+            background: #eef0f4;
+            border-radius: 15px;
+            line-height: 1.5;
+            word-break: break-all;
+            text-align: left;
+            .message-icons{
+              margin: 8px 0 0;
+              font-size:14px;
+              display: flex;
+              .message-icon-left{
+                display: block;
+                color: #fff;
+                width: 50%;
+                text-align: left;
+              .fa-history{
+                color:#808080;
+              }
+              span{
+                color:#808080;
+              }
+            }
+            .message-icon-right{
+              display: block;
+              width: 50%;
+              text-align: right;
+              .message-delete{
+                .fa-trash{
+                  color:#808080;
+                }
+              }
+            }
+          }
+        }
+       }
+      }
+    }
     &__comment {
       width: 680px;
       .comment-send{

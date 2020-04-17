@@ -32,17 +32,26 @@
       text-align: center;
       display: flex;
       margin: 0 auto;
+      width: 400px;
       &__pic{
-        max-height: 100px;
-        max-width: 100px;
-        margin: 0 auto;
+        height: 80px;
+        width: 80px;
+        margin-right: 0;
+        margin-top: 35px;
       }
       &__item-name{
        text-align: left;
-       margin: 0　auto;
+       margin-left: 16px;
+       margin-top: 35px;
         &--price{
+          .tax{
+            margin-left: 5px;
+            margin-right: 5px;
+          }
           text-align: left;
-          margin: 0;
+          margin-top: 20px;
+          font-weight: bolder;
+          font-size: 13px;
         }
       } 
     }
@@ -62,12 +71,12 @@
     margin: 0 auto;
     border-bottom: 1px solid #f5f5f5;
     &--text{
-      margin: 10px 0 0;
+      margin-left: 0;
       font-size: 18px;
       background-color: #fff;
     }
     &--price{
-      margin: 10px 0 0;
+      margin-right: 0;
       font-size: 20px;
       margin-left: auto;
       background-color: #fff;
@@ -104,36 +113,36 @@
 }
 .purchase-btn{
   width: 700px;
-  margin: 0 auto 20px;
+  margin: 0 auto;
   background-color: #fff;
-  padding-bottom: 15px;
-  padding-top: 10px;
   &__btn{
     text-align: center;
-    margin: 10px auto;
+    margin: 0 auto;
     line-height: 50px;
     width: 300px;
     font-weight: bold;
     font-size: 0.9em;
     cursor: pointer;
-    background-color: #3CCACE;
-    a{
+    background-color: #fff;
+    height: 100px;
+    .buy-btn{
       display: block;
       text-decoration: none;
       color: white;
+      background-color: #3CCACE;
+      height: 50px;
+    }
+    .else-btn{
+      color: white;
+      background-color: #888;
+      margin: 10px auto;
+      width: 300px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 0.9em;
+      cursor: not-allowed;
     }
    }
-  &__else-btn{
-    color: white;
-    background-color: #888;
-    margin: 10px auto;
-    width: 300px;
-    text-align: center;
-    line-height: 50px;
-    font-weight: bold;
-    font-size: 0.9em;
-    cursor: not-allowed;
-  }
 }
 
 

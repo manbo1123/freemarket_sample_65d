@@ -55,5 +55,8 @@ Rails.application.routes.draw do
       post 'buy', to: 'cards#buy'
     end
   end
+
+  post '/items/:item_id/favorites', to: "favorites#create"
+  delete '/items/:item_id/favorites', to: "favorites#destroy"
 end
 

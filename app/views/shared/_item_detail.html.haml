@@ -5,17 +5,25 @@
       = @item.name
     .main-topic__item-info
       .main-topic__item-info__item-image
-        = image_tag "pict/test_pict.png", class: "pic"
-      //= image_tag (@itemimges.first.url, class: "display-images")
+        = image_tag @item.item_imgs.first.src
       %ul.main-topic__item-info__item-image--items
         %li.images
-          = image_tag "pict/test_pict.png", class: "pic"
-          = image_tag "pict/test_pict.png", class: "pic"
-          = image_tag "pict/test_pict.png", class: "pic"
+          - @item.item_imgs.each.with_index do |image, index|
+            -if image.present?
+              .images__itemimg.current
+                .images__itemimg__box
+                  = image_tag image.src, class: "image-sub"
+            -else
+              .images__item
+                .images__itemimg__box
+                  = image_tag image.image, class: "image-sub"
+            -if @item.item_imgs.length > 3
+              - for i in 1..(10 - @itemimg.src.length)
+                .images__dummy
     .main-topic__item-price
       .main-topic__item-price__price-details
         .main-topic__item-price__price
-          = @item.price
+          = "¥#{@item.price}"
         %span.main-topic__item-price__tax
           （税込み）
         %span
@@ -60,40 +68,54 @@
           %tr
             %th 配送元地域
             %td
-              = link_to @item.prefecture_code
+              = link_to @pref.name
           %tr
             %th 配送日の目安
             %td
               = @item.preparation_day.name
     .main-topic__button-container
-      %ul.favorite-button
-        %li.likebtn
-          %i.fa.fa-star お気に入り 0
-      %ul.option-btn
-        = link_to "#" do
-          %li.btn
-            %i.fa.fa-flag 不適切な内容の報告
+      - if user_signed_in? && @item.seller.id != current_user.id
+        %ul.favorite-button
+          %li.likebtn
+            %div{id: "like-#{@item.id}"}
+              - if Favorite.find_by(user: current_user, item_id: item.id)
+                = link_to "/items/#{item.id}/favorites", method: :delete, remote: true do
+                  .i{class: "fa fa-star yellow_star"}
+                    %span.yellow_star
+                    %span お気に入り
+                    %span 0
+              - else
+                = link_to "/items/#{item.id}/favorites", method: :post, remote: true do
+                  .i{class: "fa fa-star none_star"}
+                    %span.none_star
+                    %span お気に入り
+                    %span 0 
+        %ul.option-btn
+          = link_to "#" do
+            %li.btn
+              %i.fa.fa-flag 不適切な内容の報告
     .main-topic__button-user
     -if user_signed_in?
       -if @item.seller_id == current_user.id
-        = link_to edit_item_path(@item), data: {turbolinks: false} do
-          .main-topic__button-user--item-edit-btn 商品の編集
-        .main-topic__button-user--item-btn-or or
-        = link_to edit_item_path(@item), data: {turbolinks: false} do
-          .main-topic__button-user--item-stop-btn 出品を一旦停止する
-        = link_to item_path(@item), method: :delete, data: { turbolinks: false} do
-          .main-topic__button-user--item-delete-btn この商品を削除する   
+        = link_to edit_item_path(@item), class: "item-btn", data: {turbolinks: false} do
+          .item-edit-btn 商品の編集
+          .item-btn-or or
+          .item-stop-btn 出品を一旦停止する
+        = link_to item_path(@item), class: "item-btn", method: :delete, data: { turbolinks: false} do
+          .item-delete-btn この商品を削除する   
       -else
         -if @item.buyer_id == null
-          = link_to "/purchases" do
-            .main-topic__button-user--item-buy-btn 購入画面に進む
+          = link_to purchase_item_path(@item.id), class: "item-buy-btn" do
+            購入画面に進む
         -else
-          .main-topic__button-user--item-buy-btn-sold 売り切れました
+          .item-buy-btn-sold 売り切れました
     -else 
-      = link_to "/signup/index" do
-        .main-topic__button-user--item-buy-btn 購入画面に進む
+      = link_to "/users/sign_in", class: "item-buy-btn" do
+        購入画面に進む
   .message
     .message__comment
+      = form_for(@comment, url:"/item/#{@item.id}/comments") do |f|
+        =f.text_area :comment, class: "comment-send"
     %p.message__notes
       相手のことを考え丁寧なコメントを心がけましょう。
       %br
@@ -112,4 +134,4 @@
           %span
           %i.fa.fa-angle-right
   .category-items
-    = link_to "ベビー・キッズをもっと見る", "#"
+    = link_to @item.category.parent.parent.name, "#"

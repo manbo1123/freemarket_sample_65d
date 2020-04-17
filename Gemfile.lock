@@ -46,6 +46,8 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ancestry (3.0.7)
       activerecord (>= 3.2.0)
+    antivirus (0.0.2)
+      rails
     arel (7.1.4)
     bcrypt (3.1.13)
     bindex (0.8.1)
@@ -357,6 +359,7 @@ PLATFORMS
 DEPENDENCIES
   active_hash
   ancestry
+  antivirus
   byebug
   capistrano
   capistrano-bundler

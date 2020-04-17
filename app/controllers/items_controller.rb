@@ -8,6 +8,11 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @pref = Prefecture.find(@item.prefecture_code)
+    #指定商品のコメントを列挙
+    @comments = @item.comments.includes(:user).where(item_id: @item.id)
+    #コメント追加
+    @comment = Comment.new
   end
   
   def new
@@ -44,8 +49,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy(item_params[:id])
-    redirect_to :root
+    if @item.seller_id == current_user.id
+      @item.destroy
+      redirect_to root notice: '商品を削除しました'
+    end
   end
   
   def edit

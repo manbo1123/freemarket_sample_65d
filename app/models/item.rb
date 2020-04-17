@@ -1,6 +1,9 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :item_imgs, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :comments
+  has_many :replies, class_name: Comment, foreign_key: :reply_comment, dependent: :destroy
   belongs_to :category
   belongs_to :brand, optional: true
   belongs_to :seller, class_name: "User"
@@ -13,6 +16,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_imgs, allow_destroy: true
 
   enum trading_status: {selling: 0, during_deal: 1, deal_closed: 2}
+
 
   validates :name, presence: true
   validates :introduction, presence: true

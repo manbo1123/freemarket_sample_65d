@@ -73,6 +73,33 @@
 
 ul.exhibition_link{
   display: none;
+  li.exhibition_detail{
+    background-color: white;
+    height: 70px;
+    width: 680px;
+    padding: 10px 10px;
+    border-bottom: solid 1px rgb(233, 233, 233);
+    display: flex;
+    align-items: center;
+    .exhibiton_img{
+      // max-height: 70px;
+      width: 70px;
+      margin-right: 20px;
+    }
+    .exhibiton_info{
+      // float: right;
+      width: 580px;
+      text-align: inherit;
+      .exhibiton_name{
+        font-size: 0.9rem;
+      }
+      .exhibition_tag{
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+    }
+  }
+  
   .none_links{
     height: 300px;
     background-color: white;

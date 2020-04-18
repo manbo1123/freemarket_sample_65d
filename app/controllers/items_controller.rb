@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    @new_arrival = Item.last(3)
+
   end
 
   def show

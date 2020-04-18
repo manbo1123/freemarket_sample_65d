@@ -10,10 +10,12 @@
   font-weight: bold;
 }
 
+
 .productlists {
   width: 780px;
   margin: 26px auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   a {
     display: inline-block;

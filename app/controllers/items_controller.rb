@@ -9,6 +9,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @pref = Prefecture.find(@item.prefecture_code)
+    @comments = @item.comments.includes(:user).where(item_id: @item.id)
+    #コメント追加
+    @comment = Comment.new
   end
   
   def new
@@ -25,7 +30,7 @@ class ItemsController < ApplicationController
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
-  
+
   def create
     @item = Item.new(item_params)
     @item.build_brand(name: params[:item][:brand][:name])

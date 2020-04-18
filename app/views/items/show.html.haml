@@ -1,3 +1,149 @@
 = render "layouts/header"
-= render "shared/item_detail"
+.item_detail_page
+
+  %section.main-topic
+    %h2.main-topic__item-name
+      = @item.name
+    .main-topic__item-info
+      .main-topic__item-info__item-image
+        = image_tag @item.item_imgs.first.src
+      %ul.main-topic__item-info__item-image--items
+        %li.images
+          - @item.item_imgs.each.with_index do |image, index|
+            -if image.present?
+              .images__itemimg.current
+                .images__itemimg__box
+                  = image_tag image.src, class: "image-sub"
+              - break if index == 2
+            -else
+              .images__item
+                .images__itemimg__box
+                  = image_tag image.image, class: "image-sub"
+    .main-topic__item-price
+      .main-topic__item-price__price-details
+        .main-topic__item-price__price
+          = "¥#{@item.price}"
+        %span.main-topic__item-price__tax
+          （税込み）
+        %span
+          - if @item.postage_payer == 1
+            送料込み
+          - else
+            着払い
+    .main-topic__item-introduction
+      =@item.introduction
+    .main-topic__item-details
+      %table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              = @item.seller.nickname
+          %tr
+            %th カテゴリー
+            %td
+              = link_to @item.category.parent.parent.name
+              %br
+              = link_to @item.category.parent.name
+              %br
+              = link_to @item.category.name
+          %tr
+            %th ブランド
+            %td
+              = @item.brand.name
+          %tr
+            %th 商品のサイズ
+            %td
+              = @item.size.name
+          %tr
+            %th 商品の状態
+            %td
+              = @item.item_condition.name
+          %tr
+            %th 配送料の負担
+            %td
+              = @item.postage_payer.name
+          %tr
+            %th 配送元地域
+            %td
+              = link_to @pref.name
+          %tr
+            %th 配送日の目安
+            %td
+              = @item.preparation_day.name
+    .main-topic__button-container
+      - if user_signed_in? && @item.seller.id != current_user.id
+        %ul.favorite-button
+          %li.likebtn
+            %div{id: "favorite-#{@item.id}"}
+              = render 'favorites/favorite', { item: @item }
+        %ul.option-btn
+          = link_to "#" do
+            %li.btn
+              %i.fa.fa-flag 不適切な内容の報告
+    .main-topic__button-user
+    -if user_signed_in?
+      -if @item.seller_id == current_user.id
+        = link_to edit_item_path(@item), class: "item-btn", data: {turbolinks: false} do
+          .item-edit-btn 商品の編集
+          .item-btn-or or
+        = link_to item_path(@item), class: "item-btn", data: {turbolinks: false} do
+          .item-stop-btn 出品を一旦停止する
+        = link_to item_path(@item), class: "item-btn", method: :delete, data: {confirm: '削除しますか？' }  do
+          .item-delete-btn この商品を削除する   
+      -else
+        -if @item.buyer_id == nil
+          = link_to purchase_item_path(@item.id), class: "item-buy-btn" do
+            購入画面に進む
+        -else
+          .item-buy-btn-sold 売り切れました
+    -else 
+      = link_to "/users/sign_in", class: "item-buy-btn" do
+        購入画面に進む
+  .message
+    .message__box
+      .item-message-content
+        -if @comments 
+          -@comments.each do |comment| 
+            .item-message-comment
+              .message-items
+                .message-user
+                  = image_tag '/assets/icon/member_photo_noimage_thumb.png', size: '30x30', alt: 'user-icon', class:"user-icon"
+                  %p.message-user-name
+                    = comment.user.nickname
+                .message-body
+                  = comment.comment
+                  .message-icons
+                    .message-icon-left
+                      .fa.fa-history
+                      %span
+                        1時間
+                    .message-icon-right
+                      .message-delete
+                        = link_to("/items/#{@item.id}/comments/#{comment.id}",{method:"delete"}) do
+                          .fa.fa-trash
+                  %i.icon-ballon
+    .message__comment
+      = form_for(@comment, url:"/items/#{@item.id}/comments") do |f|
+        = f.text_area :comment, class: "comment-send"
+        %p.message__notes
+          相手のことを考え丁寧なコメントを心がけましょう。
+          %br
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        = button_tag type: 'submit', class: "comment-btn" do
+          %i.fa.fa-flag コメントする
+  .nav-content
+    %ul.nav-content__nav-items
+      %li.nav-content__nav-items--nav-item-before
+        = link_to "/items/#{@item.id - 1}" do
+          %span
+          %i.fa.fa-angle-left 前の商品
+      %li.nav-content__nav-items--nav-item-after
+        = link_to "/items/#{@item.id + 1}" do
+          次の商品
+          %span
+          %i.fa.fa-angle-right
+  .category-items
+    = link_to @item.category.parent.parent.name, "#"
+
 = render "layouts/footer"

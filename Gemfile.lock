@@ -46,6 +46,8 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ancestry (3.0.7)
       activerecord (>= 3.2.0)
+    antivirus (0.0.2)
+      rails
     arel (7.1.4)
     bcrypt (3.1.13)
     bindex (0.8.1)
@@ -234,6 +236,8 @@ GEM
     orm_adapter (0.5.0)
     payjp (0.0.7)
       rest-client (~> 2.0)
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
     pry (0.13.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -273,6 +277,12 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.19.1)
     rake (13.0.1)
+    ransack (2.3.0)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.3.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -366,6 +376,7 @@ PLATFORMS
 DEPENDENCIES
   active_hash
   ancestry
+  antivirus
   byebug
   capistrano
   capistrano-bundler
@@ -398,6 +409,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.7, >= 5.0.7.2)
   rails-controller-testing
+  ransack
   rspec-rails
   sass-rails (~> 5.0)
   spring

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     patch 'accounts/update'
   end
 
-  resources :items do
+  resources :items, only: [:new, :create, :show, :destroy, :edit, :update] do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
@@ -49,6 +49,8 @@ Rails.application.routes.draw do
       get 'purchase', to: 'items#purchase'
       post 'buy', to: 'items#buy'
     end
+    resources :comments, only: [:create,:destroy]
+    resource :favorites, only: [:create, :destroy]
   end
 
   resources :cards, only: [:index, :new, :show] do

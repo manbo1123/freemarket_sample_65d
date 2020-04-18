@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @new_arrival = Item.last(3)
+    @new_arrival = Item.order(id: "DESC").first(3)
 
   end
 

@@ -117,7 +117,7 @@
                     .message-icon-left
                       .fa.fa-history
                       %span
-                        1時間
+                        = comment.created_at
                     .message-icon-right
                       .message-delete
                         = link_to("/items/#{@item.id}/comments/#{comment.id}",{method:"delete"}) do
@@ -130,8 +130,12 @@
           相手のことを考え丁寧なコメントを心がけましょう。
           %br
           不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        = button_tag type: 'submit', class: "comment-btn" do
-          %i.fa.fa-flag コメントする
+        -if @item.buyer_id == nil
+          = button_tag type: 'submit', class: "comment-btn" do
+            %i.fa.fa-flag コメントする
+        -else
+          .comment-dummy
+            %i.fa.fa-flag 売り切れのためコメントできません
   .nav-content
     %ul.nav-content__nav-items
       %li.nav-content__nav-items--nav-item-before

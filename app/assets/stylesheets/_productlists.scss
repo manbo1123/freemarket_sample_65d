@@ -17,58 +17,61 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  a {
-    display: inline-block;
-    text-decoration: none;
-    background-color: #fff;
-    &:hover {
-      opacity: 0.5;
-    }
+  .productlist{
+    margin-bottom: 30px;
+  }
+    a {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #fff;
+      &:hover {
+        opacity: 0.5;
+      }
 
-  //商品画像
-    .productlist__img {
-      width: 220px;
-      height: 150px;
-      position: relative;
-      overflow: hidden;
-      margin: 0;
-      z-index: auto;
-      .pic {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        z-index: auto;
+    //商品画像
+      .productlist__img {
+        width: 220px;
         height: 150px;
-        object-fit: cover;
-      }
-    }
-
-  //商品情報
-    .productlist__info {
-      background-color: white;
-      color: #333;
-      padding: 16px;
-      .name {
+        position: relative;
         overflow: hidden;
-        line-height: 1.5;
-        font-size: 16px;
-        text-align: left;
-      }
-      .details {
-        font-size: 16px;
-        ul {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+        margin: 0;
+        z-index: auto;
+        .pic {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          z-index: auto;
+          height: 150px;
+          object-fit: cover;
         }
-        p {
-          font-size: 10px;
+      }
+
+    //商品情報
+      .productlist__info {
+        background-color: white;
+        color: #333;
+        padding: 16px;
+        .name {
+          overflow: hidden;
+          line-height: 1.5;
+          font-size: 16px;
           text-align: left;
         }
+        .details {
+          font-size: 16px;
+          ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          p {
+            font-size: 10px;
+            text-align: left;
+          }
+        }
       }
-    }
   }
 }

@@ -10,7 +10,6 @@
           %li.price= "¥ #{item.price.to_s(:delimited)}"
           %li.icon
             %i.fa.fa-star
-              0
-              -# いいね数のカウントは未実装
+              = item.favorites.length
         %p
           (税込)

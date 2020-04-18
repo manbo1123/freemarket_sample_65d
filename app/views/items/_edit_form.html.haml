@@ -29,8 +29,6 @@
                 = f.file_field :src, class: "item_imgs__default", id: "up_img_last", type: 'file', multiple: true, accept: "image/*"
               - if @item.persisted?
                 = f.fields_for :item_imgs do |image| 
-                  .image-preview{data: {index: image.index+1}}
-                    = image.file_field :src, class: "item_imgs__default", id: "up_img_last", type: 'file', multiple: true, accept: "image/*"
                   = image.check_box :_destroy, data:{index: image.index+1}, class: 'hidden-destroy'
 
           .under_group

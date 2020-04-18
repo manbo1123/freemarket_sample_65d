@@ -45,7 +45,11 @@ crumb :mypage_logout do
 end
 #----------------------------------商品関連-------------------------------#
 #商品関連ページ実装後に作成
-
+  # 商品詳細ページ
+  crumb :item do
+    link Item.find(params[:id]).name, item_path
+    parent :root
+  end
 
 # crumb :projects do
 #   link "Projects", projects_path

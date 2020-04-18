@@ -146,4 +146,8 @@
   .category-items
     = link_to @item.category.parent.parent.name, item_path(@item.category.parent.parent.id)
 
+-# パンくずリスト
+.breadcrumbs_list_item
+  - breadcrumb :item
+  = breadcrumbs separator: " &rsaquo; "
 = render "layouts/footer"

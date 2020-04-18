@@ -1,14 +1,25 @@
 class CommentsController < ApplicationController
-  before_action :set_instance
+  before_action :set_item
   def create
-    Comment.create(comment_params)
-    redirect_to item_path(@item)
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      flash[:success] = "コメントしました"
+      redirect_to item_path(@item)
+    else
+      flash[:danger] = "コメントできませんでした"
+      redirect_to item_path(@item)
+    end
   end
 
   def destroy
-    @comment = Comment.find_by(id: params[:id])
-    @comment.destroy
-    redirect_to item_path(@item)
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      flash[:success] = "削除しました"
+      redirect_to item_path(@item)
+    else
+      flash[:danger] = "削除できませんでした"
+      redirect_to item_path(@item)
+    end
   end
 
   private
@@ -16,7 +27,7 @@ class CommentsController < ApplicationController
     params.required(:comment).permit(:comment).merge(user_id: current_user.id,item_id: params[:item_id])
   end
 
-  def set_instance
+  def set_item
     @item = Item.find(params[:item_id])
   end
 end

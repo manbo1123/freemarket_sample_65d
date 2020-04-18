@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @pref = Prefecture.find(@item.prefecture_code)
-    #指定商品のコメントを列挙
     @comments = @item.comments.includes(:user).where(item_id: @item.id)
     #コメント追加
     @comment = Comment.new

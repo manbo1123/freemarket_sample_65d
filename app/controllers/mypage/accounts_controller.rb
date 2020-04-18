@@ -8,7 +8,6 @@ class Mypage::AccountsController < ApplicationController
   def update
     params[:user][:birthday] = birthday_join
     @user = User.find_by(id: current_user.id)
-    # user_params["birthday"] = birthday_join
     atri = @user.attributes
     coulums = ["nickname", "email", "family_name", "first_name", "family_name_kana", "first_name_kana", "birthday"]
     change_coulum = 0

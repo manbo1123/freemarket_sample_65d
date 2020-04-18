@@ -1,0 +1,40 @@
+%section.exhibition
+  .title
+    %h2
+      出品した商品
+  %ul.lists_status
+    %li.exhibition_status.active
+      %h3
+        出品中
+    %li.exhibition_status
+      %h3
+        取引中
+    %li.exhibition_status
+      %h3
+        売却済み
+  .link-container
+    %ul.exhibition_link.show
+      - Item.where(seller_id: current_user.id).each do |item|
+        %li.exhibition_detail
+          = image_tag "#{item.item_imgs.first.src.url}", class: "exhibiton_img"
+          .exhibiton_info
+            %p.exhibiton_name
+              = "商品名：#{item.name}"
+            %p.exhibition_tag
+              出品中
+          
+
+      -# .none_links
+      -#   = image_tag "logo/logo-white.png", class: "none_links__img"
+      -#   %p
+      -#     出品中の商品がありません
+    %ul.exhibition_link
+      .none_links
+        = image_tag "logo/logo-white.png", class: "none_links__img"
+        %p
+          取引中の商品がありません
+    %ul.exhibition_link
+      .none_links
+        = image_tag "logo/logo-white.png", class: "none_links__img"
+        %p
+          売却済みの商品がありません

@@ -1,3 +1,46 @@
+//----------------------------ページ更新で表示-------------------------------//
+window.onload = function () {
+  //画像削除用のチェックボックス
+  $('.hidden-destroy').hide();
+  //保存済み画像数に応じて変更
+  let image_num = $('.preview').length;
+  if (image_num >= 5) {
+    $('.item_imgs').css('display', 'none');
+    $('.under_group').css('display', 'block');
+    $('.item_imgs_2nd_row').css('display', 'block');
+    $('.item_imgs').find('.up-image__group__dropbox').remove();
+    $('.item_imgs_2nd_row').prepend(nextInput(image_num+1));
+  }
+  if (image_num == 10) {
+    $('.item_imgs_2nd_row').css('display', 'none');
+  }
+  
+  if ($('#size_box option:selected').val() != "") {
+    $('#size_box').css('display', 'block');
+  }
+
+  if ($('#postage_type_box option:selected').val() != "") {
+    $('#postage_type_box').css('display', 'block');
+  }
+
+  //販売価格表示
+  let input_price = $('.item_input__body__price_box').val();
+  let profit = Math.round(input_price * 0.9);
+  let charge = (input_price - profit);
+  if (300 <= input_price && input_price <= 9999999 ){
+    $('.charge_result').html(charge);
+    $('.charge_result').prepend('¥');
+    $('.profit_result').html(profit);
+    $('.profit_result').prepend('¥');
+  } else {
+    $('.charge_result').html('ー');
+    $('.profit_result').html('ー');
+  }
+
+  //商品説明ボックスの文字カウント表示
+  let count = $('.item_input__body__text_area').text().length;
+  $('.countup').text(count);
+};
 
   //---------------------カテゴリーボックスのオプション-------------------//
   function appendOption(category) {
@@ -106,7 +149,7 @@
 
   //-------------------------配送料の負担 選択によるイベント発火-------------------------//
   $(document).on('change', '.postage_payer_box', function() {
-    if ($('.postage_type_boxoption:selected').val() !="") {
+    if ($('.postage_type_boxoption option:selected').val() !="") {
       $('.postage_type_box').val('');
       $('#postage_type_box').css('display', 'block');
     } else {
@@ -178,9 +221,9 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
 
       //アップロード完了したら、inputタグを追加
       if (preview_count <= 4) {
-        $('.item_imgs').append(nextInput(preview_count + 1));
+        $('.item_imgs').prepend(nextInput(preview_count + 1));
       } else {
-        $('.item_imgs_2nd_row').append(nextInput(preview_count + 1));
+        $('.item_imgs_2nd_row').prepend(nextInput(preview_count + 1));
       }
 
       //文字列を消す
@@ -217,6 +260,14 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
 
   //-----------------------削除ボタンをクリック--------------------//
   $(document).on("click",'.preview_btn', function() {
+    // 該当indexを振られているチェックボックスを取得
+    let targetIndex = $(this).parent().data("name");
+    let hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    // チェックボックスが存在すればチェックを入れる
+    if (hiddenCheck) {
+      hiddenCheck.prop('checked', true)
+    }
+
     //previewとinputタグを削除
     let preview_num = $(this).parent().attr('data-index');  //削除ボタンのプレビューNo.を取得
     $(this).parent().remove();  //削除ボタンを押した.previewを削除
@@ -239,9 +290,10 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
 
     if (preview_count == 4) {
       $('.item_imgs_2nd_row').find('.up-image__group__dropbox').remove();
-      $('.item_imgs').append(nextInput(preview_count + 1));
+      $('.item_imgs').prepend(nextInput(preview_count + 1));
       $('.item_imgs_2nd_row').css('display', 'none');
       $('.item_imgs').css('display', 'block');
+      $('.image_text_message').css('display', 'none');
     } else if (preview_count <=8 && preview_num <= 5) {
       $('.preview[data-index ='+5+']').appendTo('.previews');
       $('.image-preview[data-index ='+5+']').appendTo('.item_imgs');
@@ -260,7 +312,7 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
     }
   });
   //--------------------------必須項目のエラーメッセージ表示--------------------------//
-  $(document).on('click', 'input', function() {
+  $(document).on('click', 'input, select, textarea', function() {
     $('input#item_name').on('blur', function() {    
       if ($('input#item_name').val() == "") {
         $(this).css('border-color', 'red');
@@ -279,35 +331,34 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         $('.item_introduction_error_message').css('display', 'none');
       }
     });
+    let category_error_message = $('.category_top_error_message')
     $('select#parent_category').on('blur', function() {
       if ($('select#parent_category').val() == '') {
         $(this).css('border-color', 'red');
-        $('.category_top_error_message').css('display', 'block');
+        category_error_message.css('display', 'block');
       } else {
         $(this).css('border-color', '#ccc');
-        $('.category_top_error_message').css('display', 'none');
+        category_error_message.css('display', 'none');
       }
     });
-
-    $('select#children_category').on('blur', function() {
+    $('#children_box').on('blur','select#children_category', function() {
       if ($('select#children_category').val() == '') {
         $(this).css('border-color', 'red');
-        $('.category_top_error_message').css('display', 'block');
+        category_error_message.css('display', 'block');
       } else {
         $(this).css('border-color', '#ccc');
-        $('.category_top_error_message').css('display', 'none');
+        category_error_message.css('display', 'none');
       }
     });
-    $('select#grandchildren_category').on('blur', function() {
+    $('#grandchildren_box').on('blur','select#grandchildren_category', function() {
       if ($('select#grandchildren_category').val() == '') {
         $(this).css('border-color', 'red');
-        $('.category_top_error_message').css('display', 'block');
+        category_error_message.css('display', 'block');
       } else {
         $(this).css('border-color', '#ccc');
-        $('.category_top_error_message').css('display', 'none');
+        category_error_message.css('display', 'none');
       }
     });
-
     $('select.size_box').on('blur', function() {
       if ($('select.size_box').val() == "") {
         $(this).css('border-color', 'red');
@@ -386,6 +437,8 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
     if ($('.preview').length){
     } else {
       $('.img_error_message').css('display', 'block');
+      alert('出品画像を1枚以上登録してください');
+      return false;
     }
 
     if ($('input#item_name').val() == "") {

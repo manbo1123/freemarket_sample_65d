@@ -1,0 +1,43 @@
+.item_purchases_page
+
+  .purchase-main
+    %h1.purchase-main__purchase-head
+      購入内容の確認
+    .purchase-main__purchase-info
+      .item-small-detail
+        = image_tag @item.item_imgs.first.src.url, class: "item-small-detail__pic"
+        .item-small-detail__item-name
+          商品の名前
+          .item-small-detail__item-name--price
+            = "¥#{@item.price}(税込み)"
+  .purchase-contents
+    %ul.purchase-contents__payment-price
+      %li.purchase-contents__payment-price--text 支払い金額
+      %li.purchase-contents__payment-price--price 
+        ="¥#{@item.price}"
+    .purchase-contents__payment-method
+      支払い方法
+      .purchase-contents__payment-method--payment-button
+        .credit-info
+          = "**** **** **** " + @card_information.last4
+          %br
+          - exp_month = @card_information.exp_month.to_s
+          - exp_year = @card_information.exp_year.to_s.slice(2,3)
+          = exp_month + " / " + exp_year
+    .purchase-contents__delivery-address
+      配送先
+      %p.purchase-contents__delivery-address--address-button
+        = "〒#{@sending_destination.post_code}"
+        %br
+        = @sending_destination.prefecture.name
+        = @sending_destination.city
+        = @sending_destination.house_number
+        %br
+        = @sending_destination.destination_family_name
+        = @sending_destination.destination_first_name
+    .purchase-btn__btn
+      -if user_signed_in?
+        = link_to "購入する", buy_item_path(@item.id), method: :pots
+      -else
+        .purchase-btn__else-btn
+          購入する

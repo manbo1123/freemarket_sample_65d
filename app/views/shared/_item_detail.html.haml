@@ -44,18 +44,18 @@
   .item-price
     .item-price__price-details
       %span.item-price__price-details--price
-        ¥999
+        = "¥#{@item.price}"
       %span.item-price__price-details--tax
         （税込み）
       %span.item-price__price-details--fee
         送料込み
     .item-price__purchase-button
-      = link_to "購入画面に進む", "/purchases"
+      = link_to "購入画面に進む", purchase_item_path(@item.id)
   .item-description
     .item-description__introduction
     .item-description__button-container
       .item-description__button-container--favorite-button
-        ♡　いいね！
+        ♡  いいね！
       .item-description__button-container--note-text
         不適切な商品の報告
   .message
@@ -76,12 +76,12 @@
       .other-items__seller-items--title
         = link_to "出品者さんのその他の出品", "#" 
       .other-items_seller-items--images
-        = render "toppage/productlists"
+        = render partial: 'items/item', collection: @items
     %section.other-items__relation-items
       .other-items__relation-items--title
         = link_to "カテゴリーの関連商品", "#"
       .other-items_relation-items--images
-        = render "toppage/productlists"
+        = render partial: 'items/item', collection: @items
 
   //仮のボタン
   = render partial: 'shared/exhibition'

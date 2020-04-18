@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
     #コメント追加
     @comment = Comment.new
   end
-  
+
   def new
     @item = Item.new
     @item.item_imgs.build

@@ -94,7 +94,7 @@
           %h3.title
             新規投稿商品
       .productlists
-        = render @items
+        = render partial: 'item', collection: @new_arrival, as: "item" 
 
   %section.main__pickup
     %h2.subtitle

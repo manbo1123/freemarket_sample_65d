@@ -6,6 +6,8 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.all
+    @new_arrival = Item.order(id: "DESC").first(3)
+
   end
 
   def show

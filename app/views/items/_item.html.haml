@@ -1,5 +1,4 @@
 .productlist
-  -# %a{:href => "/items/#{productlists.id}"}
   = link_to "/items/#{item.id}" do
     .productlist__img
       = image_tag "#{item.item_imgs.first.src.url}", class: "pic"
@@ -8,7 +7,7 @@
         
       .details
         %ul
-          %li.price= item.price
+          %li.price= "¥ #{item.price.to_s(:delimited)}"
           %li.icon
             %i.fa.fa-star
               0

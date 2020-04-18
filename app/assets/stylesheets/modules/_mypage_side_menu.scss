@@ -1,48 +1,3 @@
-@mixin link-btm {
-  width: 100%;
-  height: 48px;
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
-  vertical-align: middle;
-  border-bottom: solid 1px rgb(231, 231, 231);
-}
-
-@mixin link-text {
-  width: 100%;
-  display: block;
-  padding:16px;
-  position: relative;
-  text-decoration: none;
-  color: black;
-  font-size: 14px;
-}
-
-@mixin link-icon {
-  position: absolute;
-  right: 16px;
-  color: gray;
-}
-
-@mixin link-hover-background{
-  background-color: rgb(164, 238, 248);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all  0.3s ease;
-}
-
-@mixin link-hover-icon{
-  right:10px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all  0.3s ease;
-}
-
-$top-links: mypage, notification, todo, like, items_new, items_selling, items_dealing, items_sold, purchases_dealing, purchases_bought, review;
-$config-links: account, pass, deliver_address, card, logout;
-
 .mypage-wrap{
   width: 1020px;
   height:100%;
@@ -52,57 +7,53 @@ $config-links: account, pass, deliver_address, card, logout;
   .side_menu{
     width: 280px;
     margin-right: 40px;
-    .top{
+    padding-bottom: 20px;
+    li.sidelink{
       width: 100%;
-      padding-bottom: 20px;
-      @each $top in $top-links {
-        .#{$top}{
-          @include link-btm;
-          a{
-            @include link-text;
-          }
-          .fa{
-            @include link-icon;
-          }
-        }
-        .#{$top}:hover{
-          a{
-            @include link-hover-background;
-          }
-          .fa{
-            @include link-hover-icon;
-          }
-        }
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      background-color: white;
+      vertical-align: middle;
+      border-bottom: solid 1px rgb(231, 231, 231);
+      a{
+        width: 100%;
+        display: block;
+        padding:16px;
+        position: relative;
+        text-decoration: none;
+        color: black;
+        font-size: 14px;
+      }
+      .fa{
+        position: absolute;
+        right: 16px;
+        color: gray;
       }
     }
-    .config{
-      width: 100%;
-      padding-bottom: 20px;
-      .title{
-        font-weight: bold;
+    li.sidelink:hover{
+      a{
+        background-color: lightgray;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all  0.3s ease;
       }
-      @each $config in $config-links {
-        .#{$config}{
-          @include link-btm;
-          a{
-            @include link-text;
-          }
-          .fa{
-            @include link-icon;
-          }
-        }
-        .#{$config}:hover{
-          a{
-            @include link-hover-background;
-          }
-          .fa{
-            @include link-hover-icon;
-          }
-        }
+      .fa{
+        right:10px;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all  0.3s ease;
       }
     }
-  }
-  .main_menu{
-    width: 700px;
+    li.sidelink.select{
+      background-color: rgb(139, 211, 255);
+    }
+    h2{
+      padding-top: 20px;
+    }
   }
 }
+
+

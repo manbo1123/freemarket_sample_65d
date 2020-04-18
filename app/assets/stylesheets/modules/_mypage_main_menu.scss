@@ -1,3 +1,175 @@
 .main_menu{
-  width: 700px;
+  max-width: 700px;
 }
+
+.profile{
+  background-image: image-url("pict/tiles-shapes-2617112_1920.jpg");
+  width: 100%;
+  height: 140px;
+  margin-bottom: 30px;
+  .detail{
+    width: 660px;
+    height: 100px;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    .name{
+      font-size: 3rem;
+      text-shadow: 1px 2px 3px black;
+    }
+    .info{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 1px 2px 3px black;
+      &__favorite{
+        padding: 0 10px;
+      }
+      &__exhibition{
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
+.exhibition{
+  width: 100%;
+  margin-bottom: 30px;
+  .title{
+    background-color: rgb(236, 236, 236);
+    height: 60px;
+    font-weight: bold;
+    h2{
+      line-height: 60px;
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+  }
+  ul.lists_status{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.exhibition_status{
+  background-color: rgb(218, 218, 218);
+  height: 60px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  border-top: solid rgb(218, 218, 218);
+  h3{
+    line-height: 60px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+
+ul.exhibition_link{
+  display: none;
+  .none_links{
+    height: 300px;
+    background-color: white;
+    // background-image: image-url("logo/logo-white.png");
+    text-align: center;
+    &__img{
+      color: lightgray;
+      filter: invert(30%);
+      width: 300px;
+      padding-top: 100px;
+    }
+    P{
+      font-weight: bold;
+      color: rgb(192, 190, 190);
+      font-size: 1rem;
+    }
+  }
+}
+
+li.exhibition_status:hover{
+  cursor: pointer;
+}
+
+li.exhibition_status.active{
+  background-color: white;
+  border-top-color: red;
+}
+
+ul.exhibition_link.show{
+  display: block;
+}
+
+.purchases{
+  width: 100%;
+  .title{
+    background-color: rgb(236, 236, 236);
+    height: 60px;
+    font-weight: bold;
+    h2{
+      line-height: 60px;
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+  }
+  ul.lists_status{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+li.purchases_status{
+  background-color: rgb(218, 218, 218);
+  height: 60px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  border-top: solid rgb(218, 218, 218);
+  h3{
+    line-height: 60px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+
+ul.purchases_link{
+  display: none;
+  .none_links{
+    height: 300px;
+    background-color: white;
+    // background-image: image-url("logo/logo-white.png");
+    text-align: center;
+    &__img{
+      color: lightgray;
+      filter: invert(30%);
+      width: 300px;
+      padding-top: 100px;
+    }
+    P{
+      font-weight: bold;
+      color: rgb(192, 190, 190);
+      font-size: 1rem;
+    }
+  }
+}
+
+li.purchases_status:hover{
+  cursor: pointer;
+}
+
+li.purchases_status.active{
+  background-color: white;
+  border-top-color: red;
+}
+
+ul.purchases_link.show{
+  display: block;
+}
+

@@ -1,69 +1,64 @@
-.side_menu
-  .top
-    .mypage
+%section.side_menu
+  %ul
+    %li.sidelink
       = link_to mypage_index_path do
         マイページ
         = icon('fa', 'chevron-right')
-    -# .notification
-    -#   = link_to "#" do
-    -#     お知らせ
-    -#     = icon('fa', 'chevron-right')
-    .todo
+    %li.sidelink
       = link_to "#" do
         やることリスト
         = icon('fa', 'chevron-right')
-    .like
+    %li.sidelink
       = link_to "#" do
         いいね！一覧
         = icon('fa', 'chevron-right')
-    .items_new
+    %li.sidelink
       = link_to new_item_path do
         出品する
         = icon('fa', 'chevron-right')
-    .items_selling
+    %li.sidelink
       = link_to "#" do
         出品した商品-出品中
         = icon('fa', 'chevron-right')
-    .items_dealing
+    %li.sidelink
       = link_to "#" do
         出品した商品-取引中
         = icon('fa', 'chevron-right')
-    .items_sold
+    %li.sidelink
       = link_to "#" do
         出品した商品-売却済み
         = icon('fa', 'chevron-right')
-    .purchases_dealing
+    %li.sidelink
       = link_to "#" do
         購入した商品-取引中
         = icon('fa', 'chevron-right')
-    .purchases_bought
+    %li.sidelink
       = link_to "#" do
         購入した商品-過去の取引
         = icon('fa', 'chevron-right')
-    .review
+    %li.sidelink
       = link_to "#" do
         評価一覧
         = icon('fa', 'chevron-right')
-  .config
     %h2.title
       設定
-    .account
+    %li.sidelink
       = link_to mypage_accounts_edit_path do
         会員情報
         = icon('fa', 'chevron-right')
-    .pass
+    %li.sidelink
       = link_to "#" do
         パスワード
         = icon('fa', 'chevron-right')
-    .deliver_address
+    %li.sidelink
       = link_to mypage_sending_destinations_edit_path do
         発送元・お届け先住所
         = icon('fa', 'chevron-right')
-    .card
+    %li.sidelink
       = link_to mypage_cards_show_path do
         クレジットカード情報
         = icon('fa', 'chevron-right')
-    .logout
+    %li.sidelink
       = link_to logout_mypage_index_path, method: :delete do
         ログアウト
         = icon('fa', 'chevron-right')

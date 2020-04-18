@@ -1,6 +1,8 @@
 = render 'layouts/header'
 .mypage-wrap
-  = render 'side_menu'
-  = render 'mypage_home'
-  = render partial: 'shared/exhibition'
+  = render 'mypage/side_menu'
+  .main_menu
+    = render 'mypage_home'
+    = render 'mypage/exhibition/show_exhibition'
+    = render 'mypage/purchases/show_purchases'
 = render 'layouts/footer'

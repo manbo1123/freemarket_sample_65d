@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     if current_user == nil
-      redirect_to root_path
+      redirect_to user_session_path
     end
   end
 

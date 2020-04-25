@@ -16,9 +16,9 @@
   margin: 26px auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   .productlist{
-    margin-bottom: 30px;
+    margin: 20px;
   }
     a {
       display: inline-block;
@@ -46,6 +46,23 @@
           z-index: auto;
           height: 150px;
           object-fit: cover;
+        }
+        
+    // 売り切れマーク
+        .sold_mark{
+          position: absolute;
+          border-bottom: 90px solid transparent;
+          border-left: 90px solid red;
+        }
+        .sold_mark::after{
+          color: white;
+          font-weight: bold;
+          content: "SOLD";
+          font-size: 20px;
+          position: absolute;
+          top: 15px;
+          left: -90px;
+          transform: rotate(-45deg);
         }
       }
 

@@ -2,6 +2,9 @@
   = link_to "/items/#{item.id}" do
     .productlist__img
       = image_tag "#{item.item_imgs.first.src.url}", class: "pic"
+      -if item.buyer_id.present?
+        %span.sold_mark
+
     .productlist__info
       %h3= "#{item.name}"
         

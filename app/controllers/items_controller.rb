@@ -30,12 +30,18 @@ class ItemsController < ApplicationController
 
     #jsonで子カテゴリーに紐づく孫カテゴリーの配列を取得
   def get_category_grandchildren
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
+    @category_grandchildren = Category.find(params[:child_id]).children
   end
 
   def create
     @item = Item.new(item_params)
-    @item.build_brand(name: params[:item][:brand][:name])
+
+    brands = Brand.find_or_initialize_by(name: params[:item][:brand][:name]) 
+    @item.update!(brand_id: brands.id)
+    if brands.new_record? # 新規データなら保存
+      @item.build_brand(name: params[:item][:brand][:name])
+    end
+
     if @item.save
       redirect_to item_path(@item)
       flash[:success] = "商品出品が完了しました"
@@ -46,7 +52,12 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.build_brand(name: params[:item][:brand][:name])
+    brands = Brand.find_or_initialize_by(name: params[:item][:brand][:name]) 
+    @item.update!(brand_id: brands.id)
+    if brands.new_record? # 新規データなら保存
+      @item.build_brand(name: params[:item][:brand][:name])
+    end
+
     if @item.update(item_params)
       redirect_to item_path(@item)
       flash[:success] = "商品情報を更新しました"

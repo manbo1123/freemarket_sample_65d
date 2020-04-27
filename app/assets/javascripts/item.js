@@ -105,7 +105,7 @@ window.onload = function () {
   //子カテゴリー選択によるイベント発火
   $(document).on('change', '#children_box', function() {
     //選択された子カテゴリーidを取得
-    let childId = $('#children_category option:selected').data('category');
+    let childId = $('#children_category').val();
     if (childId != ""){ //子カテゴリーが初期値でない場合
       $.ajax({
         url: 'get_category_grandchildren',
@@ -136,8 +136,9 @@ window.onload = function () {
   });
   //孫カテゴリー選択によるイベント発火
   $(document).on('change', '#grandchildren_box', function() {
-    let grandchildId = $('#grandchildren_category option:selected').data('category');
-    if (grandchildId != "") {
+    //let grandchildId = $('#grandchildren_category option:selected').data('category');
+    let grandchildId = $('#grandchildren_category').val();
+    if (grandchildId != "") {  //孫カテゴリーが初期値でない場合
       $('.size_box').val('');
       $('#size_box').css('display', 'block');
       //カテゴリー選択によって、サイズボックスの選択肢を変更（後ほど実装予定）

@@ -13,7 +13,7 @@ class Mypage::AccountsController < ApplicationController
     change_coulum = 0
     coulums.each do |coulum|
       user_before = atri[coulum]
-      user_after = user_params[coulum]
+      user_after = account_params[coulum]
       if user_before != user_after
         change_coulum += 1
       end
@@ -23,7 +23,7 @@ class Mypage::AccountsController < ApplicationController
       flash.now[:alert] = @user.errors.full_messages
       render :edit
     else
-      @user.update(user_params)
+      @user.update(account_params)
       if @user.save
         @user.errors[:base] << "登録内容を更新しました"
         flash.now[:alert] = @user.errors.full_messages
@@ -35,10 +35,29 @@ class Mypage::AccountsController < ApplicationController
     end
   end
 
+  def edit_password
+    @user = User.find_by(id: current_user.id)
+  end
+
+  def update_password
+    @user = User.find_by(id: current_user.id)
+    if @user.update_with_password(password_params)
+      redirect_to user_session_path
+    else
+      @user.errors[:password] << "登録内容が更新できませんでした"
+      flash.now[:alert] = @user.errors.full_messages
+      render :edit_password
+    end
+  end
+
   private
 
-  def user_params
+  def account_params
     params.require(:user).permit(:nickname, :email, :family_name, :first_name, :family_name_kana, :first_name_kana, :birthday)
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 
   def birthday_join

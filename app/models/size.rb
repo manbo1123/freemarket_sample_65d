@@ -69,5 +69,7 @@ class Size < ActiveHash::Base
     {id: 62, name: 'XXLサイズ以上'}, 
     {id: 63, name: 'フリーサイズ'}, 
     {id: 64, name: '子ども用'},
+
+    {id: 65, name: '該当なし'}
   ]
 end

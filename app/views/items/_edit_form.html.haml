@@ -88,7 +88,7 @@
           .pulldown.item_input__body__category__grandchildren#grandchildren_box
             -#子カテゴリー選択によって孫カテゴリー表示
             - if @item.persisted?
-              = f.select :category_id, options_for_select( @category_grandchildren.map{|c| [c[:name], c[:id]]}, selected:@grandchild_category.id),{include_blank: "選択してください"}, { class: "item_input__body__category__children--select", id: "children_category"}
+              = f.select :category_id, options_for_select( @category_grandchildren.map{|c| [c[:name], c[:id]]}, selected:@grandchild_category.id),{include_blank: "選択してください"}, { class: "item_input__body__category__grandchildren--select", id: "grandchildren_category"}
               = icon('fa', 'chevron-down')
 
           %p.error_message.category_top_error_message

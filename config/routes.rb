@@ -27,6 +27,16 @@ Rails.application.routes.draw do
   end
 
   namespace :mypage do
+    get 'exhibition/selling', to: 'exhibition#index'
+    get 'exhibition/dealing', to: 'exhibition#index'
+    get 'exhibition/closed', to: 'exhibition#index'
+    get 'exhibition/set_exhibition', defaults: { format: 'json' }
+    post 'exhibition/shipping'
+    get 'purchases/dealing', to: 'purchases#index'
+    get 'purchases/closed', to: 'purchases#index'
+    get 'purchases/index', to: 'mypage/purchases#index'
+    get 'purchases/set_purchase', defaults: { format: 'json' }
+    post 'purchases/arriving'
     get 'sending_destinations/edit'
     patch 'sending_destinations/update'
     get 'cards/show'
@@ -36,6 +46,8 @@ Rails.application.routes.draw do
     post 'cards/pay'
     get 'accounts/edit'
     patch 'accounts/update'
+    get 'passwords/edit_password', to: 'accounts#edit_password'
+    patch 'passwords/update_password', to: 'accounts#update_password'
   end
 
   resources :items, only: [:new, :create, :show, :destroy, :edit, :update] do

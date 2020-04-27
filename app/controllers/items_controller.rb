@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.item_imgs.build
+    @item.item_imgs.build 
   end
 
     #jsonで親の名前で検索し、紐づく小カテゴリーの配列を取得
@@ -97,7 +97,7 @@ class ItemsController < ApplicationController
     customer: @card.customer_id,
     currency: 'jpy',
     )
-    if @item.update(trading_status: 1, buyer_id: current_user.id)
+    if @item.update(buyer_id: current_user.id)
       redirect_to item_path(@item)
     else
       redirect_to item_path(@item)

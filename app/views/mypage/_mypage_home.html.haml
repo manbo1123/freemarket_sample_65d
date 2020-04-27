@@ -3,9 +3,9 @@
     %h1.name
       = current_user.nickname
     %ul.info
-      %li.info__favorite
-        評価数
-        ◯
+      -# %li.info__favorite
+      -#   評価数
+      -#   ◯
       %li.info__exhibition
-        出品数
-        ◯
+        出品数：
+        = @item_exhibition.length

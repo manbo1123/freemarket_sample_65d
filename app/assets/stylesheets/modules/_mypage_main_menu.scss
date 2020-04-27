@@ -37,7 +37,7 @@
 }
 
 .exhibition{
-  width: 100%;
+  width: 700px;
   margin-bottom: 30px;
   .title{
     background-color: rgb(236, 236, 236);
@@ -72,22 +72,33 @@
 }
 
 ul.exhibition_link{
-  display: none;
-  li.exhibition_detail{
+  display: block;
+  height: 300px;
+  background-color: white;
+  overflow: scroll;
+}
+
+.exhibiton_list{
+  background-color: white;
+  height: 70px;
+  width: 680px;
+  padding: 10px 10px;
+  border-bottom: solid 1px rgb(233, 233, 233);
+  display: flex;
+  justify-content: space-between;
+  .exhibition_detail{
     background-color: white;
-    height: 70px;
-    width: 680px;
-    padding: 10px 10px;
-    border-bottom: solid 1px rgb(233, 233, 233);
-    display: flex;
+    height: 100%;
+    width: 600px;
     align-items: center;
+    color: black;
+    display: flex;
+    justify-content: center;
     .exhibiton_img{
-      // max-height: 70px;
       width: 70px;
       margin-right: 20px;
     }
     .exhibiton_info{
-      // float: right;
       width: 580px;
       text-align: inherit;
       .exhibiton_name{
@@ -99,23 +110,38 @@ ul.exhibition_link{
       }
     }
   }
-  
-  .none_links{
-    height: 300px;
-    background-color: white;
-    // background-image: image-url("logo/logo-white.png");
-    text-align: center;
-    &__img{
-      color: lightgray;
-      filter: invert(30%);
-      width: 300px;
-      padding-top: 100px;
+  .exhibition_btns a{
+    text-decoration: none;
+  }
+  .exhibition_btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    .exhibition_btn{
+      display: block;
+      font-size: 0.8rem;
     }
-    P{
-      font-weight: bold;
-      color: rgb(192, 190, 190);
-      font-size: 1rem;
+    button.exhibition_btn:hover{
+      background-color: rgb(164, 220, 255);
+      cursor: pointer;
     }
+  }
+}
+
+.none_links{
+  height: 300px;
+  background-color: white;
+  text-align: center;
+  .none_img{
+    color: lightgray;
+    filter: invert(30%);
+    width: 300px;
+    padding-top: 100px;
+  }
+  p.none_text{
+    font-weight: bold;
+    color: rgb(192, 190, 190);
+    font-size: 1rem;
   }
 }
 
@@ -128,12 +154,12 @@ li.exhibition_status.active{
   border-top-color: red;
 }
 
-ul.exhibition_link.show{
-  display: block;
-}
+// ul.exhibition_link.show{
+//   display: block;
+// }
 
 .purchases{
-  width: 100%;
+  width: 700px;
   .title{
     background-color: rgb(236, 236, 236);
     height: 60px;
@@ -167,11 +193,13 @@ li.purchases_status{
 }
 
 ul.purchases_link{
-  display: none;
+  display:block;
+  height: 300px;
+  background-color: white;
+  overflow: scroll;
   .none_links{
     height: 300px;
     background-color: white;
-    // background-image: image-url("logo/logo-white.png");
     text-align: center;
     &__img{
       color: lightgray;
@@ -194,9 +222,5 @@ li.purchases_status:hover{
 li.purchases_status.active{
   background-color: white;
   border-top-color: red;
-}
-
-ul.purchases_link.show{
-  display: block;
 }
 

@@ -3,20 +3,60 @@
     %h2
       購入した商品
   %ul.lists_status
-    %li.purchases_status.active
+    %li.purchases_status
       %h3
         取引中
     %li.purchases_status
       %h3
         過去の取引
   .link-container
-    %ul.purchases_link.show
-      .none_links
-        = image_tag "logo/logo-white.png", class: "none_links__img"
-        %p
-          取引中の商品がありません
     %ul.purchases_link
-      .none_links
-        = image_tag "logo/logo-white.png", class: "none_links__img"
-        %p
-          取引中の商品がありません
+      - if @item_purchase.present?
+        - if request.fullpath == "/mypage/purchases/dealing" or request.fullpath == "/mypage"
+          - @item_purchase.each do |item_purchase|
+            %li.exhibiton_list
+              - if item_purchase.trading_status == "selling"
+                .exhibition_detail
+                  = image_tag "#{item_purchase.item_imgs.first.src.url}", class: "exhibiton_img"
+                  .exhibiton_info
+                    %p.exhibiton_name
+                      = "商品名：#{item_purchase.name}"
+                    %p.exhibition_tag
+                      未発送
+                .exhibition_btns
+                  %a{href: "/items/#{item_purchase.id}"}
+                    %button{type: "button", class: "exhibition_btn btn-detail"}
+                      商品詳細
+              - else
+                .exhibition_detail
+                  = image_tag "#{item_purchase.item_imgs.first.src.url}", class: "exhibiton_img"
+                  .exhibiton_info
+                    %p.exhibiton_name
+                      = "商品名：#{item_purchase.name}"
+                    %p.exhibition_tag
+                      発送済み
+                .exhibition_btns
+                  %a{href: "/items/#{item_purchase.id}"}
+                    %button{type: "button", class: "exhibition_btn btn-detail"}
+                      商品詳細
+                  %button{type: "button", data: {id: "#{item_purchase.id}"}, class: "exhibition_btn btn-arriving"}
+                    取引完了
+        - else
+          - @item_purchase.each do |item_purchase|
+            %li.exhibiton_list
+              .exhibition_detail
+                = image_tag "#{item_purchase.item_imgs.first.src.url}", class: "exhibiton_img"
+                .exhibiton_info
+                  %p.exhibiton_name
+                    = "商品名：#{item_purchase.name}"
+                  %p.exhibition_tag
+                    取引完了
+              .exhibition_btns
+                %a{href: "/items/#{item_purchase.id}"}
+                  %button{type: "button", class: "exhibition_btn btn-detail"}
+                    商品詳細
+      - else
+        .none_links
+          = image_tag "logo/logo-white.png", class: "none_img"
+          %p.none_text
+            取引中の商品がありません

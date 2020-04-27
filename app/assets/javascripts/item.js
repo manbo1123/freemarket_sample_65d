@@ -140,8 +140,43 @@ window.onload = function () {
     let grandchildId = $('#grandchildren_category').val();
     if (grandchildId != "") {  //孫カテゴリーが初期値でない場合
       $('.size_box').val('');
+      $('.size_box option').css('display', 'block');
       $('#size_box').css('display', 'block');
-      //カテゴリー選択によって、サイズボックスの選択肢を変更（後ほど実装予定）
+      //カテゴリー選択によって、サイズボックスの選択肢を変更
+      if (grandchildId <= 66||grandchildId >= 78 && grandchildId <= 80||grandchildId >= 174 && grandchildId <= 176||grandchildId >= 178 && grandchildId <= 181||grandchildId >= 186 && grandchildId <= 194||grandchildId >= 200 && grandchildId <= 247||grandchildId >= 270 && grandchildId <= 274||grandchildId >= 330 && grandchildId <= 332||grandchildId >= 340 && grandchildId <= 342) {
+        $('.size_box option[value]').each(function(i) {
+          if (i>=11) {
+            $('.size_box option[value = ' +(i)+ ']').css('display', 'none');
+          }
+        });
+      }else if (grandchildId >= 67 && grandchildId <= 77||grandchildId >= 248 && grandchildId <= 256) {
+        $('.size_box option[value]').each(function(i) {
+          if (i>=1&&i<11 || i>=27) {
+            $('.size_box option[value = ' +(i)+ ']').css('display', 'none');
+          }
+        });
+      }else if (grandchildId >= 346 && grandchildId <= 376) {
+        $('.size_box option[value]').each(function(i) {
+          if (i>=1&&i<27 || i>=32) {
+            $('.size_box option[value = ' +(i)+ ']').css('display', 'none');
+          }
+        });
+      }else if (grandchildId >= 377 && grandchildId <= 419) {
+        $('.size_box option[value]').each(function(i) {
+          if (i>=1&&i<32 || i>=39) {
+            $('.size_box option[value = ' +(i)+ ']').css('display', 'none');
+          }
+        });
+      }else if (grandchildId >= 420 && grandchildId <= 425) {
+        $('.size_box option[value]').each(function(i) {
+          if (i>=1&&i<39 || i>=47) {
+            $('.size_box option[value = ' +(i)+ ']').css('display', 'none');
+          }
+        });
+      }else{
+        $('#size_box').css('display', 'none');
+        $('.size_box').val(65);
+      }
     } else {
       $('.size_box').val('');
       $('#size_box').css('display', 'none');

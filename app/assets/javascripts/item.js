@@ -23,6 +23,10 @@ window.onload = function () {
     $('#postage_type_box').css('display', 'block');
   }
 
+  if ($('.size_box option:selected').val() =="65") {
+    $('#size_box').css('display', 'none');
+  }
+
   //販売価格表示
   let input_price = $('.item_input__body__price_box').val();
   let profit = Math.round(input_price * 0.9);

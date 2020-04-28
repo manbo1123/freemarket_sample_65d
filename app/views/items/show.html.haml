@@ -5,20 +5,20 @@
       = @item.name
     .main-topic__item-info
       .main-topic__item-info__item-image
-        = image_tag @item.item_imgs.first.src
+        = image_tag @item.item_imgs.first.src, class: "image-big"
       %ul.main-topic__item-info__item-image--items
         %li.images
           - @item.item_imgs.each.with_index do |image, index|
             - if image.present? && index <= 4
-              .images__itemimg__box.current
-                = image_tag image.src
+              .images__nextimg__box.current
+                = image_tag image.src, class: "image-small"
             - if image.present? && index > 4
               .images__nextimg__next.current
-                = image_tag image.src
+                = image_tag image.src, class: "image-small"
     .main-topic__item-price
       .main-topic__item-price__price-details
         .main-topic__item-price__price
-          = "¥#{@item.price}"
+          = "¥ #{@item.price.to_s(:delimited)}"
         %span.main-topic__item-price__tax
           （税込み）
         %span
@@ -80,7 +80,7 @@
     .main-topic__button-user
     -if user_signed_in?
       -if @item.seller_id == current_user.id
-        = link_to edit_item_path(@item), class: "item-btn", data: {turbolinks: false} do
+        = link_to edit_item_path(@item), class: "item-btn" do
           .item-edit-btn 商品の編集
         .item-btn-or or
         = link_to item_path(@item), class: "item-btn", method: :delete, data: {confirm: '削除しますか？' }  do
@@ -110,7 +110,7 @@
                     .message-icon-left
                       .fa.fa-history
                       %span
-                        = comment.created_at
+                        = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
                     .message-icon-right
                       .message-delete
                         = link_to("/items/#{@item.id}/comments/#{comment.id}",{method:"delete"}) do
@@ -132,11 +132,11 @@
   .nav-content
     %ul.nav-content__nav-items
       %li.nav-content__nav-items--nav-item-before
-        = link_to "/items/#{@item.id - 1}" do
+        = link_to "/items/#{@item_rnd.id}" do
           %span
           %i.fa.fa-angle-left 前の商品
       %li.nav-content__nav-items--nav-item-after
-        = link_to "/items/#{@item.id + 1}" do
+        = link_to "/items/#{@item_rnd.id}" do
           次の商品
           %span
           %i.fa.fa-angle-right

@@ -37,11 +37,8 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
-    brands = Brand.find_or_initialize_by(name: params[:item][:brand][:name]) 
+    brands = Brand.find_or_create_by(name: params[:item][:brand][:name]) 
     @item.update!(brand_id: brands.id)
-    if brands.new_record? # 新規データなら保存
-      @item.build_brand(name: params[:item][:brand][:name])
-    end
 
     if @item.save
       redirect_to item_path(@item)
@@ -53,11 +50,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    brands = Brand.find_or_initialize_by(name: params[:item][:brand][:name]) 
+    brands = Brand.find_or_create_by(name: params[:item][:brand][:name]) 
     @item.update!(brand_id: brands.id)
-    if brands.new_record? # 新規データなら保存
-      @item.build_brand(name: params[:item][:brand][:name])
-    end
 
     if @item.update(item_params)
       redirect_to item_path(@item)

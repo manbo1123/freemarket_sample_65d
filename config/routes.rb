@@ -48,6 +48,10 @@ Rails.application.routes.draw do
     patch 'accounts/update'
     get 'passwords/edit_password', to: 'accounts#edit_password'
     patch 'passwords/update_password', to: 'accounts#update_password'
+    get 'favorites/index', to:'favorites#index'
+    get 'favorites/selling', to:'favorites#index'
+    get 'favorites/closed', to:'favorites#index'
+    get 'favorites/set_favorite', defaults: { format: 'json' }
   end
 
   resources :items, only: [:new, :create, :show, :destroy, :edit, :update] do

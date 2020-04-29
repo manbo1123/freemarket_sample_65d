@@ -1,0 +1,10 @@
+= render 'layouts/header'
+-# パンくずリスト
+.breadcrumbs_list
+  - breadcrumb :mypage
+  = breadcrumbs separator: " &rsaquo; "
+.mypage-wrap
+  = render 'mypage/side_menu'
+  .main_menu
+    = render 'favorite_list'
+= render 'layouts/footer'

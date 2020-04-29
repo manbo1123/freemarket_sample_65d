@@ -1,0 +1,46 @@
+%section.favorite_lsit
+  .title
+    %h2
+      いいね！した商品
+    %ul.lists_status
+    %li.exhibition_status
+      %h3
+        販売中
+    %li.exhibition_status
+      %h3
+        販売終了
+
+  .link-container
+    %ul.exhibiton_link
+      - if @favorite_list.present?
+        - if request.fullpath == "/mypage/favorite/selling" or request.fullpath == "/mypage"
+          - @favorite_list.each do |item_favorite|
+            %li.exhibiton_list
+              .exhibiton_detail
+                = image_tag "#{item_favorite.item_imgs.first.src.url}", class: "exhibiton_img"
+                .exhibiton_info
+                  %p.exhibiton_name
+                    = "商品名：#{item_favorite.name}"
+                    = "金額:¥#{item_favorite.price.to_s(:delimited)}"
+              .exhibition_btns
+                %a{href: "/items/#{item_favorite.id}"}
+                  %button{type: "button", class: "exhibition_btn btn-detail"}
+                    商品詳細
+
+        - elsif request.fullpath == "/mypage/favorite/closed"
+          .exhibiton_detail
+            = image_tag "#{item_favorite.item_imgs.first.src.url}", class: "exhibiton_img"
+            .exhibiton_info
+              %p.exhibiton_name
+                = "商品名：#{item_favorite.name}"
+                = "金額:¥#{item_favorite.price.to_s(:delimited)}"
+          .exhibition_btns
+            %a{href: "/items/#{item_favorite.id}"}
+              %button{type: "button", class: "exhibition_btn btn-detail"}
+                商品詳細
+              
+      - else
+        .none_links
+          = image_tag "logo/logo-white.png", class: "none_img"
+          %p.none_text
+            いいね！した商品がありません

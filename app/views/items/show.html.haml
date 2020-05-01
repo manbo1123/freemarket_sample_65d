@@ -1,4 +1,8 @@
 = render "layouts/header"
+-# パンくずリスト
+.breadcrumbs_list_item
+  - breadcrumb :item
+  = breadcrumbs separator: " &rsaquo; "
 .item_detail_page
   %section.main-topic
     %h2.main-topic__item-name
@@ -143,8 +147,4 @@
   .category-items
     = link_to @item.category.parent.parent.name, item_path(@item.category.parent.parent.id)
 
--# パンくずリスト
-.breadcrumbs_list_item
-  - breadcrumb :item
-  = breadcrumbs separator: " &rsaquo; "
 = render "layouts/footer"

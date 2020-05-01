@@ -232,6 +232,7 @@ li.purchases_status.active{
     background-color: rgb(236, 236, 236);
     height: 60px;
     font-weight: bold;
+    border-bottom:solid red;
     h2{
       line-height: 60px;
       font-size: 20px;
@@ -239,35 +240,17 @@ li.purchases_status.active{
       margin-left: 10px;
     }
   }
-  ul.lists_status{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
 }
 
-.exhibition_status{
-  background-color: rgb(218, 218, 218);
-  height: 60px;
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-  border-top: solid rgb(218, 218, 218);
-  h3{
-    line-height: 60px;
-    font-size: 1rem;
-    font-weight: bold;
-  }
-}
 
-ul.exhibition_link{
+ul.favorite_link{
   display: block;
-  height: 300px;
+  height: 100%;
   background-color: white;
   overflow: scroll;
 }
 
-.exhibiton_list{
+.favorite_box{
   background-color: white;
   height: 70px;
   width: 680px;
@@ -275,7 +258,7 @@ ul.exhibition_link{
   border-bottom: solid 1px rgb(233, 233, 233);
   display: flex;
   justify-content: space-between;
-  .exhibition_detail{
+  .favorite_detail{
     background-color: white;
     height: 100%;
     width: 600px;
@@ -283,34 +266,37 @@ ul.exhibition_link{
     color: black;
     display: flex;
     justify-content: center;
-    .exhibiton_img{
+    .favorite_img{
       width: 70px;
       margin-right: 20px;
     }
-    .exhibiton_info{
+    .favorite_info{
       width: 580px;
       text-align: inherit;
-      .exhibiton_name{
+      .favorite_name{
         font-size: 0.9rem;
       }
-      .exhibition_tag{
+      .favorite_price{
         font-size: 0.8rem;
         font-weight: bold;
       }
+      .favorite_another{
+        font-size: 0.8rem;
+      }
     }
   }
-  .exhibition_btns a{
+  .favorite_btns a{
     text-decoration: none;
   }
-  .exhibition_btns{
+  .favorite_btns{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    .exhibition_btn{
+    .favorite_btn{
       display: block;
       font-size: 0.8rem;
     }
-    button.exhibition_btn:hover{
+    button.favorite_btn:hover{
       background-color: rgb(164, 220, 255);
       cursor: pointer;
     }
@@ -334,11 +320,22 @@ ul.exhibition_link{
   }
 }
 
-li.exhibition_status:hover{
+li.favorite_status:hover{
   cursor: pointer;
 }
 
-li.exhibition_status.active{
-  background-color: white;
-  border-top-color: red;
+.sold_mark{
+  position: absolute;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid red;
+}
+.sold_mark::after{
+  color: white;
+  font-weight: bold;
+  content: "SOLD";
+  font-size: 13px;
+  position: absolute;
+  top: 9px;
+  left: -50px;
+  transform: rotate(-45deg);
 }

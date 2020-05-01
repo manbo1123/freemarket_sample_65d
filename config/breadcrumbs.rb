@@ -43,6 +43,32 @@ crumb :mypage_logout do
   link 'ログアウト', logout_mypage_index_path
   parent :mypage
 end
+
+# 出品した商品一覧(出品中)
+crumb :mypage_selling do
+  link '出品した商品', mypage_exhibition_selling_path
+  parent :mypage
+end
+# 出品した商品一覧(取引中)
+crumb :mypage_dealing do
+  link '出品した商品', mypage_exhibition_dealing_path
+  parent :mypage
+end
+# 出品した商品一覧(完売済み)
+crumb :mypage_closed do
+  link '出品した商品', mypage_exhibition_closed_path
+  parent :mypage
+end
+# 購入した商品一覧(取引中)
+crumb :mypage_purchases_dealing do
+  link '購入した商品', mypage_purchases_dealing_path
+  parent :mypage
+end
+# 購入した商品一覧(過去の取引)
+crumb :mypage_purchases_closed do
+  link '購入した商品', mypage_purchases_closed_path
+  parent :mypage
+end
 #----------------------------------商品関連-------------------------------#
 #商品関連ページ実装後に作成
   # 商品詳細ページ

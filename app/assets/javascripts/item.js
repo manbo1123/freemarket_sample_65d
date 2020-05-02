@@ -315,9 +315,7 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
     let preview_total_num = $(this).parent().attr('data-index');  //保存/未保存含めた削除ボタンのプレビューNo.を取得
     let preview_count = $('.up-image').find('.image-preview').length; //プレビューの数を数える
     //該当No.のinputタグを取得して、親ごと削除
-    console.log(preview_num);
     if (preview_num >= 0) {
-      console.log('aaaa');
       $('.image-preview[index ='+preview_num+']').remove();
     }
     //inputの番号をつけ直す

@@ -114,7 +114,7 @@
                     .message-icon-left
                       .fa.fa-history
                       %span
-                        = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                        = comment.how_long_ago
                     .message-icon-right
                       .message-delete
                         = link_to("/items/#{@item.id}/comments/#{comment.id}",{method:"delete"}) do
@@ -136,14 +136,16 @@
   .nav-content
     %ul.nav-content__nav-items
       %li.nav-content__nav-items--nav-item-before
-        = link_to "/items/#{@item_rnd.id}" do
-          %span
-          %i.fa.fa-angle-left 前の商品
+        - if @item.previous.present?
+          = link_to "/items/#{@item.previous.id}" do
+            %span
+            %i.fa.fa-angle-left 前の商品
       %li.nav-content__nav-items--nav-item-after
-        = link_to "/items/#{@item_rnd.id}" do
-          次の商品
-          %span
-          %i.fa.fa-angle-right
+        - if @item.next.present?
+          = link_to "/items/#{@item.next.id}" do
+            次の商品
+            %span
+            %i.fa.fa-angle-right
   .category-items
     = link_to @item.category.parent.parent.name, item_path(@item.category.parent.parent.id)
 

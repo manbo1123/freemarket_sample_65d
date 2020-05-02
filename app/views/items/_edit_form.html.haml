@@ -13,7 +13,7 @@
               - if @item.persisted?
                 - @item.item_imgs.each.with_index(1) do |img, i|
                   - next if i >= 6
-                  .preview{{data:{name: i}},{data:{index: i}}}
+                  .preview.preview_saved{{data:{name: i}},{data:{index: i}}}
                     .img_box
                       = image_tag img.src.url, data: {index: i}, class: "preview_image"
                     .preview_btn
@@ -22,9 +22,9 @@
               = icon('fas', 'camera')
               .image_text_message
                 %p.item_input__body__image_text
-                  ドラッグ アンド ドロップ
-                  %br
-                  またはクリックしてファイルをアップロード
+                  -#ドラッグ アンド ドロップ
+                  -#%br
+                  クリックしてファイルをアップロード
               .up-image__group__dropbox{data: {index: 1}}
                 = f.file_field :src, class: "item_imgs__default", id: "up_img_last", type: 'file', multiple: true, accept: "image/*"
               - if @item.persisted?

@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_rnd = Item.where('id >= ?', rand(Item.first.id..Item.last.id) ).where.not(id: @item.id).first
     @pref = Prefecture.find(@item.prefecture_code)
     @comments = @item.comments.includes(:user).where(item_id: @item.id)
     #コメント追加

@@ -20,7 +20,7 @@
                 -#   = "他にいいね！している人が⚫人います！"
 
             .favorite_btns
-              %a{href: "/items/#{item_favorite.id}"}
+              = link_to "/items/#{item_favorite.id}" do
                 %button{type: "button", class: "favorite_btn btn-detail"}
                   商品詳細
             - if item_favorite.buyer_id.present?

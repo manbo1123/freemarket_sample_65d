@@ -1,0 +1,33 @@
+%section.favorite_list
+  .title
+    %h2
+      いいね！した商品
+
+  .link-container
+    %ul.favorite_link
+      - if @favorite_list.present?
+        - @favorite_list.each do |item_favorite|
+          %li.favorite_box
+            .favorite_detail
+              = image_tag "#{item_favorite.item_imgs.first.src.url}", class: "favorite_img"
+              .favorite_info
+                %p.favorite_name
+                  = "商品名：#{item_favorite.name}"
+                %p.favorite_price
+                  = "金額:¥#{item_favorite.price.to_s(:delimited)}"
+                -# %br.space
+                -# %p.favorite_another
+                -#   = "他にいいね！している人が⚫人います！"
+
+            .favorite_btns
+              %a{href: "/items/#{item_favorite.id}"}
+                %button{type: "button", class: "favorite_btn btn-detail"}
+                  商品詳細
+            - if item_favorite.buyer_id.present?
+              %span.sold_mark
+
+      - else
+        .none_links
+          = image_tag "logo/logo-white.png", class: "none_img"
+          %p.none_text
+            いいね！した商品がありません

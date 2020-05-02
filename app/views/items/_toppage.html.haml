@@ -8,10 +8,12 @@
         %br/
         フリマアプリです
       .content__btn
-        %a.appstore{:href => "#"}
-          = image_tag "icon/Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg", class: "appbtn"
-        %a.googleplay{:href => "#"}
-          = image_tag "icon/Google_Play_Store_badge_EN.svg", class: "appbtn"
+        .appstore
+          = link_to "#" do
+            = image_tag "icon/Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg", class: "appbtn"
+        .googleplay
+          = link_to "#" do
+            = image_tag "icon/Google_Play_Store_badge_EN.svg", class: "appbtn"
   %section.main__introduction
     %h2.subtitle
       FURIMAが選ばれる3つの理由
@@ -55,10 +57,12 @@
         %br/
         ほしかったあの商品に出会えるかもしれません。
       .content__btn
-        %a.appstore{:href => "#"}
-          = image_tag "icon/Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg", class: "appbtn"
-        %a.googleplay{:href => "#"}
-          = image_tag "icon/Google_Play_Store_badge_EN.svg", class: "appbtn"
+        .appstore
+          = link_to "#" do
+            = image_tag "icon/Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg", class: "appbtn"
+        .googleplay
+          = link_to "#" do
+            = image_tag "icon/Google_Play_Store_badge_EN.svg", class: "appbtn"
   %section.main__characteristic
     %h2.subtitle
       FURIMAの特徴
@@ -90,7 +94,7 @@
       ピックアップカテゴリー
     .productcontent
       .producthead
-        %a{:href => "#"}
+        = link_to "#" do
           %h3.title
             新規投稿商品
       .productlists
@@ -101,7 +105,7 @@
       ピックアップブランド
     .productcontent
       .producthead
-        %a{:href => "#"}
+        = link_to "#" do
           %h3.title
             アーカイバ
       .productlists

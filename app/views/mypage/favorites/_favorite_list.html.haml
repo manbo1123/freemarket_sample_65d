@@ -15,9 +15,10 @@
                   = "商品名：#{item_favorite.name}"
                 %p.favorite_price
                   = "金額:¥#{item_favorite.price.to_s(:delimited)}"
-                -# %br.space
-                -# %p.favorite_another
-                -#   = "他にいいね！している人が⚫人います！"
+                %br.space
+                - if item_favorite.favorites.length - 1 > 0
+                  %p.favorite_another
+                    = "他にもいいね！している人が　#{item_favorite.favorites.length - 1}人います！"
 
             .favorite_btns
               = link_to "/items/#{item_favorite.id}" do

@@ -44,6 +44,12 @@ crumb :mypage_logout do
   parent :mypage
 end
 
+# いいね一覧
+crumb :favorites do
+  link 'いいね！一覧', mypage_favorites_index_path
+  parent :mypage
+end
+
 # 出品した商品一覧(出品中)
 crumb :mypage_selling do
   link '出品した商品 - 出品中', mypage_exhibition_selling_path

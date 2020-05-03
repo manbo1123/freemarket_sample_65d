@@ -35,6 +35,7 @@ Things you may want to cover:
 - マイページ機能・編集
 - 商品検索機能
 
+![Alt text](https://gyazo.com/ad9fc0a3f2b807bc30f971900b22b584/raw)
 
 # users table
 |Column|Type|Options|

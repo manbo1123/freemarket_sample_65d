@@ -14,8 +14,8 @@
         売却済み
   .link-container
     %ul.exhibition_link
-      - if @item_exhibition.present?
-        - if request.fullpath == "/mypage/exhibition/selling" or request.fullpath == "/mypage"
+      - if request.fullpath == "/mypage/exhibition/selling" or request.fullpath == "/mypage"
+        - if @item_exhibition.present?
           - @item_exhibition.each do |item_exhibition|
             %li.exhibiton_list
               .exhibition_detail
@@ -29,7 +29,13 @@
                 %a{href: "/items/#{item_exhibition.id}"}
                   %button{type: "button", class: "exhibition_btn btn-detail"}
                     商品詳細
-        - elsif request.fullpath == "/mypage/exhibition/dealing"
+        - else
+          .none_links
+            = image_tag "logo/logo-white.png", class: "none_img"
+            %p.none_text
+              出品中の商品がありません
+      - elsif request.fullpath == "/mypage/exhibition/dealing"
+        - if @item_exhibition.present?
           - @item_exhibition.each do |item_exhibition|
             - if item_exhibition.trading_status == "selling"
               %li.exhibiton_list
@@ -60,6 +66,12 @@
                     %button{type: "button", class: "exhibition_btn btn-detail"}
                       商品詳細
         - else
+          .none_links
+            = image_tag "logo/logo-white.png", class: "none_img"
+            %p.none_text
+              取引中の商品がありません
+      - else
+        - if @item_exhibition.present?
           - @item_exhibition.each do |item_exhibition|
             %li.exhibiton_list
               .exhibition_detail
@@ -73,10 +85,8 @@
                 %a{href: "/items/#{item_exhibition.id}"}
                   %button{type: "button", class: "exhibition_btn btn-detail"}
                     商品詳細
-      - else
-        .none_links
-          = image_tag "logo/logo-white.png", class: "none_img"
-          %p.none_text
-            出品中の商品がありません
-    -# %ul.exhibition_link
-    -# %ul.exhibition_link
+        - else
+          .none_links
+            = image_tag "logo/logo-white.png", class: "none_img"
+            %p.none_text
+              売却済みの商品がありません

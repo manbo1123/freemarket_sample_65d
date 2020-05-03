@@ -40,9 +40,10 @@ class Mypage::AccountsController < ApplicationController
   end
 
   def update_password
+    
     @user = User.find_by(id: current_user.id)
     if @user.update_with_password(password_params)
-      redirect_to user_session_path
+      render :edit_password
     else
       @user.errors[:password] << "登録内容が更新できませんでした"
       flash.now[:alert] = @user.errors.full_messages

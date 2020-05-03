@@ -8,6 +8,7 @@ ja:
         encrypted_password: パスワード
         password: パスワード
         password_confirmation: パスワード(確認用)
+        current_password: 現在のパスワード
         family_name: お名前(姓)
         first_name: お名前(名)
         family_name_kana: お名前(セイ)

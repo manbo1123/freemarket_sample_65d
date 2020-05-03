@@ -62,7 +62,7 @@ crumb :mypage_dealing do
 end
 # 出品した商品一覧(完売済み)
 crumb :mypage_closed do
-  link '出品した商品 - 完売済み', mypage_exhibition_closed_path
+  link '出品した商品 - 売却済み', mypage_exhibition_closed_path
   parent :mypage
 end
 # 購入した商品一覧(取引中)

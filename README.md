@@ -33,7 +33,7 @@ Things you may want to cover:
 - カテゴリー・ブランド機能
 - クレジットカード登録・支払い機能
 - マイページ機能・編集
-- 商品検索機能
+
 
 ![Alt text](https://gyazo.com/ad9fc0a3f2b807bc30f971900b22b584/raw)
 

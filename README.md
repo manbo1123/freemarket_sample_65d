@@ -1,29 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
 # summary
 - フリマアプリのクローンサイト
 
@@ -33,8 +7,9 @@ Things you may want to cover:
 - カテゴリー・ブランド機能
 - クレジットカード登録・支払い機能
 - マイページ機能・編集
-- 商品検索機能
 
+# ER diagram
+![Alt text](https://gyazo.com/ad9fc0a3f2b807bc30f971900b22b584/raw)
 
 # users table
 |Column|Type|Options|

@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_category, only: [:new, :edit]
   before_action :set_item, only: [:show, :edit, :update, :destroy, :purchase, :buy]
   before_action :set_card, only: [:purchase, :buy]
   
@@ -41,10 +42,9 @@ class ItemsController < ApplicationController
 
     if @item.save
       redirect_to item_path(@item)
-      flash[:success] = "商品出品が完了しました"
     else
       render :new
-      flash[:danger] = "商品出品に失敗しました"
+      flash.now[:alert] = "商品出品に失敗しました"
     end
   end
 
@@ -54,7 +54,6 @@ class ItemsController < ApplicationController
 
     if @item.update(item_params)
       redirect_to item_path(@item)
-      flash[:success] = "商品情報を更新しました"
     else
       render :edit
       flash.now[:alert] = '商品情報の更新に失敗しました'
@@ -64,7 +63,6 @@ class ItemsController < ApplicationController
   def destroy
     if @item.destroy
       redirect_to :root
-      flash[:success] = "商品情報を削除しました"
     else
       render :show
     end
@@ -140,5 +138,12 @@ class ItemsController < ApplicationController
       :category_id,
       item_imgs_attributes: [:src, :_destroy, :id]
       ).merge(seller_id: current_user.id, trading_status: 0)
+  end
+
+  def correct_user
+    @item = Item.find(params[:id])
+    if @item.seller_id != current_user.id
+      redirect_to item_path(@item), flash: {key: "message"}
+    end
   end
 end

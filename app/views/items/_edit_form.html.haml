@@ -37,7 +37,7 @@
                 - if @item.persisted?
                   - @item.item_imgs.each.with_index(1) do |img, i|
                     - next if i <= 5
-                    .preview{{data:{name: i}},{data:{index: i}}}
+                    .preview.preview_saved{{data:{name: i}},{data:{index: i}}}
                       .img_box
                         = image_tag img.src.url, data: {index: i}, class: "preview_image"
                       .preview_btn
@@ -192,7 +192,7 @@
         .item_input__body__btn
           =f.submit "変更する", class:"item_input__body__btn__exhibition_btn"
           - if @item.persisted?
-            = link_to "出品を削除する", item_path(@item), class:"item_input__body__btn__delete_btn", method: :delete
+            = link_to "出品を削除する", item_path(@item), class:"item_input__body__btn__delete_btn", method: :delete, data: {confirm: '本当に削除しますか？' }
           =link_to "もどる", root_path, class:"item_input__body__btn__return_btn"
         -# 確認事項
         .item_input__body__nav

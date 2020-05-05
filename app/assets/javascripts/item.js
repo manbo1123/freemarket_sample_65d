@@ -14,19 +14,15 @@ window.onload = function () {
   if (image_num == 10) {
     $('.item_imgs_2nd_row').css('display', 'none');
   }
-  
   if ($('#size_box option:selected').val() != "") {
     $('#size_box').css('display', 'block');
   }
-
   if ($('#postage_type_box option:selected').val() != "") {
     $('#postage_type_box').css('display', 'block');
   }
-
   if ($('.size_box option:selected').val() =="65") {
     $('#size_box').css('display', 'none');
   }
-
   //販売価格表示
   let input_price = $('.item_input__body__price_box').val();
   let profit = Math.round(input_price * 0.9);
@@ -40,19 +36,16 @@ window.onload = function () {
     $('.charge_result').html('ー');
     $('.profit_result').html('ー');
   }
-
   //商品説明ボックスの文字カウント表示
   let count = $('.item_input__body__text_area').text().length;
   $('.countup').text(count);
 };
-
   //---------------------カテゴリーボックスのオプション-------------------//
   function appendOption(category) {
     let html = 
      `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
-  //子カテゴリーのHTML
   function appendChildrenBox(insertHTML) {
       let childSelectHtml = '';
       childSelectHtml = `
@@ -62,7 +55,6 @@ window.onload = function () {
           <i class = "fa fa-chevron-down"></i>`;
       $('#children_box').append(childSelectHtml);
   }
-  //孫カテゴリーのHTML
   function appendGrandchildrenBox(insertHTML) {
       let grandchildSelectHtml = '';
       grandchildSelectHtml = `
@@ -72,9 +64,7 @@ window.onload = function () {
           <i class = "fa fa-chevron-down"></i>`;
       $('#grandchildren_box').append(grandchildSelectHtml);
   }
-  //親カテゴリー選択によるイベント
   $(document).on("change","#parent_category", function() {
-    //選択された親カテゴリーの名前取得→コントローラーに送る
     let parentCategory =  $("#parent_category").val();
     if (parentCategory != "") {
       $.ajax( {
@@ -84,7 +74,6 @@ window.onload = function () {
         dataType: 'json'
       })
       .done(function(children) {
-        //親カテゴリーが変更されたら、子/孫カテゴリー、サイズを削除し、初期値にする
         $("#children_box").empty();
         $("#grandchildren_box").empty();
         $('.size_box').val('');
@@ -105,12 +94,9 @@ window.onload = function () {
       $('#size_box').css('display', 'none');
     }
   });
-  
-  //子カテゴリー選択によるイベント発火
   $(document).on('change', '#children_box', function() {
-    //選択された子カテゴリーidを取得
     let childId = $('#children_category').val();
-    if (childId != ""){ //子カテゴリーが初期値でない場合
+    if (childId != ""){
       $.ajax({
         url: 'get_category_grandchildren',
         type: 'GET',
@@ -138,15 +124,12 @@ window.onload = function () {
       $('#size_box').css('display', 'none');      
     }
   });
-  //孫カテゴリー選択によるイベント発火
   $(document).on('change', '#grandchildren_box', function() {
-    //let grandchildId = $('#grandchildren_category option:selected').data('category');
     let grandchildId = $('#grandchildren_category').val();
-    if (grandchildId != "") {  //孫カテゴリーが初期値でない場合
+    if (grandchildId != "") {
       $('.size_box').val('');
       $('.size_box option').css('display', 'block');
       $('#size_box').css('display', 'block');
-      //カテゴリー選択によって、サイズボックスの選択肢を変更
       if (grandchildId <= 66||grandchildId >= 78 && grandchildId <= 80||grandchildId >= 174 && grandchildId <= 176||grandchildId >= 178 && grandchildId <= 181||grandchildId >= 186 && grandchildId <= 194||grandchildId >= 200 && grandchildId <= 247||grandchildId >= 270 && grandchildId <= 274||grandchildId >= 330 && grandchildId <= 332||grandchildId >= 340 && grandchildId <= 342) {
         $('.size_box option[value]').each(function(i) {
           if (i>=11) {
@@ -186,7 +169,6 @@ window.onload = function () {
       $('#size_box').css('display', 'none');
     }
   });
-
   //-------------------------配送料の負担 選択によるイベント発火-------------------------//
   $(document).on('change', '.postage_payer_box', function() {
     if ($('.postage_type_boxoption option:selected').val() !="") {
@@ -197,7 +179,6 @@ window.onload = function () {
       $('#postage_type_box').css('display', 'none');
     }
   })
-
   //-------------------------販売価格入力によるイベント発火-------------------------//
   $(document).on('input', '.item_input__body__price_box', function() {
     let input_price = $('.item_input__body__price_box').val();
@@ -213,7 +194,6 @@ window.onload = function () {
       $('.profit_result').html('ー');
     }
   });
-
   //-------------------------商品説明ボックスの文字カウント-------------------------//
 $(document).on('keyup', '.item_input__body__text_area', function() {
   $('.item_input__body__text_area').keyup(function() {
@@ -222,7 +202,6 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
   });
 });
   //-----------------------画像のアップロード-----------------------//
-  //次の画像アップロード用のinputタグ
   let nextInput = (num, index)=> {
     let html = `<div class="up-image__group__dropbox" data-index="${num}" index="${index}">
                   <input class="item_imgs__default" 
@@ -231,7 +210,6 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
                   accept="image/*"></input></div>`;
     return html; 
   }
-  //プレビュー用のimgタグ
   let previewImages = (src)=> {   
     let html = `<div class="preview preview_unsave">
                   <div class="img_box">
@@ -241,7 +219,6 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
   }
   //-------------------------画像プレビュー表示---------------------//
   $(document).on('change','input[type= "file"]', function(e) {
-
     let reader = new FileReader();  //inputで選択した画像を読み込む
     let file = e.target.files[0];   //inputから1つ目のfileを取得
     reader.readAsDataURL(file);     //inputから画像ファイルのURLを取得
@@ -266,9 +243,7 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         $('.item_imgs_2nd_row').prepend(nextInput(preview_total_num + 1, preview_count + 1));
       }
 
-      //文字列を消す
       $('.image_text_message').css('display', 'none');
-      //エラーメッセージを消す
       $('.img_error_message').css('display', 'none');
 
       //プレビュー画像が５枚になったら１段目inputを消し、２段目にinputを表示
@@ -300,7 +275,6 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
       });
     }
   });
-
   //-----------------------削除ボタンをクリック--------------------//
   $(document).on("click",'.preview_btn', function() {
     // 該当indexを振られているチェックボックスを取得
@@ -351,9 +325,7 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
         }
       }
     if ($(".preview").length == 0) {
-      //文字列を表示
       $('.image_text_message').css('display', 'block');
-      //エラーメッセージを表示
       $('.img_error_message').css('display', 'block');
     }
   });

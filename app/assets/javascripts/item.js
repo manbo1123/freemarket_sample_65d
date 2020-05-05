@@ -217,86 +217,43 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
                   <div class="preview_btn">削除</div></div>`;
     return html;
   }
-  //-------------------------画像プレビュー表示---------------------//
-  $(document).on('change','input[type= "file"]', function(e) {
-    let reader = new FileReader();  //inputで選択した画像を読み込む
-    let file = e.target.files[0];   //inputから1つ目のfileを取得
-    reader.readAsDataURL(file);     //inputから画像ファイルのURLを取得
-
-    //画像読み込み完了するとプレビューを表示
-    reader.onload = function(e) {
-      //inputの画像を付与した,imgタグの塊を.previewsに追加。
-      if ($('.preview').length <= 4) {
-        $('.previews').append(previewImages(e.target.result));
-      } else {
-        $('.previews_2nd_row').append(previewImages(e.target.result));
-      }
-
-      //プレビュー完了後、プレビュー枚数を数える
-      $('.up-image__group__dropbox').removeClass('up-image__group__dropbox').addClass('image-preview');     // jQueryで数を数える用にinputのクラス名変更
-      let preview_count = $('.up-image').find('.image-preview').length; //プレビューの数を数える
-      let preview_total_num = $('.preview').length;
-      //アップロード完了したら、inputタグを追加
-      if (preview_total_num <= 4) {
-        $('.item_imgs').prepend(nextInput(preview_total_num + 1, preview_count + 1));
-      } else {
-        $('.item_imgs_2nd_row').prepend(nextInput(preview_total_num + 1, preview_count + 1));
-      }
-
-      $('.image_text_message').css('display', 'none');
-      $('.img_error_message').css('display', 'none');
-
-      //プレビュー画像が５枚になったら１段目inputを消し、２段目にinputを表示
-      if (preview_total_num == 5) {
-        $('.item_imgs').css('display', 'none');
-        $('.under_group').css('display', 'block');
-        $('.item_imgs_2nd_row').css('display', 'block');
-      }
-      //プレビュー画像が10枚になったら2段目inputを消す
-      if (preview_total_num == 10) {
-        $('.item_imgs_2nd_row').css('display', 'none');
-      }
-
-      //inputの最後の"data-image"を取得し、input nameの番号を更新。inputの区別のため。
-      //全部のプレビューの番号を更新し、削除しても番号が並ぶ。
-      $('.item_imgs__default').each(function(i) {
-        $(this).attr('name', "item[item_imgs_attributes][" + (i+10) + "][src]");
-        $(this).attr('data-index', (i+10));
-      });
-      $('.preview').each(function(i) {
-        $(this).attr('data-index', (i+1));
-      });
-      $('.preview_unsave').each(function(i) {
-        $(this).attr('index', (i+1));
-      });
-      $('.image-preview').each(function(i) {
-        $(this).attr('index', (i+1));
-        $(this).attr('data-index', (($('.preview_saved').length)+i+1));
-      });
+//-------------------------画像プレビュー表示---------------------//
+$(document).on('change','input[type= "file"]', function(e) {
+  let reader = new FileReader();
+  let file = e.target.files[0];
+  reader.readAsDataURL(file);
+  reader.onload = function(e) {
+    if ($('.preview').length <= 4) {
+      $('.previews').append(previewImages(e.target.result));
+    } else {
+      $('.previews_2nd_row').append(previewImages(e.target.result));
     }
-  });
-  //-----------------------削除ボタンをクリック--------------------//
-  $(document).on("click",'.preview_btn', function() {
-    // 該当indexを振られているチェックボックスを取得
-    let targetIndex = $(this).parent().data("name");
-    $(this).parent().remove();  //削除ボタンを押した.previewを削除
-    if (targetIndex >= 0) {
-      let hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-      // チェックボックスが存在すればチェックを入れる
-      hiddenCheck.prop('checked', true)
+    let preview_count = $('.preview').length;
+    let preview_unsave_count = $('.preview_unsave').length;
+    let preview_saved_count = $('.hidden-destroy').length;
+
+    if (preview_count <= 5) {
+      $('.up-image__group__dropbox').removeClass('up-image__group__dropbox').addClass('image-preview').appendTo('.item_imgs');
+    } else {
+      $('.up-image__group__dropbox').removeClass('up-image__group__dropbox').addClass('image-preview').appendTo('.item_imgs_2nd_row');
     }
-    let preview_num = $(this).parent().attr('index');  //未保存の削除ボタンのプレビューNo.を取得
-    let preview_total_num = $(this).parent().attr('data-index');  //保存/未保存含めた削除ボタンのプレビューNo.を取得
-    let preview_count = $('.up-image').find('.image-preview').length; //プレビューの数を数える
-    //該当No.のinputタグを取得して、親ごと削除
-    if (preview_num >= 0) {
-      $('.image-preview[index ='+preview_num+']').remove();
+    if (preview_count <= 4) {
+      $('.item_imgs').prepend(nextInput(preview_count + 1, preview_unsave_count + 1));
+    } else {
+      $('.item_imgs_2nd_row').prepend(nextInput(preview_count + 1, preview_unsave_count + 1));
     }
-    //inputの番号をつけ直す
-    $('.item_imgs__default').each(function(i) {
-      $(this).attr('name', "item[item_imgs_attributes][" + (i+11) + "][src]");
-      $(this).attr('data-index', (i+11));
-    });
+
+    $('.image_text_message').css('display', 'none');
+    $('.img_error_message').css('display', 'none');
+    if (preview_count == 5) {
+      $('.item_imgs').css('display', 'none');
+      $('.under_group').css('display', 'block');
+      $('.item_imgs_2nd_row').css('display', 'block');
+    }
+    if (preview_count == 10) {
+      $('.item_imgs_2nd_row').css('display', 'none');
+    }
+
     $('.preview').each(function(i) {
       $(this).attr('data-index', (i+1));
     });
@@ -305,30 +262,65 @@ $(document).on('keyup', '.item_input__body__text_area', function() {
     });
     $('.image-preview').each(function(i) {
       $(this).attr('index', (i+1));
-      $(this).attr('data-index', (($('.preview_saved').length)+i+1));
+      $(this).attr('data-index', (preview_saved_count+i+1));
+      $(this).children().attr('name', "item[item_imgs_attributes][" + (preview_saved_count+i) + "][src]");
+      $(this).children().attr('data-index', (i+1));
     });
+  }
+});
+//-----------------------削除ボタンをクリック--------------------//
+$(document).on("click",'.preview_btn', function() {
+  let targetIndex = $(this).parent().data("name");
+  $(this).parent().remove();
+  if (targetIndex >= 0) {
+    let hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    hiddenCheck.prop('checked', true)
+  }
+  let preview_num = $(this).parent().attr('index');
+  let preview_total_num = $(this).parent().attr('data-index');
+  let preview_count = $('.preview').length;
+  let preview_unsave_count = $('.preview_unsave').length;
+  let preview_saved_count = $('.hidden-destroy').length;
 
-      if ($('.preview').length == 4 ) {
-        $('.item_imgs_2nd_row').find('.up-image__group__dropbox').remove();
-        $('.item_imgs').prepend(nextInput($('.preview').length + 1, preview_count + 1));
-        $('.item_imgs_2nd_row').css('display', 'none');
-        $('.item_imgs').css('display', 'block');
-        $('.image_text_message').css('display', 'none');
-      } else if ($('.preview').length >=5 && $('.preview').length <=8 && preview_total_num <= 5) {
-        $('.preview[data-index ='+5+']').appendTo('.previews');
-        $('.image-preview[data-index ='+5+']').appendTo('.item_imgs');
-      } else if ($('.preview').length == 9) {
-        $('.item_imgs_2nd_row').css('display', 'block');
-        if(preview_total_num <= 5) {
-          $('.preview[data-index ='+5+']').appendTo('.previews');
-          $('.image-preview[data-index ='+5+']').appendTo('.item_imgs');
-        }
-      }
-    if ($(".preview").length == 0) {
-      $('.image_text_message').css('display', 'block');
-      $('.img_error_message').css('display', 'block');
-    }
+  if (preview_num >= 0) {
+    $('.image-preview[index ='+preview_num+']').remove();
+  }
+
+  $('.preview').each(function(i) {
+    $(this).attr('data-index', (i+1));
   });
+  $('.preview_unsave').each(function(i) {
+    $(this).attr('index', (i+1));
+  });
+  $('.image-preview').each(function(i) {
+    $(this).attr('index', (i+1));
+    $(this).attr('data-index', (preview_saved_count+i+1));
+    $(this).children().attr('name', "item[item_imgs_attributes][" + (preview_saved_count+i+1) + "][src]");
+    $(this).children().attr('data-index', (i+1));
+  });
+  
+  if (preview_count == 4 ) {
+    $('.item_imgs_2nd_row').find('.up-image__group__dropbox').remove();
+    $('.item_imgs').prepend(nextInput(preview_count + 1, preview_unsave_count + 1));
+    $('.item_imgs_2nd_row').css('display', 'none');
+    $('.item_imgs').css('display', 'block');
+    $('.image_text_message').css('display', 'none');
+  } else if (preview_count >=5 && preview_count <=8 && preview_total_num <= 5) {
+    $('.preview[data-index ='+5+']').appendTo('.previews');
+    $('.image-preview[data-index ='+5+']').appendTo('.item_imgs');
+  } else if (preview_count == 9) {
+    $('.item_imgs_2nd_row').css('display', 'block');
+    if (preview_total_num <= 5) {
+      $('.preview[data-index ='+5+']').appendTo('.previews');
+      $('.preview[data-index ='+5+']').attr('index', (5));
+      $('.image-preview[data-index ='+5+']').appendTo('.item_imgs');
+    }
+  }
+  if (preview_count == 0) {
+    $('.image_text_message').css('display', 'block');
+    $('.img_error_message').css('display', 'block');
+  }
+});
   //--------------------------必須項目のエラーメッセージ表示--------------------------//
   $(document).on('click', 'input, select, textarea', function() {
     $('input#item_name').on('blur', function() {    

@@ -230,7 +230,6 @@ $(document).on('change','input[type= "file"]', function(e) {
     }
     let preview_count = $('.preview').length;
     let preview_unsave_count = $('.preview_unsave').length;
-    let preview_save_count = $('.preview_saved').length;
     let preview_saved_count = $('.hidden-destroy').length;
 
     if (preview_count <= 5) {
@@ -263,72 +262,7 @@ $(document).on('change','input[type= "file"]', function(e) {
     });
     $('.image-preview').each(function(i) {
       $(this).attr('index', (i+1));
-      $(this).attr('data-index', (preview_save_count+i+1));
-      $(this).children().attr('name', "item[item_imgs_attributes][" + (preview_saved_count+i) + "][src]");
-      $(this).children().attr('data-index', (i+1));
-    });
-  }
-});
-//--------------------------ドラッグ---------------------------//
-$(document).on('dragenter', ".item_imgs, .item_imgs_2nd_row", function(){
-  $(".item_imgs, .item_imgs_2nd_row").css('border', '1px solid greenyellow');
-});
-$(document).on('dragleave', ".item_imgs, .item_imgs_2nd_row", function(){
-  $(".item_imgs, .item_imgs_2nd_row").css('border', '1px dashed rgb(204, 204, 204)');
-});
-$(document).on('dragover', ".item_imgs, .item_imgs_2nd_row", function(e){
-  e.preventDefault();
-});
-$(document).on('drop', ".item_imgs, .item_imgs_2nd_row", function(e){
-  e.preventDefault();
-  $(".item_imgs, .item_imgs_2nd_row").css('border', '1px dashed rgb(204, 204, 204)');
-  let file = e.originalEvent.dataTransfer.files[0];
-  let reader = new FileReader();
-  reader.readAsDataURL(file);
-  $(".up-image__group__dropbox").children('.item_imgs__default')[0].files = e.originalEvent.dataTransfer.files;
-
-  reader.onload = function(e) {
-    if ($('.preview').length <= 4) {
-      $('.previews').append(previewImages(e.target.result));
-    } else {
-      $('.previews_2nd_row').append(previewImages(e.target.result));
-    }
-    let preview_count = $('.preview').length;
-    let preview_unsave_count = $('.preview_unsave').length;
-    let preview_save_count = $('.preview_saved').length;
-    let preview_saved_count = $('.hidden-destroy').length;
-
-    if (preview_count <= 5) {
-      $('.up-image__group__dropbox').removeClass('up-image__group__dropbox').addClass('image-preview').appendTo('.item_imgs');
-    } else {
-      $('.up-image__group__dropbox').removeClass('up-image__group__dropbox').addClass('image-preview').appendTo('.item_imgs_2nd_row');
-    }
-    if (preview_count <= 4) {
-      $('.item_imgs').prepend(nextInput(preview_count + 1, preview_unsave_count + 1));
-    } else {
-      $('.item_imgs_2nd_row').prepend(nextInput(preview_count + 1, preview_unsave_count + 1));
-    }
-
-    $('.image_text_message').css('display', 'none');
-    $('.img_error_message').css('display', 'none');
-    if (preview_count == 5) {
-      $('.item_imgs').css('display', 'none');
-      $('.under_group').css('display', 'block');
-      $('.item_imgs_2nd_row').css('display', 'block');
-    }
-    if (preview_count == 10) {
-      $('.item_imgs_2nd_row').css('display', 'none');
-    }
-
-    $('.preview').each(function(i) {
-      $(this).attr('data-index', (i+1));
-    });
-    $('.preview_unsave').each(function(i) {
-      $(this).attr('index', (i+1));
-    });
-    $('.image-preview').each(function(i) {
-      $(this).attr('index', (i+1));
-      $(this).attr('data-index', (preview_save_count+i+1));
+      $(this).attr('data-index', (preview_saved_count+i+1));
       $(this).children().attr('name', "item[item_imgs_attributes][" + (preview_saved_count+i) + "][src]");
       $(this).children().attr('data-index', (i+1));
     });
@@ -346,7 +280,6 @@ $(document).on("click",'.preview_btn', function() {
   let preview_total_num = $(this).parent().attr('data-index');
   let preview_count = $('.preview').length;
   let preview_unsave_count = $('.preview_unsave').length;
-  let preview_save_count = $('.preview_saved').length;
   let preview_saved_count = $('.hidden-destroy').length;
 
   if (preview_num >= 0) {
@@ -361,7 +294,7 @@ $(document).on("click",'.preview_btn', function() {
   });
   $('.image-preview').each(function(i) {
     $(this).attr('index', (i+1));
-    $(this).attr('data-index', (preview_save_count+i+1));
+    $(this).attr('data-index', (preview_saved_count+i+1));
     $(this).children().attr('name', "item[item_imgs_attributes][" + (preview_saved_count+i+1) + "][src]");
     $(this).children().attr('data-index', (i+1));
   });

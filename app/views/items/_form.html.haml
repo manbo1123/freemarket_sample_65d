@@ -15,8 +15,8 @@
                 = icon('fas', 'camera')
                 .image_text_message
                   %p.item_input__body__image_text
-                    -#ドラッグ アンド ドロップ
-                    -#%br
+                    ドラッグ アンド ドロップ
+                    %br
                     クリックしてファイルをアップロード
                 .up-image__group__dropbox{data: {index: 1}}
                   = image.file_field :src, class: "item_imgs__default", id: "up_img_last", type: 'file', multiple: true, accept: "image/*"

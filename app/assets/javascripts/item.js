@@ -269,7 +269,7 @@ $(document).on('change','input[type= "file"]', function(e) {
     });
   }
 });
-//--------------------------ドラッグ---------------------------//
+//--------------------------ドラッグ&ドロップ---------------------------//
 $(document).on('dragenter', ".item_imgs, .item_imgs_2nd_row", function(){
   $(".item_imgs, .item_imgs_2nd_row").css('border', '1px solid greenyellow');
 });
@@ -286,6 +286,10 @@ $(document).on('drop', ".item_imgs, .item_imgs_2nd_row", function(e){
   let reader = new FileReader();
   reader.readAsDataURL(file);
   $(".up-image__group__dropbox").children('.item_imgs__default')[0].files = e.originalEvent.dataTransfer.files;
+  if (!file.type.match('image.*')) {
+    alert('画像を選択してください');
+    return;
+  }
 
   reader.onload = function(e) {
     if ($('.preview').length <= 4) {
